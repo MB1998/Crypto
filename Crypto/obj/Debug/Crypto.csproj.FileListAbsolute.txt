@@ -1,0 +1,6 @@
+D:\Labs\Crypto\Crypto\bin\Debug\Crypto.exe.config
+D:\Labs\Crypto\Crypto\obj\Debug\Crypto.csprojResolveAssemblyReference.cache
+D:\Labs\Crypto\Crypto\bin\Debug\Crypto.exe
+D:\Labs\Crypto\Crypto\bin\Debug\Crypto.pdb
+D:\Labs\Crypto\Crypto\obj\Debug\Crypto.exe
+D:\Labs\Crypto\Crypto\obj\Debug\Crypto.pdb
