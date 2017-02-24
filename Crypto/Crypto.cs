@@ -7,53 +7,38 @@ using System.Threading.Tasks;
 
 namespace Crypto {
     class Crypto {
-        public static string encodeGrey(string data_to_encode) {
-            Console.WriteLine("data_to_encode: " + data_to_encode);
-            BitArray bit_array = new BitArray(Encoding.ASCII.GetBytes(data_to_encode));
-            return encodeGrey(bit_array);
-        }
-
-        public static BitArray encodeGrey(BitArray bit_array) {
-            bool[] encoded_data = new bool[];
-            encoded_data[0] = binary_code[0];
-            foreach(int i = 1; i < binary_code.Length; i++){
-                Console.WriteLine("encoded_data: " + encoded_data);
-                encoded_data += xor(binary_code[i], binary_code[i - 1]);
+        public static BitArray EncodeGrey(BitArray bitArray) {
+            ArrayList encodedBitArray = new ArrayList();
+            encodedBitArray.Add(bitArray.Get(0));
+            for (int i = 1; i < bitArray.Count; i++){
+                encodedBitArray.Add(Xor(bitArray.Get(i), bitArray.Get(i - 1)));
             }
-            Console.WriteLine("encoded_data: " + encoded_data);
-            return encoded_data;
+            return new BitArray((bool[])encodedBitArray.ToArray(typeof(bool)));
         }
 
-        /*public static string decodeGrey(string encoded_data) {
-            Console.WriteLine("encoded_data: " + encoded_data);
-            byte[] decoded_data = decodeGreyBinary(encoded_data);
-            return BitArrayToStr(new BitArray(decoded_data));
-        }
-
-        public static byte[] decodeGreyBinary(string encoded_data) {
-            string decoded_data = encoded_data[0].ToString();
-            for (int i = 1; i < encoded_data.Length; i++) {
-                Console.WriteLine("decoded_data: " + decoded_data);
-                decoded_data += xor(decoded_data[i - 1], encoded_data[i]);
+        public static BitArray DecodeGrey(BitArray encodedBitArray) {
+            ArrayList decodedBitArray = new ArrayList();
+            decodedBitArray.Add(encodedBitArray.Get(0));
+            for (int i = 1; i < encodedBitArray.Count; i++) {
+                decodedBitArray.Add(Xor(decodedBitArray[i-1], encodedBitArray.Get(i)));
             }
-            Console.WriteLine("decoded_data: " + decoded_data);
-            return decoded_data;
+            return new BitArray((bool[])decodedBitArray.ToArray(typeof(bool))); ;
         }
 
-        private static int xor(object first_value, object second_value) {
-            Console.WriteLine(first_value + " xor " + second_value + ": " + (first_value == second_value ? 0 : 1));
-            return (first_value == second_value ? 0 : 1);
+        private static bool Xor(object firstValue, object secondValue) {
+            Console.WriteLine(((bool)firstValue ? 1 : 0) + " xor " + ((bool)secondValue ? 1 : 0) + ": " + ((bool)firstValue != (bool)secondValue ? 1 : 0));
+            return ((bool)firstValue != (bool)secondValue);
         }
 
-        private static string BitArrayToStr(BitArray ba) {
-            byte[] strArr = new byte[ba.Length / 8];
+        public static string BitArrayToStr(BitArray bitArray) {
+            byte[] strArr = new byte[bitArray.Length / 8];
             ASCIIEncoding encoding = new ASCIIEncoding();
-            for (int i = 0; i < ba.Length / 8; i++) {
+            for (int i = 0; i < bitArray.Length / 8; i++) {
                 for (int index = i * 8, m = 1; index < i * 8 + 8; index++, m *= 2) {
-                    strArr[i] += ba.Get(index) ? (byte)m : (byte)0;
+                    strArr[i] += bitArray.Get(index) ? (byte)m : (byte)0;
                 }
             }
             return encoding.GetString(strArr);
-        }*/
+        }
     }
 }
