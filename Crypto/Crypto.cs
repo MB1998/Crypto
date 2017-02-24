@@ -25,6 +25,21 @@ namespace Crypto {
             return new BitArray((bool[])decodedBitArray.ToArray(typeof(bool))); ;
         }
 
+        public static BitArray EncodeBCD(string numberToEncode, ArrayList BCDcodes) { 
+            ArrayList digits = new ArrayList(numberToEncode.ToCharArray());
+            ArrayList encodedData = new ArrayList();
+            foreach (char digit in digits){
+                byte rest = Convert.ToByte(digit);
+                foreach (byte BCDcode in BCDcodes){
+                    encodedData.Add(rest >= BCDcode);
+                    if (rest >= BCDcode){
+                        rest -= BCDcode;
+                    }
+                }
+            }
+            return new BitArray((bool[])encodedData.ToArray(typeof(bool)));
+        }
+
         private static bool Xor(object firstValue, object secondValue) {
             Console.WriteLine(((bool)firstValue ? 1 : 0) + " xor " + ((bool)secondValue ? 1 : 0) + ": " + ((bool)firstValue != (bool)secondValue ? 1 : 0));
             return ((bool)firstValue != (bool)secondValue);
