@@ -52,44 +52,50 @@ namespace Crypto
             return Int32.Parse(decodedNumber);
         }
 
-        public static BitArray EncodeBerger(BitArray data){
-            var temp = new ArrayList();
-            var k = data.Count;
-            var r = Convert.ToInt32(Math.Round(Math.Log(k, 2)));
+        public static BitArray EncodeBerger(BitArray dataToEncode){
+            var encodedData = new ArrayList();
+            var r = Convert.ToInt32(Math.Ceiling(Math.Log(dataToEncode.Count, 2)));
+            Console.WriteLine($"Amount of symbols: {dataToEncode.Count}");
+            Console.WriteLine($"R: {r}");
             var numOne = 0;
-            for (var i = 0; i < k; i++){
-                var num = data.Get(i);
-                if (num)
+            for (var i = 0; i < dataToEncode.Count; i++){
+                if (dataToEncode.Get(i))
                     numOne++;
-                temp.Add(num);
+                encodedData.Add(dataToEncode.Get(i));
             }
+            Console.WriteLine($"Amount of ones: {numOne}");
+            Console.WriteLine($"Amount of ones in binary code: {Convert.ToString(numOne, 2)}");
             var numOneInvers = Convert.ToString(numOne, 2)
                 .PadLeft(r, '0')
                 .Aggregate("", (current, c) => current + (c == '1' ? 0 : 1));
+            Console.WriteLine($"Inverse amount of ones in binary code: {numOneInvers}");
             foreach (var c in numOneInvers)
-                temp.Add(c == '1');
-            return new BitArray((bool[])temp.ToArray(typeof(bool)));
+                encodedData.Add(c == '1');
+            return new BitArray((bool[])encodedData.ToArray(typeof(bool)));
         }
 
-        public static BitArray DecodeBerger(BitArray data){
-            var temp = new ArrayList();
-            var k = data.Count;
-            var r = Convert.ToInt32(Math.Round(Math.Log(k, 2)));
+        public static BitArray DecodeBerger(BitArray encodedData){
+            var decodedData = new ArrayList();
+            var r = Convert.ToInt32(Math.Round(Math.Log(encodedData.Count, 2)));
+            Console.WriteLine($"Amount of symbols: {encodedData.Count}");
+            Console.WriteLine($"R: {r}");
 
             var oneNum = "";
-            for (var i = data.Count - r; i < data.Count; i++)
-                oneNum += data.Get(i) ? '1' : '0';
-
+            for (var i = encodedData.Count - r; i < encodedData.Count; i++)
+                oneNum += encodedData.Get(i) ? '1' : '0';
+            
+            Console.WriteLine($"Amount of ones without last {r} symbols in binary code: {oneNum}");
             var numOneInvers = oneNum.Aggregate("", (current, c) => current + (c == '1' ? 0 : 1)).PadLeft(8, '0');
+            Console.WriteLine($"Inverse amount of ones in binary code: {numOneInvers}");
             var countOneInMsg = ToByteArray(numOneInvers)[0];
+            Console.WriteLine($"Inverse amount of ones in binary code: {countOneInMsg}");
             var numOneCheck = 0;
-            for (var i = 0; i < data.Count - r; i++){
-                var num = data.Get(i);
-                if (num)
+            for (var i = 0; i < encodedData.Count - r; i++){
+                if (encodedData.Get(i))
                     numOneCheck++;
-                temp.Add(num);
+                decodedData.Add(encodedData.Get(i));
             }
-            return numOneCheck == countOneInMsg ? new BitArray((bool[]) temp.ToArray(typeof(bool))) : new BitArray(0);
+            return numOneCheck == countOneInMsg ? new BitArray((bool[])decodedData.ToArray(typeof(bool))) : new BitArray(0);
         }
 
 
