@@ -23,29 +23,41 @@ namespace Crypto
             return new BitArray((bool[])decodedBitArray.ToArray(typeof(bool)));
         }
 
-        public static BitArray EncodeBcd(string numberToEncode, ArrayList bcDcodes) { 
+        public static BitArray EncodeBcd(string numberToEncode, ArrayList bcdCodes) { 
             var digits = new ArrayList(numberToEncode.ToCharArray());
             var encodedData = new ArrayList();
             foreach (char digit in digits){
-                var rest = Convert.ToByte(digit);
-                foreach (byte bcDcode in bcDcodes){
-                    encodedData.Add(rest >= bcDcode);
-                    if (rest >= bcDcode){
-                        rest -= bcDcode;
+                var rest = (int)Char.GetNumericValue(digit);
+                foreach (int bcdCode in bcdCodes){
+                    encodedData.Add(rest >= bcdCode);
+                    if (rest >= bcdCode){
+                        rest -= bcdCode;
                     }
                 }
             }
             return new BitArray((bool[])encodedData.ToArray(typeof(bool)));
         }
 
-        public static BitArray EncodeBerger(BitArray data)
-        {
+        public static int DecodedBdc(BitArray encodedData, ArrayList bcdCodes) {
+            string decodedNumber = "";
+            int tmp = 0;
+            for (int i = 0; i < encodedData.Count; i++) {
+                tmp += (encodedData.Get(i) ? 1 : 0) * (int)bcdCodes[i % bcdCodes.Count];
+                if(i % bcdCodes.Count == 0 && i != 0){
+                    decodedNumber += (tmp).ToString();
+                    tmp = 0;
+                }
+            }
+            decodedNumber += (tmp).ToString();
+            return Int32.Parse(decodedNumber);
+        }
+
+        public static BitArray EncodeBerger(BitArray data){
             var temp = new ArrayList();
             var k = data.Count;
             var r = Convert.ToInt32(Math.Round(Math.Log(k, 2)));
             var numOne = 0;
-            for (var i = 0; i < k; i++)
-            {
+            for (var i = 0; i < k; i++){
                 var num = data.Get(i);
                 if (num)
                     numOne++;
@@ -59,8 +71,7 @@ namespace Crypto
             return new BitArray((bool[])temp.ToArray(typeof(bool)));
         }
 
-        public static BitArray DecodeBerger(BitArray data)
-        {
+        public static BitArray DecodeBerger(BitArray data){
             var temp = new ArrayList();
             var k = data.Count;
             var r = Convert.ToInt32(Math.Round(Math.Log(k, 2)));
@@ -72,8 +83,7 @@ namespace Crypto
             var numOneInvers = oneNum.Aggregate("", (current, c) => current + (c == '1' ? 0 : 1)).PadLeft(8, '0');
             var countOneInMsg = ToByteArray(numOneInvers)[0];
             var numOneCheck = 0;
-            for (var i = 0; i < data.Count - r; i++)
-            {
+            for (var i = 0; i < data.Count - r; i++){
                 var num = data.Get(i);
                 if (num)
                     numOneCheck++;
@@ -83,8 +93,7 @@ namespace Crypto
         }
 
 
-        private static bool Xor(object firstValue, object secondValue)
-        {
+        private static bool Xor(object firstValue, object secondValue){
             firstValue = Convert.ToByte(firstValue);
             secondValue = Convert.ToByte(secondValue);
             var temp = (byte)firstValue ^ (byte)secondValue;
@@ -92,22 +101,18 @@ namespace Crypto
             return Convert.ToBoolean(temp);
         }
 
-        public static string BitArrayToStr(BitArray bitArray)
-        {
+        public static string BitArrayToStr(BitArray bitArray){
             var strArr = new byte[bitArray.Length / 8];
             var encoding = new ASCIIEncoding();
-            for (var i = 0; i < bitArray.Length / 8; i++)
-            {
-                for (int index = i * 8, m = 1; index < i * 8 + 8; index++, m *= 2)
-                {
+            for (var i = 0; i < bitArray.Length / 8; i++){
+                for (int index = i * 8, m = 1; index < i * 8 + 8; index++, m *= 2){
                     strArr[i] += bitArray.Get(index) ? (byte)m : (byte)0;
                 }
             }
             return encoding.GetString(strArr);
         }
 
-        public static byte[] ToByteArray(string str)
-        {
+        public static byte[] ToByteArray(string str){
             var result = Enumerable.Range(0, str.Length / 8).
                 Select(pos => Convert.ToByte(
                         str.Substring(pos * 8, 8),

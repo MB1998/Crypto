@@ -87,29 +87,39 @@ namespace Crypto
                         "Please, enter valid number to code it!\n-------------------------------------------------------------------------\n");
                     continue;
                 }
-                ShowBcdEncode(inputNumbers[0].Trim(), inputNumbers[1].Trim());
+                var bcdCodes = inputNumbers[1].Trim();
+                var bcdCodesArrayList = new ArrayList();
+                foreach (var bcdCode in bcdCodes) bcdCodesArrayList.Add((int)Char.GetNumericValue(bcdCode));
+                var encodedData = ShowBcdEncode(inputNumbers[0].Trim(), bcdCodesArrayList, bcdCodes);
+                ShowBcdDecode(encodedData, bcdCodesArrayList, bcdCodes);
                 Console.WriteLine("-------------------------------------------------------------------------\n");
                 return;
             }
         }
 
-        private static void ShowBcdEncode(string numberToEncode, string bcDcodes)
-        {
-            var bcDcodesArrayList = new ArrayList();
-            foreach (var bcDcode in bcDcodes) bcDcodesArrayList.Add(Convert.ToByte(bcDcode));
-            Console.WriteLine($"Number {numberToEncode} will be encoded using key {bcDcodes}");
-            var encodedData = Crypto.EncodeBcd(numberToEncode, bcDcodesArrayList);
-            for (int i = 0, k = 0; i < encodedData.Count; k++)
-            {
+        private static BitArray ShowBcdEncode(string numberToEncode, ArrayList bcdCodesArrayList, string bcdCodes){
+            Console.WriteLine($"Number {numberToEncode} will be encoded using key {bcdCodes}");
+            var encodedData = Crypto.EncodeBcd(numberToEncode, bcdCodesArrayList);
+            Console.Write("Encoded data: ");
+            foreach (bool bit in encodedData) Console.Write(bit ? 1 : 0);
+            Console.WriteLine();
+            for (int i = 0, k = 0; i < encodedData.Count; k++){
                 var terms = new ArrayList();
-                for (var j = 0; i < bcDcodes.Length; j++, i++)
-                {
-                    var term = $"{bcDcodes[j]} * {(encodedData.Get(i) ? 1 : 0)}";
-                    Console.WriteLine(term);
+                for (var j = 0; j < bcdCodes.Length; j++, i++){
+                    var term = $"{bcdCodes[j]} * {(encodedData.Get(i) ? 1 : 0)}";
                     terms.Add(term);
                 }
-                Console.WriteLine($"{numberToEncode[k]} = {string.Join(" + ", terms)};");
+                Console.WriteLine($"{numberToEncode[k]} = {string.Join(" + ", (string[])terms.ToArray(Type.GetType("System.String")))};");
             }
+            return encodedData;
+        }
+
+        private static void ShowBcdDecode(BitArray encodedData, ArrayList bcdCodesArrayList, string bcdCodes){
+            Console.Write("\nData to decode: ");
+            foreach (bool bit in encodedData) Console.Write(bit ? 1 : 0);
+            Console.WriteLine($" will be decoded using key {bcdCodes};");
+            var decodedNumber = Crypto.DecodedBdc(encodedData, bcdCodesArrayList);
+            Console.WriteLine($"Decoded number is {decodedNumber}");
         }
     }
 }
