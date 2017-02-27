@@ -8,18 +8,22 @@ namespace Crypto
     public class Crypto
     {
         public static BitArray EncodeGrey(BitArray bitArray) {
-            var encodedBitArray = new ArrayList {bitArray.Get(0)};
-            for (var i = 1; i < bitArray.Count; i++){
+            var encodedBitArray = new ArrayList {bitArray.Get(bitArray.Count - 1) };
+            Console.WriteLine(bitArray.Get(bitArray.Count - 1) ? 1 : 0);
+            for (var i = bitArray.Count - 1; i > 0; i--){
                 encodedBitArray.Add(Xor(bitArray.Get(i), bitArray.Get(i - 1)));
             }
+            encodedBitArray.Reverse();
             return new BitArray((bool[])encodedBitArray.ToArray(typeof(bool)));
         }
 
         public static BitArray DecodeGrey(BitArray encodedBitArray) {
-            var decodedBitArray = new ArrayList {encodedBitArray.Get(0)};
-            for (var i = 1; i < encodedBitArray.Count; i++) {
-                decodedBitArray.Add(Xor(decodedBitArray[i-1], encodedBitArray.Get(i)));
+            var decodedBitArray = new ArrayList {encodedBitArray.Get(encodedBitArray.Count - 1) };
+            Console.WriteLine(encodedBitArray.Get(encodedBitArray.Count - 1) ? 1 : 0);
+            for (int i = encodedBitArray.Count - 2; i >= 0; i--) {
+                decodedBitArray.Add(Xor(decodedBitArray[encodedBitArray.Count - i - 2], encodedBitArray.Get(i)));
             }
+            decodedBitArray.Reverse();
             return new BitArray((bool[])decodedBitArray.ToArray(typeof(bool)));
         }
 
@@ -43,12 +47,11 @@ namespace Crypto
             int tmp = 0;
             for (int i = 0; i < encodedData.Count; i++) {
                 tmp += (encodedData.Get(i) ? 1 : 0) * (int)bcdCodes[i % bcdCodes.Count];
-                if(i % bcdCodes.Count == 0 && i != 0){
-                    decodedNumber += (tmp).ToString();
+                if((i+1) % bcdCodes.Count == 0) {
+                    decodedNumber += tmp.ToString();
                     tmp = 0;
                 }
             }
-            decodedNumber += (tmp).ToString();
             return Int32.Parse(decodedNumber);
         }
 
@@ -98,13 +101,31 @@ namespace Crypto
             return numOneCheck == countOneInMsg ? new BitArray((bool[])decodedData.ToArray(typeof(bool))) : new BitArray(0);
         }
 
-
+        public static bool[,] EncodeEllayes(bool[,] inputMatrix){
+            int inputMatrixRowsAmount = inputMatrix.GetLength(0), inputMatrixColumnsAmount = inputMatrix.GetLength(1);
+            bool[,] encodedMatrix = new bool[inputMatrixRowsAmount + 1, inputMatrixColumnsAmount + 1];
+            for (int i = 0; i < inputMatrixRowsAmount; i++){
+                var checkElement = inputMatrix[i, 0];
+                encodedMatrix[i, 0] = inputMatrix[i, 0];
+                for (int j = 1; j < inputMatrixColumnsAmount; j++){
+                    encodedMatrix[i, j] = inputMatrix[i, j];
+                    checkElement = Xor(inputMatrix[i, j], checkElement);
+                }
+                encodedMatrix[i, inputMatrixColumnsAmount] = checkElement;
+            }
+            for (int i = 0; i < inputMatrixColumnsAmount; i++){
+                var checkElement = inputMatrix[0, i];
+                for (int j = 1; j < inputMatrixRowsAmount; j++) {
+                    checkElement = Xor(inputMatrix[j, i], checkElement);
+                }
+                encodedMatrix[inputMatrixRowsAmount, i] = checkElement;
+            }
+            return encodedMatrix;
+        }
+        
         private static bool Xor(object firstValue, object secondValue){
-            firstValue = Convert.ToByte(firstValue);
-            secondValue = Convert.ToByte(secondValue);
-            var temp = (byte)firstValue ^ (byte)secondValue;
-            Console.WriteLine($"{secondValue} xor {secondValue}: {temp}");
-            return Convert.ToBoolean(temp);
+            Console.WriteLine($"{((bool)firstValue ? 1 : 0)} xor {((bool) secondValue? 1 : 0)}: {(((bool)firstValue ^ (bool)secondValue) ? 1 : 0)}");
+            return ((bool)firstValue ^ (bool)secondValue);
         }
 
         public static string BitArrayToStr(BitArray bitArray){
