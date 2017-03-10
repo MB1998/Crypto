@@ -124,5 +124,14 @@ namespace Crypto
             Console.WriteLine($"{((bool)firstValue ? 1 : 0)} xor {((bool) secondValue? 1 : 0)}: {(((bool)firstValue ^ (bool)secondValue) ? 1 : 0)}");
             return ((bool)firstValue ^ (bool)secondValue);
         }
+
+        public static byte[] ToByteArray(string str){
+            var result = Enumerable.Range(0, str.Length / 8).
+                Select(pos => Convert.ToByte(
+                        str.Substring(pos * 8, 8),
+                        2)
+                ).ToArray();
+            return result;
+        }
     }
 }
