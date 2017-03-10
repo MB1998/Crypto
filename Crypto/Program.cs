@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -8,7 +9,7 @@ namespace Crypto{
 
         private static void Main(){
             while (true){
-                Console.WriteLine("Chose code type to start: \n1)Grey code;\n2)BCD;\n3)BCD code for text;\n4)Berger;\n5)Ellayes's code;");
+                Console.WriteLine("Chose code type to start: \n1)Grey code;\n2)BCD;\n3)Berger;\n4)Ellayes's code;");
                 var chosenOption = Console.ReadLine();
                 int chosenOptionNumber;
                 if (!int.TryParse(chosenOption, out chosenOptionNumber) ||
@@ -24,12 +25,9 @@ namespace Crypto{
                         ShowBcdCode();
                         break;
                     case 3:
-                        ShowBCDcodeLiteralEncode();
-                        break;
-                    case 4:
                         ShowBergerCode();
                         break;
-                    case 5:
+                    case 4:
                         ShowEllayesCode();
                         break;
                     default:
@@ -47,27 +45,29 @@ namespace Crypto{
             ShowDecodeGrey(encodedData);
         }
 
-        private static BitArray ShowEncodeGrey(string dataToEncode){
-            var bitArray = new BitArray(Encoding.ASCII.GetBytes(dataToEncode));
+        private static List<bool> ShowEncodeGrey(string input){
+            var dataToEncode = new List<bool>();
             Console.Write("Binary code of data: ");
-            foreach (bool bit in bitArray) Console.Write(bit ? 1 : 0);
+            foreach (char digit in input){
+                dataToEncode.Add(digit == '1');
+                Console.Write(digit == '1' ? 1 : 0);
+            }
             Console.WriteLine();
-            var encodedData = Crypto.EncodeGrey(bitArray);
+            var encodedData = Crypto.EncodeGrey(dataToEncode);
             Console.Write("Encoded data: ");
             foreach (bool bit in encodedData) Console.Write(bit ? 1 : 0);
             Console.WriteLine("\n-------------------------------------------------------------------------\n");
             return encodedData;
         }
 
-        private static void ShowDecodeGrey(BitArray encodedData){
+        private static void ShowDecodeGrey(List<bool> encodedData){
             Console.Write("Data to decode: ");
             foreach (bool bit in encodedData) Console.Write(bit ? 1 : 0);
             Console.WriteLine();
             var decodedData = Crypto.DecodeGrey(encodedData);
             Console.Write("Decoded data: ");
             foreach (bool bit in decodedData) Console.Write(bit ? 1 : 0);
-            Console.WriteLine("\nText which was encoded using Grey code: " + Crypto.BitArrayToStr(decodedData));
-            Console.WriteLine("-------------------------------------------------------------------------\n\n");
+            Console.WriteLine("\n-------------------------------------------------------------------------\n\n");
         }
 
         private static void ShowBcdCode(){
@@ -84,60 +84,33 @@ namespace Crypto{
                     continue;
                 }
                 var bcdCodes = inputNumbers[1].Trim();
-                var bcdCodesArrayList = new ArrayList();
-                foreach (var bcdCode in bcdCodes) bcdCodesArrayList.Add((int)Char.GetNumericValue(bcdCode));
-                var encodedData = ShowBcdEncode(inputNumbers[0].Trim(), bcdCodesArrayList, bcdCodes);
-                ShowBcdDecode(encodedData, bcdCodesArrayList, bcdCodes);
+                var bcdCodesList = new List<int>();
+                foreach (var bcdCode in bcdCodes) bcdCodesList.Add((int)Char.GetNumericValue(bcdCode));
+                var encodedData = ShowBcdEncode(inputNumbers[0].Trim(), bcdCodesList, bcdCodes);
+                ShowBcdDecode(encodedData, bcdCodesList, bcdCodes);
                 Console.WriteLine("-------------------------------------------------------------------------\n");
                 break;
             }
         }
 
-        private static void ShowBCDcodeLiteralEncode() {
-            while (true) {
-                Console.Write("\nEnter any text you would like to encode using BCD code and key for it separeted by ';' (press 'enter' to exit to main manu): ");
-                var input = Console.ReadLine();
-                if (string.IsNullOrWhiteSpace(input)) return;
-                var inputNumbers = input.Split(';');
-                var textToEncode = inputNumbers[0].Trim();
-                int keyForBcDcoding;
-                if (inputNumbers.Length != 2 || !int.TryParse(inputNumbers[1].Trim(), out keyForBcDcoding)) {
-                    Console.WriteLine("Please, enter valid number to code it!\n-------------------------------------------------------------------------\n");
-                    continue;
-                }
-                var bcdCodes = inputNumbers[1].Trim();
-                var bcdCodesArrayList = new ArrayList();
-                foreach (var bcdCode in bcdCodes) bcdCodesArrayList.Add((int)Char.GetNumericValue(bcdCode));
-                var bitArray = new BitArray(Encoding.ASCII.GetBytes(textToEncode));
-                Console.Write("Binary code of data: ");
-                foreach (bool bit in bitArray) Console.Write(bit ? 1 : 0);
-                Console.WriteLine();
-                string decodedNumber = ShowBcdDecode(bitArray, bcdCodesArrayList, bcdCodes).ToString();
-                BitArray resultingArray = ShowBcdEncode(decodedNumber, bcdCodesArrayList, bcdCodes);
-                Console.WriteLine("\nText which was encoded using BCD code: " + Crypto.BitArrayToStr(resultingArray));
-                Console.WriteLine("-------------------------------------------------------------------------\n");
-                return;
-            }
-        }
-
-        private static BitArray ShowBcdEncode(string numberToEncode, ArrayList bcdCodesArrayList, string bcdCodes){
+        private static List<bool> ShowBcdEncode(string numberToEncode, List<int> bcdCodesList, string bcdCodes){
             Console.WriteLine($"Number {numberToEncode} will be encoded using key {bcdCodes}");
-            var encodedData = Crypto.EncodeBcd(numberToEncode, bcdCodesArrayList);
+            var encodedData = Crypto.EncodeBcd(numberToEncode, bcdCodesList);
             Console.Write("Encoded data: ");
             foreach (bool bit in encodedData) Console.Write(bit ? 1 : 0);
             Console.WriteLine();
             for (int i = 0, k = 0; i < encodedData.Count; k++){
-                var terms = new ArrayList();
+                var terms = new List<string>();
                 for (var j = 0; j < bcdCodes.Length; j++, i++){
-                    var term = $"{bcdCodes[j]} * {(encodedData.Get(i) ? 1 : 0)}";
+                    var term = $"{bcdCodes[j]} * {(encodedData[i] ? 1 : 0)}";
                     terms.Add(term);
                 }
-                Console.WriteLine($"{numberToEncode[k]} = {string.Join(" + ", (string[])terms.ToArray(Type.GetType("System.String")))};");
+                Console.WriteLine($"{numberToEncode[k]} = {string.Join(" + ", terms)};");
             }
             return encodedData;
         }
 
-        private static int ShowBcdDecode(BitArray encodedData, ArrayList bcdCodesArrayList, string bcdCodes){
+        private static int ShowBcdDecode(List<bool> encodedData, List<int> bcdCodesArrayList, string bcdCodes){
             Console.Write("\nData to decode: ");
             foreach (bool bit in encodedData) Console.Write(bit ? 1 : 0);
             Console.WriteLine($" will be decoded using key {bcdCodes};");
@@ -154,10 +127,14 @@ namespace Crypto{
             ShowBergerDecode(encodedData);
         }
 
-        private static BitArray ShowBergerEncode(String dataToEncode) {
-            var bitArray = new BitArray(Encoding.ASCII.GetBytes(dataToEncode));
+        private static List<bool> ShowBergerEncode(string dataToEncode) {
+            var bitArray = new List<bool>();
             Console.Write("Binary code of data: ");
-            foreach (bool bit in bitArray) Console.Write(bit ? 1 : 0);
+            foreach (char digit in dataToEncode)
+            {
+                bitArray.Add(digit == '1');
+                Console.Write(digit == '1' ? 1 : 0);
+            }
             Console.WriteLine();
             var encodedData = Crypto.EncodeBerger(bitArray);
             Console.Write("Encoded data: ");
@@ -166,15 +143,14 @@ namespace Crypto{
             return encodedData;
         }
 
-        private static void ShowBergerDecode(BitArray encodedData) {
+        private static void ShowBergerDecode(List<bool> encodedData) {
             Console.Write("Data to decode: ");
             foreach (bool bit in encodedData) Console.Write(bit ? 1 : 0);
             Console.WriteLine();
             var decodedData = Crypto.DecodeBerger(encodedData);
             Console.Write("Decoded data: ");
             foreach (bool bit in decodedData) Console.Write(bit ? 1 : 0);
-            Console.WriteLine("\nText which was encoded using Berder code: " + Crypto.BitArrayToStr(decodedData));
-            Console.WriteLine("-------------------------------------------------------------------------\n\n");
+            Console.WriteLine("\n-------------------------------------------------------------------------\n\n");
         }
 
         private static void ShowEllayesCode(){
