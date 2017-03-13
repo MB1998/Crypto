@@ -1,13 +1,22 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using System.Windows.Forms;
 
-namespace Crypto{
-    internal class Program{
+namespace Crypto
+{
+    internal class Program
+    {
+        /// <summary>
+        /// Главная точка входа для приложения.
+        /// </summary>
+        [STAThread]
+        public static void Main()
+        {
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new Main());
+        }
 
-        private static void Main(){
+        /*private static void Main(){
             while (true){
                 Console.WriteLine("Chose code type to start: \n1)Grey code;\n2)BCD;\n3)Berger;\n4)Ellayes's code;");
                 var chosenOption = Console.ReadLine();
@@ -196,6 +205,6 @@ namespace Crypto{
                 }
             }
             return encodedData;
-        }
+        }*/
     }
 }
