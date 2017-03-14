@@ -30,16 +30,35 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.button2 = new System.Windows.Forms.Button();
+            this.textBoxCodeGray = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.listBoxCodeGray = new System.Windows.Forms.ListBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.tabPage4 = new System.Windows.Forms.TabPage();
-            this.listBoxCodeGray = new System.Windows.Forms.ListBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.textBoxCodeGray = new System.Windows.Forms.TextBox();
-            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.textBoxBerger = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
+            this.listBoxBerger = new System.Windows.Forms.ListBox();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button6 = new System.Windows.Forms.Button();
+            this.listBoxDdc = new System.Windows.Forms.ListBox();
+            this.textBoxDdcData = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.comboBoxDdcKey = new System.Windows.Forms.ComboBox();
+            this.button7 = new System.Windows.Forms.Button();
+            this.button8 = new System.Windows.Forms.Button();
+            this.listBoxEllays = new System.Windows.Forms.ListBox();
+            this.richTextBoxEllays = new System.Windows.Forms.RichTextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
+            this.tabPage4.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -69,43 +88,31 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Код Грея";
             // 
-            // tabPage2
+            // button2
             // 
-            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(496, 330);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "Двоично-Десятичная";
+            this.button2.Location = new System.Drawing.Point(400, 38);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(89, 23);
+            this.button2.TabIndex = 4;
+            this.button2.Text = "Дешифровать";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
-            // tabPage3
+            // textBoxCodeGray
             // 
-            this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
-            this.tabPage3.Name = "tabPage3";
-            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(496, 330);
-            this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "Код Бергера";
+            this.textBoxCodeGray.Location = new System.Drawing.Point(63, 12);
+            this.textBoxCodeGray.Name = "textBoxCodeGray";
+            this.textBoxCodeGray.Size = new System.Drawing.Size(331, 20);
+            this.textBoxCodeGray.TabIndex = 3;
             // 
-            // tabPage4
+            // label1
             // 
-            this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
-            this.tabPage4.Name = "tabPage4";
-            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(496, 330);
-            this.tabPage4.TabIndex = 3;
-            this.tabPage4.Text = "Код Еллайса";
-            // 
-            // listBoxCodeGray
-            // 
-            this.listBoxCodeGray.FormattingEnabled = true;
-            this.listBoxCodeGray.Location = new System.Drawing.Point(6, 34);
-            this.listBoxCodeGray.Name = "listBoxCodeGray";
-            this.listBoxCodeGray.Size = new System.Drawing.Size(388, 290);
-            this.listBoxCodeGray.TabIndex = 0;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(9, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Данные";
             // 
             // button1
             // 
@@ -117,31 +124,220 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // label1
+            // listBoxCodeGray
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(9, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Данные";
+            this.listBoxCodeGray.FormattingEnabled = true;
+            this.listBoxCodeGray.Location = new System.Drawing.Point(6, 34);
+            this.listBoxCodeGray.Name = "listBoxCodeGray";
+            this.listBoxCodeGray.Size = new System.Drawing.Size(388, 290);
+            this.listBoxCodeGray.TabIndex = 0;
             // 
-            // textBoxCodeGray
+            // tabPage2
             // 
-            this.textBoxCodeGray.Location = new System.Drawing.Point(63, 12);
-            this.textBoxCodeGray.Name = "textBoxCodeGray";
-            this.textBoxCodeGray.Size = new System.Drawing.Size(331, 20);
-            this.textBoxCodeGray.TabIndex = 3;
+            this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.comboBoxDdcKey);
+            this.tabPage2.Controls.Add(this.label4);
+            this.tabPage2.Controls.Add(this.textBoxDdcData);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.button5);
+            this.tabPage2.Controls.Add(this.button6);
+            this.tabPage2.Controls.Add(this.listBoxDdc);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(496, 330);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Двоично-Десятичная";
             // 
-            // button2
+            // tabPage3
             // 
-            this.button2.Location = new System.Drawing.Point(400, 38);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(89, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Дешифровать";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage3.Controls.Add(this.button3);
+            this.tabPage3.Controls.Add(this.textBoxBerger);
+            this.tabPage3.Controls.Add(this.label2);
+            this.tabPage3.Controls.Add(this.button4);
+            this.tabPage3.Controls.Add(this.listBoxBerger);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(496, 330);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Код Бергера";
+            // 
+            // tabPage4
+            // 
+            this.tabPage4.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage4.Controls.Add(this.richTextBoxEllays);
+            this.tabPage4.Controls.Add(this.listBoxEllays);
+            this.tabPage4.Controls.Add(this.button7);
+            this.tabPage4.Controls.Add(this.button8);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(496, 330);
+            this.tabPage4.TabIndex = 3;
+            this.tabPage4.Text = "Код Еллайса";
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(401, 36);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(89, 23);
+            this.button3.TabIndex = 9;
+            this.button3.Text = "Дешифровать";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
+            // textBoxBerger
+            // 
+            this.textBoxBerger.Location = new System.Drawing.Point(64, 10);
+            this.textBoxBerger.Name = "textBoxBerger";
+            this.textBoxBerger.Size = new System.Drawing.Size(331, 20);
+            this.textBoxBerger.TabIndex = 8;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(10, 13);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(48, 13);
+            this.label2.TabIndex = 7;
+            this.label2.Text = "Данные";
+            // 
+            // button4
+            // 
+            this.button4.Location = new System.Drawing.Point(401, 8);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(89, 23);
+            this.button4.TabIndex = 6;
+            this.button4.Text = "Шифровать";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            // 
+            // listBoxBerger
+            // 
+            this.listBoxBerger.FormattingEnabled = true;
+            this.listBoxBerger.Location = new System.Drawing.Point(7, 32);
+            this.listBoxBerger.Name = "listBoxBerger";
+            this.listBoxBerger.Size = new System.Drawing.Size(388, 290);
+            this.listBoxBerger.TabIndex = 5;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(401, 34);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(89, 23);
+            this.button5.TabIndex = 12;
+            this.button5.Text = "Дешифровать";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
+            // 
+            // button6
+            // 
+            this.button6.Location = new System.Drawing.Point(401, 6);
+            this.button6.Name = "button6";
+            this.button6.Size = new System.Drawing.Size(89, 23);
+            this.button6.TabIndex = 11;
+            this.button6.Text = "Шифровать";
+            this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
+            // 
+            // listBoxDdc
+            // 
+            this.listBoxDdc.FormattingEnabled = true;
+            this.listBoxDdc.Location = new System.Drawing.Point(7, 71);
+            this.listBoxDdc.Name = "listBoxDdc";
+            this.listBoxDdc.Size = new System.Drawing.Size(388, 251);
+            this.listBoxDdc.TabIndex = 10;
+            // 
+            // textBoxDdcData
+            // 
+            this.textBoxDdcData.Location = new System.Drawing.Point(64, 8);
+            this.textBoxDdcData.Name = "textBoxDdcData";
+            this.textBoxDdcData.Size = new System.Drawing.Size(331, 20);
+            this.textBoxDdcData.TabIndex = 14;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 13);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Данные";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(10, 39);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(33, 13);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Ключ";
+            // 
+            // comboBoxDdcKey
+            // 
+            this.comboBoxDdcKey.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxDdcKey.FormattingEnabled = true;
+            this.comboBoxDdcKey.Items.AddRange(new object[] {
+            "3-3-2-1",
+            "4-2-2-1",
+            "4-3-1-1",
+            "4-3-2-1",
+            "4-4-2-1",
+            "5-2-1-1",
+            "5-2-2-1",
+            "5-3-1-1",
+            "5-3-2-1",
+            "5-4-2-1",
+            "6-2-2-1",
+            "6-3-1-1",
+            "6-3-2-1",
+            "6-4-2-1",
+            "7-3-2-1",
+            "7-4-2-1",
+            "8-4-2-1"});
+            this.comboBoxDdcKey.Location = new System.Drawing.Point(64, 36);
+            this.comboBoxDdcKey.Name = "comboBoxDdcKey";
+            this.comboBoxDdcKey.Size = new System.Drawing.Size(121, 21);
+            this.comboBoxDdcKey.Sorted = true;
+            this.comboBoxDdcKey.TabIndex = 16;
+            // 
+            // button7
+            // 
+            this.button7.Location = new System.Drawing.Point(400, 34);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(89, 45);
+            this.button7.TabIndex = 49;
+            this.button7.Text = "Исправить ошибки";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
+            // button8
+            // 
+            this.button8.Location = new System.Drawing.Point(400, 6);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(89, 23);
+            this.button8.TabIndex = 48;
+            this.button8.Text = "Шифровать";
+            this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
+            // 
+            // listBoxEllays
+            // 
+            this.listBoxEllays.FormattingEnabled = true;
+            this.listBoxEllays.Location = new System.Drawing.Point(6, 175);
+            this.listBoxEllays.Name = "listBoxEllays";
+            this.listBoxEllays.Size = new System.Drawing.Size(483, 147);
+            this.listBoxEllays.TabIndex = 50;
+            // 
+            // richTextBoxEllays
+            // 
+            this.richTextBoxEllays.Location = new System.Drawing.Point(6, 6);
+            this.richTextBoxEllays.Name = "richTextBoxEllays";
+            this.richTextBoxEllays.Size = new System.Drawing.Size(388, 163);
+            this.richTextBoxEllays.TabIndex = 51;
+            this.richTextBoxEllays.Text = "";
             // 
             // Main
             // 
@@ -154,6 +350,11 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
+            this.tabPage4.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -170,5 +371,21 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ListBox listBoxCodeGray;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox textBoxBerger;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.ListBox listBoxBerger;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox textBoxDdcData;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button button6;
+        private System.Windows.Forms.ListBox listBoxDdc;
+        private System.Windows.Forms.ComboBox comboBoxDdcKey;
+        private System.Windows.Forms.Button button7;
+        private System.Windows.Forms.Button button8;
+        private System.Windows.Forms.ListBox listBoxEllays;
+        private System.Windows.Forms.RichTextBox richTextBoxEllays;
     }
 }

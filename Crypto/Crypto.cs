@@ -56,7 +56,7 @@ namespace Crypto
         public static List<bool> EncodeBerger(List<bool> dataToEncode, ListBox listBox)
         {
             var encodedData = new List<bool>();
-            var r = Convert.ToInt32(Math.Ceiling(Math.Log(dataToEncode.Count, 2)));
+            var r = Convert.ToInt32(Math.Round(Math.Log(dataToEncode.Count, 2)));
             listBox.Items.Add($"Amount of symbols: {dataToEncode.Count}");
             listBox.Items.Add($"R: {r}");
             var numOne = 0;
