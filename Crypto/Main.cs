@@ -3,18 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Crypto
-{
-    public partial class Main : Form
-    {
-        public Main()
-        {
+namespace Crypto {
+    public partial class Main : Form {
+        public Main() {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(textBoxCodeGray.Text))
+        private void GreyEncodeButton_Click(object sender, EventArgs e) {
+            if(string.IsNullOrWhiteSpace(textBoxCodeGray.Text))
                 return;
 
             listBoxCodeGray.Items.Add("Binary code of data: ");
@@ -26,14 +22,13 @@ namespace Crypto
             listBoxCodeGray.Items.Add("");
 
             listBoxCodeGray.Items.Add("Encoded data: ");
-                listBoxCodeGray.Items.Add(Crypto.ToString(encodedData));
+            listBoxCodeGray.Items.Add(Crypto.ToString(encodedData));
             listBoxCodeGray.Items.Add("-------------------------------------------------------------------------");
             textBoxCodeGray.Text = Crypto.ToString(encodedData);
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            if (string.IsNullOrWhiteSpace(textBoxCodeGray.Text))
+        private void GreyDecodeButton_Click(object sender, EventArgs e) {
+            if(string.IsNullOrWhiteSpace(textBoxCodeGray.Text))
                 return;
 
             var dataToDecode = textBoxCodeGray.Text.Trim().Select(digit => digit == '1').ToList();
@@ -52,8 +47,7 @@ namespace Crypto
             textBoxCodeGray.Text = Crypto.ToString(decodedData);
         }
 
-        private void button4_Click(object sender, EventArgs e)
-        {
+        private void BerderEncodeButton_Click(object sender, EventArgs e) {
             listBoxBerger.Items.Add("Binary code of data: ");
             listBoxBerger.Items.Add(textBoxBerger.Text);
             listBoxBerger.Items.Add("");
@@ -68,8 +62,7 @@ namespace Crypto
             textBoxBerger.Text = Crypto.ToString(encodedData);
         }
 
-        private void button3_Click(object sender, EventArgs e)
-        {
+        private void BerderDecodeButton_Click(object sender, EventArgs e) {
             listBoxBerger.Items.Add("Data to decode: ");
             listBoxBerger.Items.Add(textBoxBerger.Text);
             listBoxBerger.Items.Add("");
@@ -84,11 +77,10 @@ namespace Crypto
             textBoxBerger.Text = Crypto.ToString(decodedData);
         }
 
-        private void button6_Click(object sender, EventArgs e)
-        {
+        private void BCDEncodeButton_Click(object sender, EventArgs e) {
             var numberToEncode = textBoxDdcData.Text.Trim();
             var key = (string)comboBoxDdcKey.SelectedItem;
-            if (string.IsNullOrWhiteSpace(key))
+            if(string.IsNullOrWhiteSpace(key))
                 return;
 
             var tempKey = key.Split('-').Select(val => Convert.ToInt32(val)).ToList();
@@ -101,11 +93,9 @@ namespace Crypto
             listBoxDdc.Items.Add(Crypto.ToString(encodedData));
             listBoxDdc.Items.Add("");
 
-            for (int i = 0, k = 0; i < encodedData.Count; k++)
-            {
+            for(int i = 0, k = 0; i < encodedData.Count; k++) {
                 var terms = new List<string>();
-                for (var j = 0; j < tempKey.Count; j++, i++)
-                {
+                for(var j = 0; j < tempKey.Count; j++, i++) {
                     var term = $"{tempKey[j]} * {(encodedData[i] ? 1 : 0)}";
                     terms.Add(term);
                 }
@@ -116,11 +106,10 @@ namespace Crypto
             textBoxDdcData.Text = Crypto.ToString(encodedData);
         }
 
-        private void button5_Click(object sender, EventArgs e)
-        {
+        private void BCDDecodeButton_Click(object sender, EventArgs e) {
             var numberToDecode = textBoxDdcData.Text.Trim();
             var key = (string)comboBoxDdcKey.SelectedItem;
-            if (string.IsNullOrWhiteSpace(key))
+            if(string.IsNullOrWhiteSpace(key))
                 return;
 
             var tempKey = key.Split('-').Select(val => Convert.ToInt32(val)).ToList();
@@ -134,70 +123,81 @@ namespace Crypto
             textBoxDdcData.Text = decodedNumber.ToString();
         }
 
-        private void button8_Click(object sender, EventArgs e)
-        {
+        private void EllaysEncodeButton_Click(object sender, EventArgs e) {
             bool[,] matrix = null;
             var lines = richTextBoxEllays.Text.Split('\n');
-            for (var i = 0; i < lines.Length; i++)
-            {
+            for(var i = 0; i < lines.Length; i++) {
                 var items = lines[i].Split(' ');
-                if (matrix == null)
+                if(matrix == null)
                     matrix = new bool[lines.Length, items.Length];
-                for (var k = 0; k < items.Length; k++)
-                {
+                for(var k = 0; k < items.Length; k++) {
                     matrix[i, k] = items[k] == "1";
                 }
             }
-            if (matrix == null)
+            if(matrix == null)
                 return;
 
-            var key = new List<bool>();
-            for (var i = 0; i < matrix.GetLength(0); i++)
-            {
-                var line = matrix[i, 0];
-                for (var k = 1; k < matrix.GetLength(1); k++)
-                    line = line ^ matrix[i, k];
-                key.Add(line);
-            }
-            for (var i = 0; i < matrix.GetLength(1); i++)
-            {
-                var line = matrix[0, i];
-                for (var k = 1; k < matrix.GetLength(0); k++)
-                    line = line ^ matrix[k, i];
-                key.Add(line);
-            }
-
-            listBoxEllays.Items.Add("Keys: ");
-            foreach (var b in key)
-            {
-                listBoxEllays.Items.Add(b ? "1" : "0");
-            }
-
-            /*var encodedData = Crypto.EncodeEllayes(matrix, listBoxEllays);
+            var encodedData = Crypto.EncodeEllayes(matrix, null);
+            richTextBoxEllays.Clear();
             listBoxEllays.Items.Add("Encoded matrix: ");
-            for (var i = 0; i < encodedData.GetLength(0); i++)
-            {
+            for(var i = 0; i < encodedData.GetLength(0); i++) {
                 var line = "";
-                for (var j = 0; j < encodedData.GetLength(1); j++)
-                {
+                for(var j = 0; j < encodedData.GetLength(1); j++) {
                     line += ((encodedData[i, j] ? "1" : "0") + " ");
-                    if (j == encodedData.GetLength(1) - 1)
+                    if(j == encodedData.GetLength(1) - 2)
                         line += ("| ");
                 }
                 listBoxEllays.Items.Add(line);
-                if (i != encodedData.GetLength(0) - 1)
-                    continue;
-                var end = "";
-                for (var j = 0; j <= encodedData.GetLength(1) + 1; j++)
-                    end += ("--");
-                listBoxEllays.Items.Add(end);
-            }*/
-
+                richTextBoxEllays.Text += line + '\n';
+                if (i == encodedData.GetLength(0) - 2) {
+                    line = "";
+                    for (var j = 0; j <= encodedData.GetLength(1) + 1; j++)
+                        line += ("--");
+                    listBoxEllays.Items.Add(line);
+                    richTextBoxEllays.Text += line + '\n';
+                }
+            }
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
+        private void EllaysDecodeButton_Click(object sender, EventArgs e) {
+            listBoxEllays.Items.Clear();
+            bool[,] encodedMatrix = null;
+            var lines = richTextBoxEllays.Text.Trim().Split('\n');
+            for (int i = 0, j = 0; i < lines.Length; i++, j++ ) {
+                if (lines[i].Contains("--")){
+                    j--;
+                    continue;
+                }
+                var items = lines[i].Replace("| ", string.Empty).Trim().Split(' ');
+                if(encodedMatrix == null)
+                    encodedMatrix = new bool[lines.Length - 1, items.Length];
+                for(var k = 0; k < items.Length; k++) {
+                    encodedMatrix[j, k] = items[k] == "1";
+                }
+            }
+            if(encodedMatrix == null)
+                return;
 
+            var fixedMatrix = Crypto.FixMistakesEllayes(encodedMatrix, listBoxEllays);
+            richTextBoxEllays.Clear();
+            listBoxEllays.Items.Add("\nFixed matrix: ");
+            for(var i = 0; i < fixedMatrix.GetLength(0); i++) {
+                var line = "";
+                for(var j = 0; j < fixedMatrix.GetLength(1); j++) {
+                    line += ((fixedMatrix[i, j] ? "1" : "0") + " ");
+                    if(j == fixedMatrix.GetLength(1) - 2)
+                        line += ("| ");
+                }
+                listBoxEllays.Items.Add(line);
+                richTextBoxEllays.Text += line + '\n';
+                if(i == fixedMatrix.GetLength(0) - 2) {
+                    line = "";
+                    for(var j = 0; j <= fixedMatrix.GetLength(1) + 1; j++)
+                        line += ("--");
+                    listBoxEllays.Items.Add(line);
+                    richTextBoxEllays.Text += line + '\n';
+                }
+            }
         }
     }
 }
