@@ -134,13 +134,61 @@ namespace Crypto {
                     break;
                 }
             }
-            if (rowWithMistake != 0 && columnWithMistake != 0){
+            if(rowWithMistake != 0 && columnWithMistake != 0) {
                 listBox.Items.Add(
                     $"Mistake was found in row {rowWithMistake} and column {columnWithMistake} : {(inputMatrix[rowWithMistake - 1, columnWithMistake - 1] ? "1" : "0")} => {(!inputMatrix[rowWithMistake - 1, columnWithMistake - 1] ? "1" : "0")}");
                 inputMatrix[rowWithMistake - 1, columnWithMistake - 1] =
                     !inputMatrix[rowWithMistake - 1, columnWithMistake - 1];
             }
             return inputMatrix;
+        }
+
+        public static List<String> getCodeCombinations(List<char> alphabet, int q, int n, string codeType, ListBox listBox) {
+            long N = 0;
+            List<String> combinations = new List<string>();
+            switch (codeType){
+                case "на перестановки":
+                    N = Factorial(n);
+                    combinations = getAllCombinations(String.Empty, alphabet, n, false, false);
+                    break;
+                case "на размещение":
+                    N = Factorial(q) / Factorial(q - n);
+                    combinations = getAllCombinations(String.Empty, alphabet, n, false, false);
+                    break;
+                case "на определенные сочетания":
+                    N = Factorial(q) / (Factorial(q - n) * Factorial(n));
+                    combinations = getAllCombinations(String.Empty, alphabet, n, true, false);
+                    break;
+                case "на все сочетания":
+                    N = q ^ n;
+                    combinations = getAllCombinations(String.Empty, alphabet, n, false, true);
+                    break;
+                case "сменно-качественный":
+                    N = q * (int)Math.Pow(q - 1, n - 1);
+                    combinations = getAllCombinations(String.Empty, alphabet, n, false, false);
+                    break;
+            }
+            listBox.Items.Add($"Overall amount of combinations N = {N}");
+            return combinations;
+        }
+
+        private static List<String> getAllCombinations(String currentCombination, List<char> alphabet, int lengthOfWord, bool useOnlyForwardDirection, bool allowReiteration) {
+            List<String> combinations = new List<string>();
+            List<char> alphabetForResursion = DeepClone(alphabet);
+            for(int i = 0; i < alphabet.Count; i++){
+                currentCombination += alphabet[i];
+                if(!allowReiteration)
+                    alphabetForResursion.Remove(alphabet[i]);
+                if (currentCombination.Length == lengthOfWord){
+                    combinations.Add(currentCombination);
+                } else{
+                    combinations.AddRange(getAllCombinations(currentCombination, alphabetForResursion, lengthOfWord, useOnlyForwardDirection, allowReiteration));
+                }
+                currentCombination = currentCombination.Substring(0, currentCombination.Length - 1);
+                if(!useOnlyForwardDirection && !allowReiteration)
+                    alphabetForResursion.Add(alphabet[i]);
+            }
+            return combinations;
         }
 
         private static bool Xor(object firstValue, object secondValue, ListBox listBox) {
@@ -162,6 +210,18 @@ namespace Crypto {
         public static string ToString(List<bool> datas) {
             return datas.Aggregate(string.Empty,
                 (current, data) => current + (data ? "1" : "0"));
+        }
+
+        static long Factorial(long x) {
+            return (x == 0) ? 1 : x * Factorial(x - 1);
+        }
+
+        static List<char> DeepClone(List<char> listToClone){
+            List<char> clonedList = new List<char>();
+            foreach(char element in listToClone){
+                clonedList.Add(element);
+            }
+            return clonedList;
         }
     }
 }

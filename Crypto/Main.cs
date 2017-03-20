@@ -149,9 +149,9 @@ namespace Crypto {
                 }
                 listBoxEllays.Items.Add(line);
                 richTextBoxEllays.Text += line + '\n';
-                if (i == encodedData.GetLength(0) - 2) {
+                if(i == encodedData.GetLength(0) - 2) {
                     line = "";
-                    for (var j = 0; j <= encodedData.GetLength(1) + 1; j++)
+                    for(var j = 0; j <= encodedData.GetLength(1) + 1; j++)
                         line += ("--");
                     listBoxEllays.Items.Add(line);
                     richTextBoxEllays.Text += line + '\n';
@@ -163,8 +163,8 @@ namespace Crypto {
             listBoxEllays.Items.Clear();
             bool[,] encodedMatrix = null;
             var lines = richTextBoxEllays.Text.Trim().Split('\n');
-            for (int i = 0, j = 0; i < lines.Length; i++, j++ ) {
-                if (lines[i].Contains("--")){
+            for(int i = 0, j = 0; i < lines.Length; i++, j++) {
+                if(lines[i].Contains("--")) {
                     j--;
                     continue;
                 }
@@ -197,6 +197,19 @@ namespace Crypto {
                     listBoxEllays.Items.Add(line);
                     richTextBoxEllays.Text += line + '\n';
                 }
+            }
+        }
+
+        private void PrimaryNonBinaryCodesEnodeButton_Click(object sender, EventArgs e) {
+            int q = Int32.Parse(PrimaryNonBinaryCodesQTextBox.Text.Trim());
+            int n = Int32.Parse(PrimaryNonBinaryCodesNTextBox.Text.Trim());
+            List<char> alphabet = PrimaryNonBinaryCodesAlphabetTextBox.Text.ToCharArray().ToArray().ToList();
+            string codingType = PrimaryNonBinaryCodesTypeCombobox.Text;
+            if(q == 0 || n == 0 || alphabet.Count < 2 || codingType == String.Empty) {
+                PrimaryNonBinaryCodesListBox.Items.Add("Please, enter valid data!");
+            } else {
+                List<string> words = Crypto.getCodeCombinations(alphabet, q, n, codingType, PrimaryNonBinaryCodesListBox);
+                PrimaryNonBinaryCodesListBox.Items.Add($"Combinations: {String.Join(", ", words)}");
             }
         }
     }

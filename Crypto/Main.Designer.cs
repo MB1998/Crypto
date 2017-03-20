@@ -54,11 +54,23 @@
             this.listBoxEllays = new System.Windows.Forms.ListBox();
             this.EllaysDecodeButton = new System.Windows.Forms.Button();
             this.EllaysEncodeButton = new System.Windows.Forms.Button();
+            this.tabPage5 = new System.Windows.Forms.TabPage();
+            this.PrimaryNonBinaryCodesTypeCombobox = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.PrimaryNonBinaryCodesAlphabetTextBox = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.PrimaryNonBinaryCodesNTextBox = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.PrimaryNonBinaryCodesEnodeButton = new System.Windows.Forms.Button();
+            this.PrimaryNonBinaryCodesListBox = new System.Windows.Forms.ListBox();
+            this.PrimaryNonBinaryCodesQTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
+            this.tabPage5.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -67,6 +79,7 @@
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
+            this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Location = new System.Drawing.Point(-1, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -339,6 +352,117 @@
             this.EllaysEncodeButton.UseVisualStyleBackColor = true;
             this.EllaysEncodeButton.Click += new System.EventHandler(this.EllaysEncodeButton_Click);
             // 
+            // tabPage5
+            // 
+            this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesQTextBox);
+            this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesTypeCombobox);
+            this.tabPage5.Controls.Add(this.label8);
+            this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesAlphabetTextBox);
+            this.tabPage5.Controls.Add(this.label7);
+            this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesNTextBox);
+            this.tabPage5.Controls.Add(this.label6);
+            this.tabPage5.Controls.Add(this.label5);
+            this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesEnodeButton);
+            this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesListBox);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Name = "tabPage5";
+            this.tabPage5.Size = new System.Drawing.Size(496, 330);
+            this.tabPage5.TabIndex = 4;
+            this.tabPage5.Text = "Первичные недвоичные коды";
+            this.tabPage5.UseVisualStyleBackColor = true;
+            // 
+            // PrimaryNonBinaryCodesTypeCombobox
+            // 
+            this.PrimaryNonBinaryCodesTypeCombobox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.PrimaryNonBinaryCodesTypeCombobox.FormattingEnabled = true;
+            this.PrimaryNonBinaryCodesTypeCombobox.Items.AddRange(new object[] {
+            "на все сочетания",
+            "на определенные сочетания",
+            "на перестановки",
+            "на размещение",
+            "сменно-качественный"});
+            this.PrimaryNonBinaryCodesTypeCombobox.Location = new System.Drawing.Point(67, 88);
+            this.PrimaryNonBinaryCodesTypeCombobox.Name = "PrimaryNonBinaryCodesTypeCombobox";
+            this.PrimaryNonBinaryCodesTypeCombobox.Size = new System.Drawing.Size(328, 21);
+            this.PrimaryNonBinaryCodesTypeCombobox.Sorted = true;
+            this.PrimaryNonBinaryCodesTypeCombobox.TabIndex = 18;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.DataBindings.Add(new System.Windows.Forms.Binding("Text", global::Crypto.Properties.Settings.Default, "PrimaryNonBinaryCodes", true, System.Windows.Forms.DataSourceUpdateMode.OnPropertyChanged));
+            this.label8.Location = new System.Drawing.Point(10, 91);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(53, 13);
+            this.label8.TabIndex = 17;
+            this.label8.Text = global::Crypto.Properties.Settings.Default.PrimaryNonBinaryCodes;
+            // 
+            // PrimaryNonBinaryCodesAlphabetTextBox
+            // 
+            this.PrimaryNonBinaryCodesAlphabetTextBox.Location = new System.Drawing.Point(67, 62);
+            this.PrimaryNonBinaryCodesAlphabetTextBox.Name = "PrimaryNonBinaryCodesAlphabetTextBox";
+            this.PrimaryNonBinaryCodesAlphabetTextBox.Size = new System.Drawing.Size(328, 20);
+            this.PrimaryNonBinaryCodesAlphabetTextBox.TabIndex = 13;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(10, 65);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(51, 13);
+            this.label7.TabIndex = 12;
+            this.label7.Text = "Алфавит";
+            // 
+            // PrimaryNonBinaryCodesNTextBox
+            // 
+            this.PrimaryNonBinaryCodesNTextBox.Location = new System.Drawing.Point(67, 36);
+            this.PrimaryNonBinaryCodesNTextBox.Name = "PrimaryNonBinaryCodesNTextBox";
+            this.PrimaryNonBinaryCodesNTextBox.Size = new System.Drawing.Size(328, 20);
+            this.PrimaryNonBinaryCodesNTextBox.TabIndex = 11;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(48, 41);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(13, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "n";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(48, 13);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(13, 13);
+            this.label5.TabIndex = 7;
+            this.label5.Text = "q";
+            // 
+            // PrimaryNonBinaryCodesEnodeButton
+            // 
+            this.PrimaryNonBinaryCodesEnodeButton.Location = new System.Drawing.Point(401, 8);
+            this.PrimaryNonBinaryCodesEnodeButton.Name = "PrimaryNonBinaryCodesEnodeButton";
+            this.PrimaryNonBinaryCodesEnodeButton.Size = new System.Drawing.Size(89, 23);
+            this.PrimaryNonBinaryCodesEnodeButton.TabIndex = 6;
+            this.PrimaryNonBinaryCodesEnodeButton.Text = "Шифровать";
+            this.PrimaryNonBinaryCodesEnodeButton.UseVisualStyleBackColor = true;
+            this.PrimaryNonBinaryCodesEnodeButton.Click += new System.EventHandler(this.PrimaryNonBinaryCodesEnodeButton_Click);
+            // 
+            // PrimaryNonBinaryCodesListBox
+            // 
+            this.PrimaryNonBinaryCodesListBox.FormattingEnabled = true;
+            this.PrimaryNonBinaryCodesListBox.Location = new System.Drawing.Point(7, 123);
+            this.PrimaryNonBinaryCodesListBox.Name = "PrimaryNonBinaryCodesListBox";
+            this.PrimaryNonBinaryCodesListBox.Size = new System.Drawing.Size(482, 199);
+            this.PrimaryNonBinaryCodesListBox.TabIndex = 5;
+            // 
+            // PrimaryNonBinaryCodesQTextBox
+            // 
+            this.PrimaryNonBinaryCodesQTextBox.Location = new System.Drawing.Point(67, 8);
+            this.PrimaryNonBinaryCodesQTextBox.Name = "PrimaryNonBinaryCodesQTextBox";
+            this.PrimaryNonBinaryCodesQTextBox.Size = new System.Drawing.Size(328, 20);
+            this.PrimaryNonBinaryCodesQTextBox.TabIndex = 19;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,12 +479,13 @@
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             this.tabPage4.ResumeLayout(false);
+            this.tabPage5.ResumeLayout(false);
+            this.tabPage5.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
-
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -387,5 +512,16 @@
         private System.Windows.Forms.Button EllaysEncodeButton;
         private System.Windows.Forms.ListBox listBoxEllays;
         private System.Windows.Forms.RichTextBox richTextBoxEllays;
+        private System.Windows.Forms.TabPage tabPage5;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button PrimaryNonBinaryCodesEnodeButton;
+        private System.Windows.Forms.ListBox PrimaryNonBinaryCodesListBox;
+        private System.Windows.Forms.TextBox PrimaryNonBinaryCodesAlphabetTextBox;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox PrimaryNonBinaryCodesNTextBox;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox PrimaryNonBinaryCodesTypeCombobox;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.TextBox PrimaryNonBinaryCodesQTextBox;
     }
 }
