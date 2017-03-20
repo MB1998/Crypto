@@ -176,12 +176,12 @@ namespace Crypto {
             int checkBit = q - (SumOfList(combination, q) % q);
             checkBit = checkBit == q ? 0 : checkBit;
             listBox.Items.Add($"Check bit: {q} - ({SumOfList(combination, q)} mod {q}) = {checkBit}");
-            combination.Add(checkBit);
+            combination.Add(checkBit < 10 ? checkBit.ToString().ToCharArray()[0] : LettersToNumbers.FirstOrDefault(x => x.Value == checkBit).Key);
             return combination;
         }
 
         public static bool CodeWithModuleQTestCheckValidCombination(int q, List<char> combination, ListBox listBox) {
-            return (combination.Sum() % q == 0);
+            return (SumOfList(combination, q) % q == 0);
         }
 
         public static string CodeWithSimpleRepetitionEncode(string combination) {
@@ -247,7 +247,11 @@ namespace Crypto {
         private static int SumOfList(List<char> numbers, int notation) {
             List<int> translatedNumbers = new List<int>();
             foreach(char number in numbers) {
-                translatedNumbers.Add(LettersToNumbers.get(number));
+                int translatedNumber;
+                if (!Int32.TryParse(number.ToString(), out translatedNumber)) {
+                    translatedNumber = LettersToNumbers[number.ToString().ToUpper().ToCharArray()[0]];
+                }
+                translatedNumbers.Add(translatedNumber);
             }
             return translatedNumbers.Sum();
         }

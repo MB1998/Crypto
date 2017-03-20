@@ -234,7 +234,7 @@ namespace Crypto {
         private void CodeWithModuleQTestEncodeButton_Click(object sender, EventArgs e) {
             int q = Int32.Parse(CodeWithModuleQTestQTextBox.Text.Trim());
             List<char> combination = CodeWithModuleQTestCombinationTextBox.Text.ToCharArray().ToList();
-            List<int> encodedCombination = Crypto.CodeWithModuleQTestEncode(q, combination, CodeWithModuleQTestListBox);
+            List<char> encodedCombination = Crypto.CodeWithModuleQTestEncode(q, combination, CodeWithModuleQTestListBox);
             CodeWithModuleQTestListBox.Items.Add($"Encoded combination: {string.Join("", encodedCombination)}");
             CodeWithModuleQTestListBox.Items.Add("-------------------------------------------------------------------------");
         }
