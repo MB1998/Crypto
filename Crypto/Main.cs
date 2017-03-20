@@ -205,11 +205,11 @@ namespace Crypto {
             int n = Int32.Parse(PrimaryNonBinaryCodesNTextBox.Text.Trim());
             List<char> alphabet = PrimaryNonBinaryCodesAlphabetTextBox.Text.ToCharArray().ToArray().ToList();
             string codingType = PrimaryNonBinaryCodesTypeCombobox.Text;
-            if(q == 0 || n == 0 || alphabet.Count < 2 || codingType == String.Empty) {
+            if(q == 0 || n == 0 || alphabet.Count < 2 || codingType == string.Empty) {
                 PrimaryNonBinaryCodesListBox.Items.Add("Please, enter valid data!");
             } else {
                 List<string> words = Crypto.GetCodeCombinations(alphabet, q, n, codingType, PrimaryNonBinaryCodesListBox);
-                PrimaryNonBinaryCodesListBox.Items.Add($"Combinations: {String.Join(", ", words)}");
+                PrimaryNonBinaryCodesListBox.Items.Add($"Combinations: {string.Join(", ", words)}");
             }
             PrimaryNonBinaryCodesListBox.Items.Add("-------------------------------------------------------------------------");
         }
@@ -224,8 +224,8 @@ namespace Crypto {
                 PrimaryNonBinaryCodesListBox.Items.Add("Please, enter valid data!");
             } else {
                 List<string> words = Crypto.GetCodeCombinations(alphabet, q, n, codingType, PrimaryNonBinaryCodesListBox);
-                PrimaryNonBinaryCodesListBox.Items.Add($"Combinations: {String.Join(", ", words)}");
-                String correct = words.Contains(combinationToCheck) ? String.Empty : String.Copy("not "); 
+                PrimaryNonBinaryCodesListBox.Items.Add($"Combinations: {string.Join(", ", words)}");
+                String correct = words.Contains(combinationToCheck) ? string.Empty : string.Copy("not ");
                 PrimaryNonBinaryCodesListBox.Items.Add($"Combination {combinationToCheck} is {correct}correct for this code.");
             }
             PrimaryNonBinaryCodesListBox.Items.Add("-------------------------------------------------------------------------");
@@ -234,11 +234,11 @@ namespace Crypto {
         private void CodeWithModuleQTestEncodeButton_Click(object sender, EventArgs e) {
             int q = Int32.Parse(CodeWithModuleQTestQTextBox.Text.Trim());
             List<int> combination = new List<int>();
-            foreach (char number in CodeWithModuleQTestCombinationTextBox.Text.ToCharArray().ToArray().ToList()){
+            foreach(char number in CodeWithModuleQTestCombinationTextBox.Text.ToCharArray().ToArray().ToList()) {
                 combination.Add(Int32.Parse(number.ToString()));
             }
             List<int> encodedCombination = Crypto.CodeWithModuleQTestEncode(q, combination, CodeWithModuleQTestListBox);
-            CodeWithModuleQTestListBox.Items.Add($"Encoded combination: {String.Join("", encodedCombination)}");
+            CodeWithModuleQTestListBox.Items.Add($"Encoded combination: {string.Join("", encodedCombination)}");
             CodeWithModuleQTestListBox.Items.Add("-------------------------------------------------------------------------");
         }
 
@@ -249,25 +249,111 @@ namespace Crypto {
                 combination.Add(Int32.Parse(number.ToString()));
             }
             bool combinationIsValid = Crypto.CodeWithModuleQTestCheckValidCombination(q, combination, CodeWithModuleQTestListBox);
-            string correct = combinationIsValid ? String.Empty : String.Copy("not ");
-            CodeWithModuleQTestListBox.Items.Add($"Combination {String.Join("", combination)} is {correct}correct for this q : {q}.");
+            string correct = combinationIsValid ? string.Empty : string.Copy("not ");
+            CodeWithModuleQTestListBox.Items.Add($"Combination {string.Join("", combination)} is {correct}correct for this q : {q}.");
             CodeWithModuleQTestListBox.Items.Add("-------------------------------------------------------------------------");
         }
 
         private void CodeWithSimpleRepetitionEncodeButton_Click(object sender, EventArgs e) {
-            int k = Int32.Parse(CodeWithSimpleRepetitionKTextBox.Text.Trim());
-            String combination = CodeWithSimpleRepetitionCombinationTextBox.Text;
-            String encodedCombination = Crypto.CodeWithSimpleRepetitionEncode(k, combination);
+            string combination = CodeWithSimpleRepetitionCombinationTextBox.Text;
+            string encodedCombination = Crypto.CodeWithSimpleRepetitionEncode(combination);
             CodeWithSimpleRepetitionListBox.Items.Add($"Encoded combination: {encodedCombination}");
             CodeWithSimpleRepetitionListBox.Items.Add("-------------------------------------------------------------------------");
         }
 
         private void CodeWithSimpleRepetitionDecodeButton_Click(object sender, EventArgs e) {
-            int k = Int32.Parse(CodeWithSimpleRepetitionKTextBox.Text.Trim());
-            String combination = CodeWithSimpleRepetitionCombinationTextBox.Text;
-            String decodedCombination = Crypto.CodeWithSimpleRepetitionDecode(k, combination);
+            string combination = CodeWithSimpleRepetitionCombinationTextBox.Text;
+            string decodedCombination = string.Empty;
+            decodedCombination = Crypto.CodeWithSimpleRepetitionDecode(combination);
             CodeWithSimpleRepetitionListBox.Items.Add($"Decoded combination: {decodedCombination}");
             CodeWithSimpleRepetitionListBox.Items.Add("-------------------------------------------------------------------------");
+        }
+
+        private void IterativeСodeEncodeButton_Click(object sender, EventArgs e) {
+            int q;
+            if(!Int32.TryParse(IterativeСodeQTextBox.Text, out q)) {
+                DisplayErrorMessage(IterativeСodeListBox,
+                    new List<string> { "Please, enter valid data for q!\n It can be only number!" });
+                return;
+            }
+            string message = IterativeСodeMessageTextBox.Text;
+            int[,] matrix = GetMatrix(message);
+            if(matrix == null) {
+                DisplayErrorMessage(IterativeСodeListBox, new List<string> { "Please, enter valid data into message!", "It must be only numbers and multiplying k by inself must be lenght of message" });
+                return;
+            }
+            int[,] encodedMatrix = Crypto.IterativeСodeEncode(matrix, q);
+            IterativeСodeListBox.Items.Add("Encoded matrix: ");
+            DisplayMatrixWithLastAdditionalSymbol(IterativeСodeListBox, encodedMatrix);
+            IterativeСodeListBox.Items.Add($"Encoded message: {GetMessageFromMatrix(encodedMatrix)}");
+            IterativeСodeListBox.Items.Add("--------------------------------------------------------------------------------------------------");
+        }
+
+        private void IterativeСodeFixButton_Click(object sender, EventArgs e) {
+            int q;
+            if(!Int32.TryParse(IterativeСodeQTextBox.Text, out q)) {
+                DisplayErrorMessage(IterativeСodeListBox,
+                    new List<string> { "Please, enter valid data for q!\n It can be only number!" });
+                return;
+            }
+            string message = IterativeСodeMessageTextBox.Text;
+            int[,] matrix = GetMatrix(message);
+            if(matrix == null) {
+                DisplayErrorMessage(IterativeСodeListBox, new List<string> { "Please, enter valid data into message!", "It must be only numbers and multiplying k by inself must be lenght of message" });
+                return;
+            }
+            Crypto.IterativeСodeFixMistakes(matrix, q, IterativeСodeListBox);
+            IterativeСodeListBox.Items.Add("--------------------------------------------------------------------------------------------------");
+        }
+
+        private void DisplayErrorMessage(ListBox listBox, List<string> errorMessages) {
+            foreach(string errorMessage in errorMessages) {
+                listBox.Items.Add(errorMessage);
+            }
+            listBox.Items.Add("--------------------------------------------------------------------------------------------------");
+        }
+
+        private int[,] GetMatrix(string message) {
+            try {
+                int columnsAmount = (int)Math.Sqrt(message.Length), rowsAmount = (int)Math.Sqrt(message.Length);
+                int[,] matrix = new int[columnsAmount, rowsAmount];
+                for(int i = 0; i < rowsAmount; i++) {
+                    for(int j = 0; j < columnsAmount; j++) {
+                        matrix[i, j] = Int32.Parse(message[i * columnsAmount + j].ToString());
+                    }
+                }
+                return matrix;
+            } catch(Exception e) {
+                return null;
+            }
+        }
+
+        private void DisplayMatrixWithLastAdditionalSymbol(ListBox listBox, int[,] matrix) {
+            for(var i = 0; i < matrix.GetLength(0); i++) {
+                var line = "";
+                for(var j = 0; j < matrix.GetLength(1); j++) {
+                    line += matrix[i, j] + "  ";
+                    if(j == matrix.GetLength(1) - 2)
+                        line += ("| ");
+                }
+                listBox.Items.Add(line);
+                if(i == matrix.GetLength(0) - 2) {
+                    line = "";
+                    for(var j = 0; j <= matrix.GetLength(1) + 1; j++)
+                        line += ("--");
+                    listBox.Items.Add(line);
+                }
+            }
+        }
+
+        private string GetMessageFromMatrix(int[,] matrix) {
+            string message = "";
+            for(int i = 0; i < matrix.GetLength(0); i++) {
+                for(int j = 0; j < matrix.GetLength(1); j++) {
+                    message += matrix[i, j].ToString();
+                }
+            }
+            return message;
         }
     }
 }

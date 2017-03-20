@@ -78,12 +78,18 @@
             this.CodeWithModuleQTestCheckButton = new System.Windows.Forms.Button();
             this.tabPage7 = new System.Windows.Forms.TabPage();
             this.CodeWithSimpleRepetitionDecodeButton = new System.Windows.Forms.Button();
-            this.CodeWithSimpleRepetitionKTextBox = new System.Windows.Forms.TextBox();
             this.CodeWithSimpleRepetitionCombinationTextBox = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.CodeWithSimpleRepetitionEncodeButton = new System.Windows.Forms.Button();
             this.CodeWithSimpleRepetitionListBox = new System.Windows.Forms.ListBox();
+            this.tabPage8 = new System.Windows.Forms.TabPage();
+            this.IterativeСodeListBox = new System.Windows.Forms.ListBox();
+            this.IterativeСodeFixButton = new System.Windows.Forms.Button();
+            this.IterativeСodeEncodeButton = new System.Windows.Forms.Button();
+            this.IterativeСodeMessageTextBox = new System.Windows.Forms.TextBox();
+            this.IterativeСodeQTextBox = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -92,6 +98,7 @@
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
             this.tabPage7.SuspendLayout();
+            this.tabPage8.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -103,6 +110,7 @@
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Controls.Add(this.tabPage7);
+            this.tabControl1.Controls.Add(this.tabPage8);
             this.tabControl1.Location = new System.Drawing.Point(-1, 1);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
@@ -179,10 +187,10 @@
             this.tabPage2.Controls.Add(this.BCDDecodeButton);
             this.tabPage2.Controls.Add(this.BCDEncodeButton);
             this.tabPage2.Controls.Add(this.listBoxDdc);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 40);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(496, 330);
+            this.tabPage2.Size = new System.Drawing.Size(496, 312);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Двоично-Десятичная";
             // 
@@ -275,10 +283,10 @@
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.BerderEncodeButton);
             this.tabPage3.Controls.Add(this.listBoxBerger);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 40);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(496, 330);
+            this.tabPage3.Size = new System.Drawing.Size(496, 312);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Код Бергера";
             // 
@@ -333,10 +341,10 @@
             this.tabPage4.Controls.Add(this.listBoxEllays);
             this.tabPage4.Controls.Add(this.EllaysDecodeButton);
             this.tabPage4.Controls.Add(this.EllaysEncodeButton);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 40);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(496, 330);
+            this.tabPage4.Size = new System.Drawing.Size(496, 312);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Код Еллайса";
             // 
@@ -595,10 +603,8 @@
             // tabPage7
             // 
             this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionDecodeButton);
-            this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionKTextBox);
             this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionCombinationTextBox);
             this.tabPage7.Controls.Add(this.label10);
-            this.tabPage7.Controls.Add(this.label11);
             this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionEncodeButton);
             this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionListBox);
             this.tabPage7.Location = new System.Drawing.Point(4, 40);
@@ -618,16 +624,9 @@
             this.CodeWithSimpleRepetitionDecodeButton.UseVisualStyleBackColor = true;
             this.CodeWithSimpleRepetitionDecodeButton.Click += new System.EventHandler(this.CodeWithSimpleRepetitionDecodeButton_Click);
             // 
-            // CodeWithSimpleRepetitionKTextBox
-            // 
-            this.CodeWithSimpleRepetitionKTextBox.Location = new System.Drawing.Point(79, 10);
-            this.CodeWithSimpleRepetitionKTextBox.Name = "CodeWithSimpleRepetitionKTextBox";
-            this.CodeWithSimpleRepetitionKTextBox.Size = new System.Drawing.Size(298, 20);
-            this.CodeWithSimpleRepetitionKTextBox.TabIndex = 41;
-            // 
             // CodeWithSimpleRepetitionCombinationTextBox
             // 
-            this.CodeWithSimpleRepetitionCombinationTextBox.Location = new System.Drawing.Point(79, 36);
+            this.CodeWithSimpleRepetitionCombinationTextBox.Location = new System.Drawing.Point(79, 10);
             this.CodeWithSimpleRepetitionCombinationTextBox.Name = "CodeWithSimpleRepetitionCombinationTextBox";
             this.CodeWithSimpleRepetitionCombinationTextBox.Size = new System.Drawing.Size(298, 20);
             this.CodeWithSimpleRepetitionCombinationTextBox.TabIndex = 40;
@@ -635,20 +634,11 @@
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(3, 36);
+            this.label10.Location = new System.Drawing.Point(3, 13);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(70, 13);
             this.label10.TabIndex = 39;
             this.label10.Text = "Комбинация";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(60, 10);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(13, 13);
-            this.label11.TabIndex = 38;
-            this.label11.Text = "k";
             // 
             // CodeWithSimpleRepetitionEncodeButton
             // 
@@ -667,6 +657,83 @@
             this.CodeWithSimpleRepetitionListBox.Name = "CodeWithSimpleRepetitionListBox";
             this.CodeWithSimpleRepetitionListBox.Size = new System.Drawing.Size(490, 238);
             this.CodeWithSimpleRepetitionListBox.TabIndex = 36;
+            // 
+            // tabPage8
+            // 
+            this.tabPage8.Controls.Add(this.label12);
+            this.tabPage8.Controls.Add(this.IterativeСodeQTextBox);
+            this.tabPage8.Controls.Add(this.label17);
+            this.tabPage8.Controls.Add(this.IterativeСodeMessageTextBox);
+            this.tabPage8.Controls.Add(this.IterativeСodeListBox);
+            this.tabPage8.Controls.Add(this.IterativeСodeFixButton);
+            this.tabPage8.Controls.Add(this.IterativeСodeEncodeButton);
+            this.tabPage8.Location = new System.Drawing.Point(4, 40);
+            this.tabPage8.Name = "tabPage8";
+            this.tabPage8.Size = new System.Drawing.Size(496, 312);
+            this.tabPage8.TabIndex = 7;
+            this.tabPage8.Text = "Итеративный код";
+            this.tabPage8.UseVisualStyleBackColor = true;
+            // 
+            // IterativeСodeListBox
+            // 
+            this.IterativeСodeListBox.FormattingEnabled = true;
+            this.IterativeСodeListBox.Location = new System.Drawing.Point(7, 141);
+            this.IterativeСodeListBox.Name = "IterativeСodeListBox";
+            this.IterativeСodeListBox.Size = new System.Drawing.Size(488, 173);
+            this.IterativeСodeListBox.TabIndex = 54;
+            // 
+            // IterativeСodeFixButton
+            // 
+            this.IterativeСodeFixButton.Location = new System.Drawing.Point(395, 36);
+            this.IterativeСodeFixButton.Name = "IterativeСodeFixButton";
+            this.IterativeСodeFixButton.Size = new System.Drawing.Size(94, 37);
+            this.IterativeСodeFixButton.TabIndex = 53;
+            this.IterativeСodeFixButton.Text = "Исправить ошибки";
+            this.IterativeСodeFixButton.UseVisualStyleBackColor = true;
+            this.IterativeСodeFixButton.Click += new System.EventHandler(this.IterativeСodeFixButton_Click);
+            // 
+            // IterativeСodeEncodeButton
+            // 
+            this.IterativeСodeEncodeButton.Location = new System.Drawing.Point(395, 7);
+            this.IterativeСodeEncodeButton.Name = "IterativeСodeEncodeButton";
+            this.IterativeСodeEncodeButton.Size = new System.Drawing.Size(94, 23);
+            this.IterativeСodeEncodeButton.TabIndex = 52;
+            this.IterativeСodeEncodeButton.Text = "Шифровать";
+            this.IterativeСodeEncodeButton.UseVisualStyleBackColor = true;
+            this.IterativeСodeEncodeButton.Click += new System.EventHandler(this.IterativeСodeEncodeButton_Click);
+            // 
+            // IterativeСodeMessageTextBox
+            // 
+            this.IterativeСodeMessageTextBox.Location = new System.Drawing.Point(65, 36);
+            this.IterativeСodeMessageTextBox.Multiline = true;
+            this.IterativeСodeMessageTextBox.Name = "IterativeСodeMessageTextBox";
+            this.IterativeСodeMessageTextBox.Size = new System.Drawing.Size(324, 87);
+            this.IterativeСodeMessageTextBox.TabIndex = 60;
+            // 
+            // IterativeСodeQTextBox
+            // 
+            this.IterativeСodeQTextBox.Location = new System.Drawing.Point(65, 9);
+            this.IterativeСodeQTextBox.Name = "IterativeСodeQTextBox";
+            this.IterativeСodeQTextBox.Size = new System.Drawing.Size(324, 20);
+            this.IterativeСodeQTextBox.TabIndex = 65;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(46, 12);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(13, 13);
+            this.label17.TabIndex = 64;
+            this.label17.Text = "q";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(9, 39);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(50, 13);
+            this.label12.TabIndex = 66;
+            this.label12.Text = "Message";
             // 
             // Main
             // 
@@ -690,6 +757,8 @@
             this.tabPage6.PerformLayout();
             this.tabPage7.ResumeLayout(false);
             this.tabPage7.PerformLayout();
+            this.tabPage8.ResumeLayout(false);
+            this.tabPage8.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -745,11 +814,17 @@
         private System.Windows.Forms.ListBox CodeWithModuleQTestListBox;
         private System.Windows.Forms.TabPage tabPage7;
         private System.Windows.Forms.Button CodeWithSimpleRepetitionDecodeButton;
-        private System.Windows.Forms.TextBox CodeWithSimpleRepetitionKTextBox;
         private System.Windows.Forms.TextBox CodeWithSimpleRepetitionCombinationTextBox;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Button CodeWithSimpleRepetitionEncodeButton;
         private System.Windows.Forms.ListBox CodeWithSimpleRepetitionListBox;
+        private System.Windows.Forms.TabPage tabPage8;
+        private System.Windows.Forms.ListBox IterativeСodeListBox;
+        private System.Windows.Forms.Button IterativeСodeFixButton;
+        private System.Windows.Forms.Button IterativeСodeEncodeButton;
+        private System.Windows.Forms.TextBox IterativeСodeMessageTextBox;
+        private System.Windows.Forms.TextBox IterativeСodeQTextBox;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label12;
     }
 }

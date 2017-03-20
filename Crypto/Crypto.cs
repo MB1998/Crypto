@@ -146,7 +146,7 @@ namespace Crypto {
         public static List<String> GetCodeCombinations(List<char> alphabet, int q, int n, string codeType, ListBox listBox) {
             long N = 0;
             List<String> combinations = new List<string>();
-            switch (codeType){
+            switch(codeType) {
                 case "на перестановки":
                     N = Factorial(n);
                     combinations = getAllCombinations(String.Empty, alphabet, n, false, false);
@@ -179,29 +179,80 @@ namespace Crypto {
             return combination;
         }
 
-        public static bool CodeWithModuleQTestCheckValidCombination(int q, List<int> combination, ListBox listBox){
+        public static bool CodeWithModuleQTestCheckValidCombination(int q, List<int> combination, ListBox listBox) {
             return (combination.Sum() % q == 0);
         }
 
-        public static String CodeWithSimpleRepetitionEncode(int k, String combination){
-            return String.Concat(combination, combination);
+        public static string CodeWithSimpleRepetitionEncode(string combination) {
+            return string.Concat(combination, combination);
         }
 
-        public static String CodeWithSimpleRepetitionDecode(int k, String combination)
-        {
-            return combination.Substring(0, k);
+        public static string CodeWithSimpleRepetitionDecode(string combination) {
+            for(int i = 0; i < combination.Length; i++) {
+                if(combination == CodeWithSimpleRepetitionEncode(combination.Substring(0, i))) {
+                    return combination.Substring(0, i);
+                }
+            }
+            return null;
+        }
+
+        public static int[,] IterativeСodeEncode(int[,] inputMatrix, int q) {
+            int inputMatrixRowsAmount = inputMatrix.GetLength(0), inputMatrixColumnsAmount = inputMatrix.GetLength(1);
+            int[,] encodedMatrix = new int[inputMatrixRowsAmount + 1, inputMatrixColumnsAmount + 1];
+            for(int i = 0; i < inputMatrixRowsAmount; i++) {
+                int sumOfRow = 0;
+                for(int j = 0; j < inputMatrixColumnsAmount; j++) {
+                    sumOfRow += inputMatrix[i, j];
+                    encodedMatrix[i, j] = inputMatrix[i, j];
+                }
+                encodedMatrix[i, inputMatrixColumnsAmount] = q - (sumOfRow % q);
+            }
+            for(int i = 0; i < inputMatrixColumnsAmount + 1; i++) {
+                int sumOfColumn = 0;
+                for(int j = 0; j < inputMatrixRowsAmount; j++) {
+                    sumOfColumn += encodedMatrix[j, i];
+                }
+                encodedMatrix[inputMatrixRowsAmount, i] = q - (sumOfColumn % q);
+            }
+            return encodedMatrix;
+        }
+
+        public static void IterativeСodeFixMistakes(int[,] inputMatrix, int q, ListBox listBox) {
+            int[,] encodedMatrix = Crypto.IterativeСodeEncode(inputMatrix, q);
+            int columnOfError = 0, rowOfError = 0, checkNumber = 0;
+            for(int i = 0; i < encodedMatrix.GetLength(0) - 1; i++) {
+                if(encodedMatrix[i, encodedMatrix.GetLength(1) - 1] != q) {
+                    rowOfError = i + 1;
+                    checkNumber = encodedMatrix[i, encodedMatrix.GetLength(1) - 1];
+                }
+            }
+            for(int i = 0; i < encodedMatrix.GetLength(1) - 1; i++) {
+                if(encodedMatrix[encodedMatrix.GetLength(0) - 1, i] != q) {
+                    columnOfError = i + 1;
+                }
+            }
+            if(columnOfError != 0 && rowOfError != 0) {
+                inputMatrix[rowOfError - 1, columnOfError - 1] += checkNumber % q;
+                listBox.Items.Add(
+                    $"Mistake was found in column {columnOfError}, row {rowOfError}: {encodedMatrix[rowOfError - 1, columnOfError - 1]} -> {inputMatrix[rowOfError - 1, columnOfError - 1]}");
+                listBox.Items.Add("Fixed matrix: ");
+                DisplayMatrixWithLastAdditionalSymbol(listBox, inputMatrix);
+                listBox.Items.Add($"Fixed message: {GetMessageFromMatrix(inputMatrix)}");
+            } else {
+                listBox.Items.Add("Mistake wasn't found");
+            }
         }
 
         private static List<String> getAllCombinations(String currentCombination, List<char> alphabet, int lengthOfWord, bool useOnlyForwardDirection, bool allowReiteration) {
             List<String> combinations = new List<string>();
             List<char> alphabetForResursion = DeepClone(alphabet);
-            for(int i = 0; i < alphabet.Count; i++){
+            for(int i = 0; i < alphabet.Count; i++) {
                 currentCombination += alphabet[i];
                 if(!allowReiteration)
                     alphabetForResursion.Remove(alphabet[i]);
-                if (currentCombination.Length == lengthOfWord){
+                if(currentCombination.Length == lengthOfWord) {
                     combinations.Add(currentCombination);
-                } else{
+                } else {
                     combinations.AddRange(getAllCombinations(currentCombination, alphabetForResursion, lengthOfWord, useOnlyForwardDirection, allowReiteration));
                 }
                 currentCombination = currentCombination.Substring(0, currentCombination.Length - 1);
@@ -236,12 +287,40 @@ namespace Crypto {
             return (x == 0) ? 1 : x * Factorial(x - 1);
         }
 
-        static List<char> DeepClone(List<char> listToClone){
+        static List<char> DeepClone(List<char> listToClone) {
             List<char> clonedList = new List<char>();
-            foreach(char element in listToClone){
+            foreach(char element in listToClone) {
                 clonedList.Add(element);
             }
             return clonedList;
+        }
+
+        private static void DisplayMatrixWithLastAdditionalSymbol(ListBox listBox, int[,] matrix) {
+            for(var i = 0; i < matrix.GetLength(0); i++) {
+                var line = "";
+                for(var j = 0; j < matrix.GetLength(1); j++) {
+                    line += matrix[i, j] + "  ";
+                    if(j == matrix.GetLength(1) - 2)
+                        line += ("| ");
+                }
+                listBox.Items.Add(line);
+                if(i == matrix.GetLength(0) - 2) {
+                    line = "";
+                    for(var j = 0; j <= matrix.GetLength(1) + 1; j++)
+                        line += ("--");
+                    listBox.Items.Add(line);
+                }
+            }
+        }
+
+        private static string GetMessageFromMatrix(int[,] matrix) {
+            string message = "";
+            for(int i = 0; i < matrix.GetLength(0); i++) {
+                for(int j = 0; j < matrix.GetLength(1); j++) {
+                    message += matrix[i, j].ToString();
+                }
+            }
+            return message;
         }
     }
 }
