@@ -65,12 +65,24 @@
             this.PrimaryNonBinaryCodesEnodeButton = new System.Windows.Forms.Button();
             this.PrimaryNonBinaryCodesListBox = new System.Windows.Forms.ListBox();
             this.PrimaryNonBinaryCodesQTextBox = new System.Windows.Forms.TextBox();
+            this.PrimaryNonBinaryCodesCombinationToCheckTextBox = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.PrimaryNonBinaryCodesCheckButton = new System.Windows.Forms.Button();
+            this.tabPage6 = new System.Windows.Forms.TabPage();
+            this.CodeWithModuleQTestQTextBox = new System.Windows.Forms.TextBox();
+            this.CodeWithModuleQTestCombinationTextBox = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.CodeWithModuleQTestEncodeButton = new System.Windows.Forms.Button();
+            this.CodeWithModuleQTestListBox = new System.Windows.Forms.ListBox();
+            this.CodeWithModuleQTestCheckButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             this.tabPage3.SuspendLayout();
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
+            this.tabPage6.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -80,7 +92,9 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
+            this.tabControl1.Controls.Add(this.tabPage6);
             this.tabControl1.Location = new System.Drawing.Point(-1, 1);
+            this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(504, 356);
@@ -94,10 +108,10 @@
             this.tabPage1.Controls.Add(this.label1);
             this.tabPage1.Controls.Add(this.GreyEncodeButton);
             this.tabPage1.Controls.Add(this.listBoxCodeGray);
-            this.tabPage1.Location = new System.Drawing.Point(4, 22);
+            this.tabPage1.Location = new System.Drawing.Point(4, 40);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(496, 330);
+            this.tabPage1.Size = new System.Drawing.Size(496, 312);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Код Грея";
             // 
@@ -354,6 +368,9 @@
             // 
             // tabPage5
             // 
+            this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesCheckButton);
+            this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesCombinationToCheckTextBox);
+            this.tabPage5.Controls.Add(this.label9);
             this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesQTextBox);
             this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesTypeCombobox);
             this.tabPage5.Controls.Add(this.label8);
@@ -364,9 +381,9 @@
             this.tabPage5.Controls.Add(this.label5);
             this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesEnodeButton);
             this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesListBox);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 40);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(496, 330);
+            this.tabPage5.Size = new System.Drawing.Size(496, 312);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Первичные недвоичные коды";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -451,9 +468,9 @@
             // PrimaryNonBinaryCodesListBox
             // 
             this.PrimaryNonBinaryCodesListBox.FormattingEnabled = true;
-            this.PrimaryNonBinaryCodesListBox.Location = new System.Drawing.Point(7, 123);
+            this.PrimaryNonBinaryCodesListBox.Location = new System.Drawing.Point(7, 149);
             this.PrimaryNonBinaryCodesListBox.Name = "PrimaryNonBinaryCodesListBox";
-            this.PrimaryNonBinaryCodesListBox.Size = new System.Drawing.Size(482, 199);
+            this.PrimaryNonBinaryCodesListBox.Size = new System.Drawing.Size(482, 173);
             this.PrimaryNonBinaryCodesListBox.TabIndex = 5;
             // 
             // PrimaryNonBinaryCodesQTextBox
@@ -462,6 +479,108 @@
             this.PrimaryNonBinaryCodesQTextBox.Name = "PrimaryNonBinaryCodesQTextBox";
             this.PrimaryNonBinaryCodesQTextBox.Size = new System.Drawing.Size(328, 20);
             this.PrimaryNonBinaryCodesQTextBox.TabIndex = 19;
+            // 
+            // PrimaryNonBinaryCodesCombinationToCheckTextBox
+            // 
+            this.PrimaryNonBinaryCodesCombinationToCheckTextBox.Location = new System.Drawing.Point(151, 115);
+            this.PrimaryNonBinaryCodesCombinationToCheckTextBox.Name = "PrimaryNonBinaryCodesCombinationToCheckTextBox";
+            this.PrimaryNonBinaryCodesCombinationToCheckTextBox.Size = new System.Drawing.Size(244, 20);
+            this.PrimaryNonBinaryCodesCombinationToCheckTextBox.TabIndex = 21;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(10, 118);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(135, 13);
+            this.label9.TabIndex = 20;
+            this.label9.Text = "Комбинация на проверку";
+            // 
+            // PrimaryNonBinaryCodesCheckButton
+            // 
+            this.PrimaryNonBinaryCodesCheckButton.Location = new System.Drawing.Point(400, 37);
+            this.PrimaryNonBinaryCodesCheckButton.Name = "PrimaryNonBinaryCodesCheckButton";
+            this.PrimaryNonBinaryCodesCheckButton.Size = new System.Drawing.Size(89, 54);
+            this.PrimaryNonBinaryCodesCheckButton.TabIndex = 22;
+            this.PrimaryNonBinaryCodesCheckButton.Text = "Проверить вхождение комбинации";
+            this.PrimaryNonBinaryCodesCheckButton.UseVisualStyleBackColor = true;
+            this.PrimaryNonBinaryCodesCheckButton.Click += new System.EventHandler(this.PrimaryNonBinaryCodesCheckButton_Click);
+            // 
+            // tabPage6
+            // 
+            this.tabPage6.Controls.Add(this.CodeWithModuleQTestCheckButton);
+            this.tabPage6.Controls.Add(this.CodeWithModuleQTestQTextBox);
+            this.tabPage6.Controls.Add(this.CodeWithModuleQTestCombinationTextBox);
+            this.tabPage6.Controls.Add(this.label13);
+            this.tabPage6.Controls.Add(this.label14);
+            this.tabPage6.Controls.Add(this.CodeWithModuleQTestEncodeButton);
+            this.tabPage6.Controls.Add(this.CodeWithModuleQTestListBox);
+            this.tabPage6.Location = new System.Drawing.Point(4, 40);
+            this.tabPage6.Name = "tabPage6";
+            this.tabPage6.Size = new System.Drawing.Size(496, 312);
+            this.tabPage6.TabIndex = 5;
+            this.tabPage6.Text = "Код с проверкой по модулю q";
+            this.tabPage6.UseVisualStyleBackColor = true;
+            // 
+            // CodeWithModuleQTestQTextBox
+            // 
+            this.CodeWithModuleQTestQTextBox.Location = new System.Drawing.Point(79, 7);
+            this.CodeWithModuleQTestQTextBox.Name = "CodeWithModuleQTestQTextBox";
+            this.CodeWithModuleQTestQTextBox.Size = new System.Drawing.Size(315, 20);
+            this.CodeWithModuleQTestQTextBox.TabIndex = 32;
+            // 
+            // CodeWithModuleQTestCombinationTextBox
+            // 
+            this.CodeWithModuleQTestCombinationTextBox.Location = new System.Drawing.Point(79, 33);
+            this.CodeWithModuleQTestCombinationTextBox.Name = "CodeWithModuleQTestCombinationTextBox";
+            this.CodeWithModuleQTestCombinationTextBox.Size = new System.Drawing.Size(315, 20);
+            this.CodeWithModuleQTestCombinationTextBox.TabIndex = 27;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(3, 36);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(70, 13);
+            this.label13.TabIndex = 26;
+            this.label13.Text = "Комбинация";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(60, 10);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(13, 13);
+            this.label14.TabIndex = 25;
+            this.label14.Text = "q";
+            // 
+            // CodeWithModuleQTestEncodeButton
+            // 
+            this.CodeWithModuleQTestEncodeButton.Location = new System.Drawing.Point(401, 4);
+            this.CodeWithModuleQTestEncodeButton.Name = "CodeWithModuleQTestEncodeButton";
+            this.CodeWithModuleQTestEncodeButton.Size = new System.Drawing.Size(89, 23);
+            this.CodeWithModuleQTestEncodeButton.TabIndex = 24;
+            this.CodeWithModuleQTestEncodeButton.Text = "Шифровать";
+            this.CodeWithModuleQTestEncodeButton.UseVisualStyleBackColor = true;
+            this.CodeWithModuleQTestEncodeButton.Click += new System.EventHandler(this.CodeWithModuleQTestEncodeButton_Click);
+            // 
+            // CodeWithModuleQTestListBox
+            // 
+            this.CodeWithModuleQTestListBox.FormattingEnabled = true;
+            this.CodeWithModuleQTestListBox.Location = new System.Drawing.Point(3, 97);
+            this.CodeWithModuleQTestListBox.Name = "CodeWithModuleQTestListBox";
+            this.CodeWithModuleQTestListBox.Size = new System.Drawing.Size(490, 212);
+            this.CodeWithModuleQTestListBox.TabIndex = 23;
+            // 
+            // CodeWithModuleQTestCheckButton
+            // 
+            this.CodeWithModuleQTestCheckButton.Location = new System.Drawing.Point(400, 33);
+            this.CodeWithModuleQTestCheckButton.Name = "CodeWithModuleQTestCheckButton";
+            this.CodeWithModuleQTestCheckButton.Size = new System.Drawing.Size(89, 54);
+            this.CodeWithModuleQTestCheckButton.TabIndex = 35;
+            this.CodeWithModuleQTestCheckButton.Text = "Проверить на наличие ошибки";
+            this.CodeWithModuleQTestCheckButton.UseVisualStyleBackColor = true;
+            this.CodeWithModuleQTestCheckButton.Click += new System.EventHandler(this.CodeWithModuleQTestCheckButton_Click);
             // 
             // Main
             // 
@@ -481,6 +600,8 @@
             this.tabPage4.ResumeLayout(false);
             this.tabPage5.ResumeLayout(false);
             this.tabPage5.PerformLayout();
+            this.tabPage6.ResumeLayout(false);
+            this.tabPage6.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -523,5 +644,16 @@
         private System.Windows.Forms.ComboBox PrimaryNonBinaryCodesTypeCombobox;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox PrimaryNonBinaryCodesQTextBox;
+        private System.Windows.Forms.Button PrimaryNonBinaryCodesCheckButton;
+        private System.Windows.Forms.TextBox PrimaryNonBinaryCodesCombinationToCheckTextBox;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.TabPage tabPage6;
+        private System.Windows.Forms.Button CodeWithModuleQTestCheckButton;
+        private System.Windows.Forms.TextBox CodeWithModuleQTestQTextBox;
+        private System.Windows.Forms.TextBox CodeWithModuleQTestCombinationTextBox;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Button CodeWithModuleQTestEncodeButton;
+        private System.Windows.Forms.ListBox CodeWithModuleQTestListBox;
     }
 }

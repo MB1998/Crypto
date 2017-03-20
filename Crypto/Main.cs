@@ -208,9 +208,50 @@ namespace Crypto {
             if(q == 0 || n == 0 || alphabet.Count < 2 || codingType == String.Empty) {
                 PrimaryNonBinaryCodesListBox.Items.Add("Please, enter valid data!");
             } else {
-                List<string> words = Crypto.getCodeCombinations(alphabet, q, n, codingType, PrimaryNonBinaryCodesListBox);
+                List<string> words = Crypto.GetCodeCombinations(alphabet, q, n, codingType, PrimaryNonBinaryCodesListBox);
                 PrimaryNonBinaryCodesListBox.Items.Add($"Combinations: {String.Join(", ", words)}");
             }
+            PrimaryNonBinaryCodesListBox.Items.Add("-------------------------------------------------------------------------");
+        }
+
+        private void PrimaryNonBinaryCodesCheckButton_Click(object sender, EventArgs e) {
+            int q = Int32.Parse(PrimaryNonBinaryCodesQTextBox.Text.Trim());
+            int n = Int32.Parse(PrimaryNonBinaryCodesNTextBox.Text.Trim());
+            List<char> alphabet = PrimaryNonBinaryCodesAlphabetTextBox.Text.ToCharArray().ToArray().ToList();
+            string codingType = PrimaryNonBinaryCodesTypeCombobox.Text;
+            String combinationToCheck = PrimaryNonBinaryCodesCombinationToCheckTextBox.Text;
+            if(q == 0 || n == 0 || alphabet.Count < 2 || codingType == String.Empty) {
+                PrimaryNonBinaryCodesListBox.Items.Add("Please, enter valid data!");
+            } else {
+                List<string> words = Crypto.GetCodeCombinations(alphabet, q, n, codingType, PrimaryNonBinaryCodesListBox);
+                PrimaryNonBinaryCodesListBox.Items.Add($"Combinations: {String.Join(", ", words)}");
+                String correct = words.Contains(combinationToCheck) ? String.Empty : String.Copy("not "); 
+                PrimaryNonBinaryCodesListBox.Items.Add($"Combination {combinationToCheck} is {correct}correct for this code.");
+            }
+            PrimaryNonBinaryCodesListBox.Items.Add("-------------------------------------------------------------------------");
+        }
+
+        private void CodeWithModuleQTestEncodeButton_Click(object sender, EventArgs e) {
+            int q = Int32.Parse(CodeWithModuleQTestQTextBox.Text.Trim());
+            List<int> combination = new List<int>();
+            foreach (char number in CodeWithModuleQTestCombinationTextBox.Text.ToCharArray().ToArray().ToList()){
+                combination.Add(Int32.Parse(number.ToString()));
+            }
+            List<int> encodedCombination = Crypto.CodeWithModuleQTestEncode(q, combination, CodeWithModuleQTestListBox);
+            CodeWithModuleQTestListBox.Items.Add($"Encoded combination: {String.Join("", encodedCombination)}");
+            CodeWithModuleQTestListBox.Items.Add("-------------------------------------------------------------------------");
+        }
+
+        private void CodeWithModuleQTestCheckButton_Click(object sender, EventArgs e) {
+            int q = Int32.Parse(CodeWithModuleQTestQTextBox.Text.Trim());
+            List<int> combination = new List<int>();
+            foreach(char number in CodeWithModuleQTestCombinationTextBox.Text.ToCharArray().ToArray().ToList()) {
+                combination.Add(Int32.Parse(number.ToString()));
+            }
+            Boolean combinationIsValid = Crypto.CodeWithModuleQTestCheckValidCombination(q, combination, CodeWithModuleQTestListBox);
+            String correct = combinationIsValid ? String.Empty : String.Copy("not ");
+            CodeWithModuleQTestListBox.Items.Add($"Combination {String.Join("", combination)} is {correct}correct for this q : {q}.");
+            CodeWithModuleQTestListBox.Items.Add("-------------------------------------------------------------------------");
         }
     }
 }

@@ -143,7 +143,7 @@ namespace Crypto {
             return inputMatrix;
         }
 
-        public static List<String> getCodeCombinations(List<char> alphabet, int q, int n, string codeType, ListBox listBox) {
+        public static List<String> GetCodeCombinations(List<char> alphabet, int q, int n, string codeType, ListBox listBox) {
             long N = 0;
             List<String> combinations = new List<string>();
             switch (codeType){
@@ -160,7 +160,7 @@ namespace Crypto {
                     combinations = getAllCombinations(String.Empty, alphabet, n, true, false);
                     break;
                 case "на все сочетания":
-                    N = q ^ n;
+                    N = (int)Math.Pow(q, n);
                     combinations = getAllCombinations(String.Empty, alphabet, n, false, true);
                     break;
                 case "сменно-качественный":
@@ -170,6 +170,17 @@ namespace Crypto {
             }
             listBox.Items.Add($"Overall amount of combinations N = {N}");
             return combinations;
+        }
+
+        public static List<int> CodeWithModuleQTestEncode(int q, List<int> combination, ListBox listBox) {
+            int checkBit = q - (combination.Sum() % q);
+            listBox.Items.Add($"Check bit: {q} - ({combination.Sum()} mod {q}) = {checkBit}");
+            combination.Add(checkBit);
+            return combination;
+        }
+
+        public static bool CodeWithModuleQTestCheckValidCombination(int q, List<int> combination, ListBox listBox){
+            return (combination.Sum() % q == 0);
         }
 
         private static List<String> getAllCombinations(String currentCombination, List<char> alphabet, int lengthOfWord, bool useOnlyForwardDirection, bool allowReiteration) {
