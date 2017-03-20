@@ -127,7 +127,7 @@ namespace Crypto {
             bool[,] matrix = null;
             var lines = richTextBoxEllays.Text.Split('\n');
             for(var i = 0; i < lines.Length; i++) {
-                var items = lines[i].Split(' ');
+                var items = lines[i].Trim().Split(' ');
                 if(matrix == null)
                     matrix = new bool[lines.Length, items.Length];
                 for(var k = 0; k < items.Length; k++) {
