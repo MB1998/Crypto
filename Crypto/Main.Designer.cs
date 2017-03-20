@@ -76,6 +76,14 @@
             this.CodeWithModuleQTestEncodeButton = new System.Windows.Forms.Button();
             this.CodeWithModuleQTestListBox = new System.Windows.Forms.ListBox();
             this.CodeWithModuleQTestCheckButton = new System.Windows.Forms.Button();
+            this.tabPage7 = new System.Windows.Forms.TabPage();
+            this.CodeWithSimpleRepetitionDecodeButton = new System.Windows.Forms.Button();
+            this.CodeWithSimpleRepetitionKTextBox = new System.Windows.Forms.TextBox();
+            this.CodeWithSimpleRepetitionCombinationTextBox = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.CodeWithSimpleRepetitionEncodeButton = new System.Windows.Forms.Button();
+            this.CodeWithSimpleRepetitionListBox = new System.Windows.Forms.ListBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -83,6 +91,7 @@
             this.tabPage4.SuspendLayout();
             this.tabPage5.SuspendLayout();
             this.tabPage6.SuspendLayout();
+            this.tabPage7.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -93,6 +102,7 @@
             this.tabControl1.Controls.Add(this.tabPage4);
             this.tabControl1.Controls.Add(this.tabPage5);
             this.tabControl1.Controls.Add(this.tabPage6);
+            this.tabControl1.Controls.Add(this.tabPage7);
             this.tabControl1.Location = new System.Drawing.Point(-1, 1);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
@@ -381,9 +391,9 @@
             this.tabPage5.Controls.Add(this.label5);
             this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesEnodeButton);
             this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesListBox);
-            this.tabPage5.Location = new System.Drawing.Point(4, 40);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(496, 312);
+            this.tabPage5.Size = new System.Drawing.Size(496, 330);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Первичные недвоичные коды";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -582,6 +592,82 @@
             this.CodeWithModuleQTestCheckButton.UseVisualStyleBackColor = true;
             this.CodeWithModuleQTestCheckButton.Click += new System.EventHandler(this.CodeWithModuleQTestCheckButton_Click);
             // 
+            // tabPage7
+            // 
+            this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionDecodeButton);
+            this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionKTextBox);
+            this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionCombinationTextBox);
+            this.tabPage7.Controls.Add(this.label10);
+            this.tabPage7.Controls.Add(this.label11);
+            this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionEncodeButton);
+            this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionListBox);
+            this.tabPage7.Location = new System.Drawing.Point(4, 40);
+            this.tabPage7.Name = "tabPage7";
+            this.tabPage7.Size = new System.Drawing.Size(496, 312);
+            this.tabPage7.TabIndex = 6;
+            this.tabPage7.Text = "Код с простым повторением";
+            this.tabPage7.UseVisualStyleBackColor = true;
+            // 
+            // CodeWithSimpleRepetitionDecodeButton
+            // 
+            this.CodeWithSimpleRepetitionDecodeButton.Location = new System.Drawing.Point(383, 36);
+            this.CodeWithSimpleRepetitionDecodeButton.Name = "CodeWithSimpleRepetitionDecodeButton";
+            this.CodeWithSimpleRepetitionDecodeButton.Size = new System.Drawing.Size(106, 26);
+            this.CodeWithSimpleRepetitionDecodeButton.TabIndex = 42;
+            this.CodeWithSimpleRepetitionDecodeButton.Text = "Расшифровать";
+            this.CodeWithSimpleRepetitionDecodeButton.UseVisualStyleBackColor = true;
+            this.CodeWithSimpleRepetitionDecodeButton.Click += new System.EventHandler(this.CodeWithSimpleRepetitionDecodeButton_Click);
+            // 
+            // CodeWithSimpleRepetitionKTextBox
+            // 
+            this.CodeWithSimpleRepetitionKTextBox.Location = new System.Drawing.Point(79, 10);
+            this.CodeWithSimpleRepetitionKTextBox.Name = "CodeWithSimpleRepetitionKTextBox";
+            this.CodeWithSimpleRepetitionKTextBox.Size = new System.Drawing.Size(298, 20);
+            this.CodeWithSimpleRepetitionKTextBox.TabIndex = 41;
+            // 
+            // CodeWithSimpleRepetitionCombinationTextBox
+            // 
+            this.CodeWithSimpleRepetitionCombinationTextBox.Location = new System.Drawing.Point(79, 36);
+            this.CodeWithSimpleRepetitionCombinationTextBox.Name = "CodeWithSimpleRepetitionCombinationTextBox";
+            this.CodeWithSimpleRepetitionCombinationTextBox.Size = new System.Drawing.Size(298, 20);
+            this.CodeWithSimpleRepetitionCombinationTextBox.TabIndex = 40;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(3, 36);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(70, 13);
+            this.label10.TabIndex = 39;
+            this.label10.Text = "Комбинация";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(60, 10);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(13, 13);
+            this.label11.TabIndex = 38;
+            this.label11.Text = "k";
+            // 
+            // CodeWithSimpleRepetitionEncodeButton
+            // 
+            this.CodeWithSimpleRepetitionEncodeButton.Location = new System.Drawing.Point(383, 4);
+            this.CodeWithSimpleRepetitionEncodeButton.Name = "CodeWithSimpleRepetitionEncodeButton";
+            this.CodeWithSimpleRepetitionEncodeButton.Size = new System.Drawing.Size(107, 26);
+            this.CodeWithSimpleRepetitionEncodeButton.TabIndex = 37;
+            this.CodeWithSimpleRepetitionEncodeButton.Text = "Шифровать";
+            this.CodeWithSimpleRepetitionEncodeButton.UseVisualStyleBackColor = true;
+            this.CodeWithSimpleRepetitionEncodeButton.Click += new System.EventHandler(this.CodeWithSimpleRepetitionEncodeButton_Click);
+            // 
+            // CodeWithSimpleRepetitionListBox
+            // 
+            this.CodeWithSimpleRepetitionListBox.FormattingEnabled = true;
+            this.CodeWithSimpleRepetitionListBox.Location = new System.Drawing.Point(3, 71);
+            this.CodeWithSimpleRepetitionListBox.Name = "CodeWithSimpleRepetitionListBox";
+            this.CodeWithSimpleRepetitionListBox.Size = new System.Drawing.Size(490, 238);
+            this.CodeWithSimpleRepetitionListBox.TabIndex = 36;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -602,6 +688,8 @@
             this.tabPage5.PerformLayout();
             this.tabPage6.ResumeLayout(false);
             this.tabPage6.PerformLayout();
+            this.tabPage7.ResumeLayout(false);
+            this.tabPage7.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -655,5 +743,13 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button CodeWithModuleQTestEncodeButton;
         private System.Windows.Forms.ListBox CodeWithModuleQTestListBox;
+        private System.Windows.Forms.TabPage tabPage7;
+        private System.Windows.Forms.Button CodeWithSimpleRepetitionDecodeButton;
+        private System.Windows.Forms.TextBox CodeWithSimpleRepetitionKTextBox;
+        private System.Windows.Forms.TextBox CodeWithSimpleRepetitionCombinationTextBox;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button CodeWithSimpleRepetitionEncodeButton;
+        private System.Windows.Forms.ListBox CodeWithSimpleRepetitionListBox;
     }
 }

@@ -248,10 +248,26 @@ namespace Crypto {
             foreach(char number in CodeWithModuleQTestCombinationTextBox.Text.ToCharArray().ToArray().ToList()) {
                 combination.Add(Int32.Parse(number.ToString()));
             }
-            Boolean combinationIsValid = Crypto.CodeWithModuleQTestCheckValidCombination(q, combination, CodeWithModuleQTestListBox);
-            String correct = combinationIsValid ? String.Empty : String.Copy("not ");
+            bool combinationIsValid = Crypto.CodeWithModuleQTestCheckValidCombination(q, combination, CodeWithModuleQTestListBox);
+            string correct = combinationIsValid ? String.Empty : String.Copy("not ");
             CodeWithModuleQTestListBox.Items.Add($"Combination {String.Join("", combination)} is {correct}correct for this q : {q}.");
             CodeWithModuleQTestListBox.Items.Add("-------------------------------------------------------------------------");
+        }
+
+        private void CodeWithSimpleRepetitionEncodeButton_Click(object sender, EventArgs e) {
+            int k = Int32.Parse(CodeWithSimpleRepetitionKTextBox.Text.Trim());
+            String combination = CodeWithSimpleRepetitionCombinationTextBox.Text;
+            String encodedCombination = Crypto.CodeWithSimpleRepetitionEncode(k, combination);
+            CodeWithSimpleRepetitionListBox.Items.Add($"Encoded combination: {encodedCombination}");
+            CodeWithSimpleRepetitionListBox.Items.Add("-------------------------------------------------------------------------");
+        }
+
+        private void CodeWithSimpleRepetitionDecodeButton_Click(object sender, EventArgs e) {
+            int k = Int32.Parse(CodeWithSimpleRepetitionKTextBox.Text.Trim());
+            String combination = CodeWithSimpleRepetitionCombinationTextBox.Text;
+            String decodedCombination = Crypto.CodeWithSimpleRepetitionDecode(k, combination);
+            CodeWithSimpleRepetitionListBox.Items.Add($"Decoded combination: {decodedCombination}");
+            CodeWithSimpleRepetitionListBox.Items.Add("-------------------------------------------------------------------------");
         }
     }
 }

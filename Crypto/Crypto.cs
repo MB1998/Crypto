@@ -183,6 +183,15 @@ namespace Crypto {
             return (combination.Sum() % q == 0);
         }
 
+        public static String CodeWithSimpleRepetitionEncode(int k, String combination){
+            return String.Concat(combination, combination);
+        }
+
+        public static String CodeWithSimpleRepetitionDecode(int k, String combination)
+        {
+            return combination.Substring(0, k);
+        }
+
         private static List<String> getAllCombinations(String currentCombination, List<char> alphabet, int lengthOfWord, bool useOnlyForwardDirection, bool allowReiteration) {
             List<String> combinations = new List<string>();
             List<char> alphabetForResursion = DeepClone(alphabet);
