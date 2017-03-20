@@ -172,14 +172,15 @@ namespace Crypto {
             return combinations;
         }
 
-        public static List<int> CodeWithModuleQTestEncode(int q, List<int> combination, ListBox listBox) {
-            int checkBit = q - (combination.Sum() % q);
-            listBox.Items.Add($"Check bit: {q} - ({combination.Sum()} mod {q}) = {checkBit}");
+        public static List<char> CodeWithModuleQTestEncode(int q, List<char> combination, ListBox listBox) {
+            int checkBit = q - (SumOfList(combination, q) % q);
+            checkBit = checkBit == q ? 0 : checkBit;
+            listBox.Items.Add($"Check bit: {q} - ({SumOfList(combination, q)} mod {q}) = {checkBit}");
             combination.Add(checkBit);
             return combination;
         }
 
-        public static bool CodeWithModuleQTestCheckValidCombination(int q, List<int> combination, ListBox listBox) {
+        public static bool CodeWithModuleQTestCheckValidCombination(int q, List<char> combination, ListBox listBox) {
             return (combination.Sum() % q == 0);
         }
 
@@ -242,6 +243,22 @@ namespace Crypto {
                 listBox.Items.Add("Mistake wasn't found");
             }
         }
+
+        private static int SumOfList(List<char> numbers, int notation) {
+            List<int> translatedNumbers = new List<int>();
+            foreach(char number in numbers) {
+                translatedNumbers.Add(LettersToNumbers.get(number));
+            }
+            return translatedNumbers.Sum();
+        }
+
+        private static Dictionary<char, int> LettersToNumbers = new Dictionary<char, int>()
+        {
+            { 'A' , 10 }, { 'B' , 11 }, { 'C' , 12 }, { 'D' , 13 }, { 'E' , 14 }, { 'F' , 15 }, { 'G' , 16 }, { 'H' , 17 },
+            { 'I' , 18 }, { 'J' , 19 }, { 'K' , 20 }, { 'L' , 21 }, { 'M' , 22 }, { 'N' , 23 }, { 'O' , 24 }, { 'P' , 25 },
+            { 'Q' , 26 }, { 'R' , 27 }, { 'S' , 28 }, { 'T' , 29 }, { 'U' , 30 }, { 'V' , 31 }, { 'W' , 32 }, { 'X' , 33 },
+            { 'Y' , 34 }, { 'Z' , 35 }
+        };
 
         private static List<String> getAllCombinations(String currentCombination, List<char> alphabet, int lengthOfWord, bool useOnlyForwardDirection, bool allowReiteration) {
             List<String> combinations = new List<string>();

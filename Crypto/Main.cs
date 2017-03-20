@@ -233,10 +233,7 @@ namespace Crypto {
 
         private void CodeWithModuleQTestEncodeButton_Click(object sender, EventArgs e) {
             int q = Int32.Parse(CodeWithModuleQTestQTextBox.Text.Trim());
-            List<int> combination = new List<int>();
-            foreach(char number in CodeWithModuleQTestCombinationTextBox.Text.ToCharArray().ToArray().ToList()) {
-                combination.Add(Int32.Parse(number.ToString()));
-            }
+            List<char> combination = CodeWithModuleQTestCombinationTextBox.Text.ToCharArray().ToList();
             List<int> encodedCombination = Crypto.CodeWithModuleQTestEncode(q, combination, CodeWithModuleQTestListBox);
             CodeWithModuleQTestListBox.Items.Add($"Encoded combination: {string.Join("", encodedCombination)}");
             CodeWithModuleQTestListBox.Items.Add("-------------------------------------------------------------------------");
@@ -244,10 +241,7 @@ namespace Crypto {
 
         private void CodeWithModuleQTestCheckButton_Click(object sender, EventArgs e) {
             int q = Int32.Parse(CodeWithModuleQTestQTextBox.Text.Trim());
-            List<int> combination = new List<int>();
-            foreach(char number in CodeWithModuleQTestCombinationTextBox.Text.ToCharArray().ToArray().ToList()) {
-                combination.Add(Int32.Parse(number.ToString()));
-            }
+            List<char> combination = CodeWithModuleQTestCombinationTextBox.Text.ToCharArray().ToList();
             bool combinationIsValid = Crypto.CodeWithModuleQTestCheckValidCombination(q, combination, CodeWithModuleQTestListBox);
             string correct = combinationIsValid ? string.Empty : string.Copy("not ");
             CodeWithModuleQTestListBox.Items.Add($"Combination {string.Join("", combination)} is {correct}correct for this q : {q}.");
