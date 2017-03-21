@@ -251,6 +251,7 @@ namespace Crypto {
         private void CodeWithSimpleRepetitionEncodeButton_Click(object sender, EventArgs e) {
             string combination = CodeWithSimpleRepetitionCombinationTextBox.Text;
             string encodedCombination = Crypto.CodeWithSimpleRepetitionEncode(combination);
+            Clipboard.SetText(encodedCombination);
             CodeWithSimpleRepetitionListBox.Items.Add($"Encoded combination: {encodedCombination}");
             CodeWithSimpleRepetitionListBox.Items.Add("-------------------------------------------------------------------------");
         }
@@ -259,6 +260,7 @@ namespace Crypto {
             string combination = CodeWithSimpleRepetitionCombinationTextBox.Text;
             string decodedCombination = string.Empty;
             decodedCombination = Crypto.CodeWithSimpleRepetitionDecode(combination);
+            Clipboard.SetText(decodedCombination);
             CodeWithSimpleRepetitionListBox.Items.Add($"Decoded combination: {decodedCombination}");
             CodeWithSimpleRepetitionListBox.Items.Add("-------------------------------------------------------------------------");
         }
