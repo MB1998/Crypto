@@ -197,43 +197,53 @@ namespace Crypto {
             return null;
         }
 
-        public static int[,] IterativeСodeEncode(int[,] inputMatrix, int q) {
+        public static char[,] IterativeСodeEncode(char[,] inputMatrix, int q) {
             int inputMatrixRowsAmount = inputMatrix.GetLength(0), inputMatrixColumnsAmount = inputMatrix.GetLength(1);
-            int[,] encodedMatrix = new int[inputMatrixRowsAmount + 1, inputMatrixColumnsAmount + 1];
+            char[,] encodedMatrix = new char[inputMatrixRowsAmount + 1, inputMatrixColumnsAmount + 1];
             for(int i = 0; i < inputMatrixRowsAmount; i++) {
-                int sumOfRow = 0;
+                List<char> listToSum = new List<char>();
                 for(int j = 0; j < inputMatrixColumnsAmount; j++) {
-                    sumOfRow += inputMatrix[i, j];
+                    listToSum.Add(inputMatrix[i, j]);
                     encodedMatrix[i, j] = inputMatrix[i, j];
                 }
-                encodedMatrix[i, inputMatrixColumnsAmount] = q - (sumOfRow % q);
+                int sumOfRow = SumOfList(listToSum, q);
+                int checkBit = (q - (sumOfRow % q)) == q ? 0 : (q - (sumOfRow % q));
+                encodedMatrix[i, inputMatrixColumnsAmount] = Convert.ToChar(checkBit.ToString());
             }
             for(int i = 0; i < inputMatrixColumnsAmount + 1; i++) {
-                int sumOfColumn = 0;
-                for(int j = 0; j < inputMatrixRowsAmount; j++) {
-                    sumOfColumn += encodedMatrix[j, i];
+                List<char> listToSum = new List<char>();
+                for (int j = 0; j < inputMatrixRowsAmount; j++) {
+                    listToSum.Add(encodedMatrix[j, i]);
                 }
-                encodedMatrix[inputMatrixRowsAmount, i] = q - (sumOfColumn % q);
+                int sumOfColumn = SumOfList(listToSum, q);
+                int checkBit = (q - (sumOfColumn % q)) == q ? 0 : (q - (sumOfColumn % q));
+                encodedMatrix[inputMatrixRowsAmount, i] = Convert.ToChar(checkBit.ToString());
             }
             return encodedMatrix;
         }
 
-        public static void IterativeСodeFixMistakes(int[,] inputMatrix, int q, ListBox listBox) {
-            int[,] encodedMatrix = Crypto.IterativeСodeEncode(inputMatrix, q);
+        public static void IterativeСodeFixMistakes(char[,] inputMatrix, int q, ListBox listBox) {
+            char[,] encodedMatrix = Crypto.IterativeСodeEncode(inputMatrix, q);
             int columnOfError = 0, rowOfError = 0, checkNumber = 0;
-            for(int i = 0; i < encodedMatrix.GetLength(0) - 1; i++) {
-                if(encodedMatrix[i, encodedMatrix.GetLength(1) - 1] != q) {
+            for (int i = 0; i < encodedMatrix.GetLength(0) - 2; i++) {
+                if(encodedMatrix[i, encodedMatrix.GetLength(1) - 1] != '0') {
                     rowOfError = i + 1;
-                    checkNumber = encodedMatrix[i, encodedMatrix.GetLength(1) - 1];
+                    if(!Int32.TryParse(encodedMatrix[i, encodedMatrix.GetLength(1) - 1].ToString(), out checkNumber))
+                        checkNumber = LettersToNumbers[encodedMatrix[i, encodedMatrix.GetLength(1) - 1].ToString().ToUpper().ToCharArray()[0]];
                 }
             }
-            for(int i = 0; i < encodedMatrix.GetLength(1) - 1; i++) {
-                if(encodedMatrix[encodedMatrix.GetLength(0) - 1, i] != q) {
+            for(int i = 0; i < encodedMatrix.GetLength(1) - 2; i++) {
+                if(encodedMatrix[encodedMatrix.GetLength(0) - 1, i] != '0') {
                     columnOfError = i + 1;
                 }
             }
             if(columnOfError != 0 && rowOfError != 0) {
-                inputMatrix[rowOfError - 1, columnOfError - 1] += checkNumber % q;
+                int falseValue;
+                if(!Int32.TryParse(encodedMatrix[rowOfError - 1, columnOfError - 1].ToString(), out falseValue))
+                    falseValue = LettersToNumbers[encodedMatrix[rowOfError - 1, columnOfError - 1].ToString().ToUpper().ToCharArray()[0]];
+                int realValue = (falseValue + (checkNumber % q)) == q ? 0 : (falseValue + (checkNumber % q));
+                char realValueChar = realValue <= 10 ? Convert.ToChar(realValue.ToString()) : LettersToNumbers.FirstOrDefault(x => x.Value == (checkNumber % q)).Key;
+                inputMatrix[rowOfError - 1, columnOfError - 1] = realValueChar;
                 listBox.Items.Add(
                     $"Mistake was found in column {columnOfError}, row {rowOfError}: {encodedMatrix[rowOfError - 1, columnOfError - 1]} -> {inputMatrix[rowOfError - 1, columnOfError - 1]}");
                 listBox.Items.Add("Fixed matrix: ");
@@ -248,7 +258,7 @@ namespace Crypto {
             List<int> translatedNumbers = new List<int>();
             foreach(char number in numbers) {
                 int translatedNumber;
-                if (!Int32.TryParse(number.ToString(), out translatedNumber)) {
+                if (!Int32.TryParse(Convert.ToString(number), out translatedNumber)) {
                     translatedNumber = LettersToNumbers[number.ToString().ToUpper().ToCharArray()[0]];
                 }
                 translatedNumbers.Add(translatedNumber);
@@ -316,7 +326,7 @@ namespace Crypto {
             return clonedList;
         }
 
-        private static void DisplayMatrixWithLastAdditionalSymbol(ListBox listBox, int[,] matrix) {
+        private static void DisplayMatrixWithLastAdditionalSymbol(ListBox listBox, char[,] matrix) {
             for(var i = 0; i < matrix.GetLength(0); i++) {
                 var line = "";
                 for(var j = 0; j < matrix.GetLength(1); j++) {
@@ -334,7 +344,7 @@ namespace Crypto {
             }
         }
 
-        private static string GetMessageFromMatrix(int[,] matrix) {
+        private static string GetMessageFromMatrix(char[,] matrix) {
             string message = "";
             for(int i = 0; i < matrix.GetLength(0); i++) {
                 for(int j = 0; j < matrix.GetLength(1); j++) {
