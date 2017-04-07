@@ -302,6 +302,90 @@ namespace Crypto {
             IterativeСodeListBox.Items.Add("--------------------------------------------------------------------------------------------------");
         }
 
+        private void AmountOfInformationFindButton_Click(object sender, EventArgs e) {
+            List<string> probabilitiesOfMessages = getProbabilitiesOfMessagesAmountOfInformation(AmountOfInformationPXiTextBox, AmountOfInformationListBox, ';');
+            List<int> ensembleOrder = getEnsembleOrder();
+            int amountOfInformation = Crypto.getAmountOfInformation(probabilitiesOfMessages, ensembleOrder);
+            AmountOfInformationListBox.Items.Add($"Amount of infromation for ensemle A with specified probabilities is {amountOfInformation} bits");
+        }
+
+        private void UnconditionalAndMaximumEntropyFindButton_Click(object sender, EventArgs e) {
+            List<string> probabilitiesOfMessages = getProbabilitiesOfMessagesAmountOfInformation(UnconditionalAndMaximumEntropyPXiTextBox, UnconditionalAndMaximumEntropyListBox, ';');
+            double unconditionalEntropy = Crypto.getUnconditionalEntropy(probabilitiesOfMessages);
+            UnconditionalAndMaximumEntropyListBox.Items.Add($"Unconditional Entropy for this source: {unconditionalEntropy}");
+            double maximumEntropy = Crypto.getMaximumEntropy(probabilitiesOfMessages);
+            UnconditionalAndMaximumEntropyListBox.Items.Add($"Maximum Entropy for this source: {maximumEntropy}");
+        }
+
+        private void ConditionalEntropyFindButton_Click(object sender, EventArgs e) {
+            double[,] conditionalProbabilitiesMatrix = getConditionalProbabilitiesMatrix();
+            if(conditionalProbabilitiesMatrix == null)
+                return;
+            List<double> probabilitiesOfMessages = getProbabilitiesOfMessagesAmountOfInformationDouble(ConditionalEntropyMessagesProbabilitiesTextBox, ConditionalEntropyListBox, ';');
+            double conditionalEntropy = Crypto.getConditionalEntropy(conditionalProbabilitiesMatrix);
+            ConditionalEntropyListBox.Items.Add($"Conditional Entropy for this source: {conditionalEntropy}");
+        }
+
+        private void ShannonFanoCodeEncodeButton_Click(object sender, EventArgs e) {
+            List<double> probabilitiesOfMessages = getProbabilitiesOfMessagesAmountOfInformationDouble(ShannonFanoCodePXiTextBox, ShannonFanoCodeListBox, ';');
+            if(probabilitiesOfMessages == null)
+                return;
+            List<string> encodedProbabilities = Crypto.EncodeProbabilities(probabilitiesOfMessages, null);
+            for(int i = 0; i < encodedProbabilities.Count; i++) {
+                ShannonFanoCodeListBox.Items.Add($"P{i} = {probabilitiesOfMessages[i]} = {encodedProbabilities[i]};");
+            }
+            ShannonFanoCodeListBox.Items.Add("---------------------------------------------------------------------");
+        }
+
+        private double[,] getConditionalProbabilitiesMatrix() {
+            double[,] conditionalProbabilitiesMatrix = null;
+            try {
+                var lines = ConditionalEntropyProbabilityMatrixRichBox.Text.Trim().Split('\n');
+                for(int i = 0; i < lines.Length; i++) {
+                    var items = lines[i].Trim().Split(' ');
+                    if(conditionalProbabilitiesMatrix == null)
+                        conditionalProbabilitiesMatrix = new double[lines.Length, items.Length];
+                    for(var k = 0; k < items.Length; k++) {
+                        conditionalProbabilitiesMatrix[i, k] = double.Parse(items[k]);
+                    }
+                }
+                return conditionalProbabilitiesMatrix;
+            } catch(Exception e) {
+                DisplayErrorMessage(ConditionalEntropyListBox, new List<string> { "Conditional probabilities matrix is not correct. Please, write matrix in input field: use new line for each new row, use whitespace to separate elements in one row." });
+                return null;
+            }
+        }
+
+        private List<int> getEnsembleOrder() {
+            try {
+                List<int> ensembleOrder = (new List<string>(AmountOfInformationATextBox.Text.Replace(" ", String.Empty).Split(';'))).Select(x => Int32.Parse(x.Substring(1, 1))).ToList();
+                return ensembleOrder;
+            } catch(Exception ex) {
+                DisplayErrorMessage(AmountOfInformationListBox, new List<string> { "Ensemble isn't correct! Please, specify it like order of messages. Example: \'X1;X2;X3;X9;X8;X5;X5;X4\'" });
+                return null;
+            }
+        }
+
+        private List<string> getProbabilitiesOfMessagesAmountOfInformation(TextBox sourceTextBox, ListBox listBoxForErrorsDisplay, char separator) {
+            try {
+                List<string> probabilitiesOfMessages = new List<string>(sourceTextBox.Text.Replace(" ", String.Empty).Split(separator));
+                return probabilitiesOfMessages;
+            } catch(Exception ex) {
+                DisplayErrorMessage(listBoxForErrorsDisplay, new List<string> { "Probabilities for messages P(Xi) aren't correct. Please, write numbers separeted by \'" + separator + "\'. You can also use fractions in format: 1/8." });
+                return null;
+            }
+        }
+
+        private List<double> getProbabilitiesOfMessagesAmountOfInformationDouble(TextBox sourceTextBox, ListBox listBoxForErrorsDisplay, char separator) {
+            try {
+                List<double> probabilitiesOfMessages = new List<string>(sourceTextBox.Text.Replace(" ", String.Empty).Split(separator)).Select(x => Double.Parse(x)).ToList();
+                return probabilitiesOfMessages;
+            } catch(Exception ex) {
+                DisplayErrorMessage(listBoxForErrorsDisplay, new List<string> { "Probabilities for messages P(Xi) aren't correct. Please, write numbers separeted by \'" + separator + "\'." });
+                return null;
+            }
+        }
+
         private void DisplayErrorMessage(ListBox listBox, List<string> errorMessages) {
             foreach(string errorMessage in errorMessages) {
                 listBox.Items.Add(errorMessage);

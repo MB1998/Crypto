@@ -254,6 +254,75 @@ namespace Crypto {
             }
         }
 
+        public static int getAmountOfInformation(List<string> probabilitiesOfMessages, List<int> ensembleOrder) {
+            int amountOfInfromation = 0;
+            foreach(int ensembleMember in ensembleOrder) {
+                List<int> deviders = (new List<string>(probabilitiesOfMessages[ensembleMember-1].Split('/'))).Select(x => Int32.Parse(x)).ToList();
+                amountOfInfromation += (int)Math.Log(1 / deviders[0] * deviders[1], 2);
+            }
+            return amountOfInfromation;
+        }
+
+        public static double getUnconditionalEntropy(List<string> probabilitiesOfMessages) {
+            double unconditionalEntropy = 0;
+            foreach(string probabilityOfMessage in probabilitiesOfMessages) {
+                unconditionalEntropy += Double.Parse(probabilityOfMessage) * Math.Log(Double.Parse(probabilityOfMessage), 2);
+            }
+            unconditionalEntropy *= -1;
+            return unconditionalEntropy;
+        }
+
+        public static double getMaximumEntropy(List<string> probabilitiesOfMessages) {
+            return Math.Log(probabilitiesOfMessages.Count, 2);
+        }
+
+        public static double getConditionalEntropy(double[,] conditionalProbabilitiesMatrix) {
+            double conditionalEntropy = 0;
+            for(int i = 0; i < conditionalProbabilitiesMatrix.GetLength(0); i++) {
+                for(int j = 0; j < conditionalProbabilitiesMatrix.GetLength(1); j++) {
+                    conditionalEntropy += conditionalProbabilitiesMatrix[i, j] * Math.Log(conditionalProbabilitiesMatrix[i, j], 2);
+                }
+            }
+            conditionalEntropy *= -1;
+            return conditionalEntropy;
+        }
+
+        public static List<string> EncodeProbabilities(List<double> probabilitiesOfMessages, List<string> encodedProbabilities) {
+            if(encodedProbabilities == null) {
+                encodedProbabilities = new List<string>(probabilitiesOfMessages.Count);
+                encodedProbabilities.Add("0");
+                for(int i = 0; i < probabilitiesOfMessages.Count - 1; i++) {
+                    encodedProbabilities.Add(String.Empty);
+                }
+            } else {
+                encodedProbabilities[0] += '0';
+            }
+            int firstSectionLength = 1;
+            for(int i = 0; i < probabilitiesOfMessages.Count - 1; i++) {
+                double diffSumOfSections = Math.Abs(probabilitiesOfMessages.GetRange(0, i + 1).Sum() - probabilitiesOfMessages.GetRange(i + 1, probabilitiesOfMessages.Count - 1 - i).Sum());
+                double potensialdiffSumOfSections = Math.Abs(probabilitiesOfMessages.GetRange(0, i + 2).Sum() - probabilitiesOfMessages.GetRange(i + 2, probabilitiesOfMessages.Count - 2 - i).Sum());
+                if(diffSumOfSections > potensialdiffSumOfSections) {
+                    encodedProbabilities[i + 1] += '0';
+                    firstSectionLength++;
+                } else {
+                    encodedProbabilities[i + 1] += '1';
+                }
+            }
+            if(firstSectionLength != 1) {
+                List<string> finalCodeForFirstSection = EncodeProbabilities(probabilitiesOfMessages.GetRange(0, firstSectionLength), encodedProbabilities.GetRange(0, firstSectionLength));
+                for(int i = 0; i < firstSectionLength; i++) {
+                    encodedProbabilities[i] = finalCodeForFirstSection[i];
+                }
+            }
+            if(probabilitiesOfMessages.Count - firstSectionLength != 1) {
+                List<string> finalCodeForSecondSection = EncodeProbabilities(probabilitiesOfMessages.GetRange(firstSectionLength, probabilitiesOfMessages.Count - firstSectionLength), encodedProbabilities.GetRange(firstSectionLength, encodedProbabilities.Count - firstSectionLength));
+                for(int i = firstSectionLength, j = 0; j < finalCodeForSecondSection.Count; i++, j++) {
+                    encodedProbabilities[i] = finalCodeForSecondSection[j];
+                }
+            }
+            return encodedProbabilities;
+        }
+
         private static int SumOfList(List<char> numbers, int notation) {
             List<int> translatedNumbers = new List<int>();
             foreach(char number in numbers) {
