@@ -330,11 +330,30 @@ namespace Crypto {
             List<double> probabilitiesOfMessages = getProbabilitiesOfMessagesAmountOfInformationDouble(ShannonFanoCodePXiTextBox, ShannonFanoCodeListBox, ';');
             if(probabilitiesOfMessages == null)
                 return;
-            List<string> encodedProbabilities = Crypto.EncodeProbabilities(probabilitiesOfMessages, null);
+            List<string> encodedProbabilities = Crypto.EncodeShannonFanoCode(probabilitiesOfMessages, null);
             for(int i = 0; i < encodedProbabilities.Count; i++) {
                 ShannonFanoCodeListBox.Items.Add($"P{i} = {probabilitiesOfMessages[i]} = {encodedProbabilities[i]};");
             }
             ShannonFanoCodeListBox.Items.Add("---------------------------------------------------------------------");
+        }
+
+        private void HaffmanCodeEncodeButton_Click(object sender, EventArgs e) {
+            List<double> probabilitiesOfMessages = getProbabilitiesOfMessagesAmountOfInformationDouble(HaffmanCodePXiTextBox, HaffmanCodeListBox, ';');
+            if(probabilitiesOfMessages == null)
+                return;
+            List<List<double>> auxiliaryGroupsHaffman = Crypto.EncodeHaffman(probabilitiesOfMessages);
+            DiplsayAuxiliaryGroupsHaffman(auxiliaryGroupsHaffman, HaffmanCodeListBox);
+        }
+
+        private void DiplsayAuxiliaryGroupsHaffman(List<List<double>> auxiliaryGroupsHaffman, ListBox listBox) {
+            listBox.Items.Add("Auxiliary Groups of Haffman for enterred possibilities: ");
+            for(int i = 0; i < auxiliaryGroupsHaffman[0].Count; i++) {
+                string listBoxItem = $"P(x{i + 1})\t";
+                for(int j = 0; j < auxiliaryGroupsHaffman.Count - i; j++) {
+                    listBoxItem += $"{auxiliaryGroupsHaffman[j][i]}\t";
+                }
+                listBox.Items.Add(listBoxItem);
+            }
         }
 
         private double[,] getConditionalProbabilitiesMatrix() {

@@ -118,6 +118,12 @@
             this.ShannonFanoCodePXiTextBox = new System.Windows.Forms.TextBox();
             this.label23 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
+            this.tabPage13 = new System.Windows.Forms.TabPage();
+            this.HaffmanCodeListBox = new System.Windows.Forms.ListBox();
+            this.HaffmanCodeEncodeButton = new System.Windows.Forms.Button();
+            this.HaffmanCodePXiTextBox = new System.Windows.Forms.TextBox();
+            this.label25 = new System.Windows.Forms.Label();
+            this.label26 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -131,6 +137,7 @@
             this.tabPage10.SuspendLayout();
             this.tabPage11.SuspendLayout();
             this.tabPage12.SuspendLayout();
+            this.tabPage13.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -147,6 +154,7 @@
             this.tabControl1.Controls.Add(this.tabPage10);
             this.tabControl1.Controls.Add(this.tabPage11);
             this.tabControl1.Controls.Add(this.tabPage12);
+            this.tabControl1.Controls.Add(this.tabPage13);
             this.tabControl1.Location = new System.Drawing.Point(-1, 1);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
@@ -223,10 +231,10 @@
             this.tabPage2.Controls.Add(this.BCDDecodeButton);
             this.tabPage2.Controls.Add(this.BCDEncodeButton);
             this.tabPage2.Controls.Add(this.listBoxDdc);
-            this.tabPage2.Location = new System.Drawing.Point(4, 40);
+            this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(886, 390);
+            this.tabPage2.Size = new System.Drawing.Size(886, 408);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Двоично-Десятичная";
             // 
@@ -319,10 +327,10 @@
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.BerderEncodeButton);
             this.tabPage3.Controls.Add(this.listBoxBerger);
-            this.tabPage3.Location = new System.Drawing.Point(4, 40);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(886, 390);
+            this.tabPage3.Size = new System.Drawing.Size(886, 408);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Код Бергера";
             // 
@@ -377,10 +385,10 @@
             this.tabPage4.Controls.Add(this.listBoxEllays);
             this.tabPage4.Controls.Add(this.EllaysDecodeButton);
             this.tabPage4.Controls.Add(this.EllaysEncodeButton);
-            this.tabPage4.Location = new System.Drawing.Point(4, 40);
+            this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(886, 390);
+            this.tabPage4.Size = new System.Drawing.Size(886, 408);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Код Еллайса";
             // 
@@ -435,9 +443,9 @@
             this.tabPage5.Controls.Add(this.label5);
             this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesEnodeButton);
             this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesListBox);
-            this.tabPage5.Location = new System.Drawing.Point(4, 40);
+            this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(886, 390);
+            this.tabPage5.Size = new System.Drawing.Size(886, 408);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Первичные недвоичные коды";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -569,9 +577,9 @@
             this.tabPage6.Controls.Add(this.label14);
             this.tabPage6.Controls.Add(this.CodeWithModuleQTestEncodeButton);
             this.tabPage6.Controls.Add(this.CodeWithModuleQTestListBox);
-            this.tabPage6.Location = new System.Drawing.Point(4, 40);
+            this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(886, 390);
+            this.tabPage6.Size = new System.Drawing.Size(886, 408);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Код с проверкой по модулю q";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -643,9 +651,9 @@
             this.tabPage7.Controls.Add(this.label10);
             this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionEncodeButton);
             this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionListBox);
-            this.tabPage7.Location = new System.Drawing.Point(4, 40);
+            this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(886, 390);
+            this.tabPage7.Size = new System.Drawing.Size(886, 408);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Код с простым повторением";
             this.tabPage7.UseVisualStyleBackColor = true;
@@ -1038,6 +1046,63 @@
             this.label24.TabIndex = 11;
             this.label24.Text = "P(Xi):";
             // 
+            // tabPage13
+            // 
+            this.tabPage13.Controls.Add(this.HaffmanCodeListBox);
+            this.tabPage13.Controls.Add(this.HaffmanCodeEncodeButton);
+            this.tabPage13.Controls.Add(this.HaffmanCodePXiTextBox);
+            this.tabPage13.Controls.Add(this.label25);
+            this.tabPage13.Controls.Add(this.label26);
+            this.tabPage13.Location = new System.Drawing.Point(4, 40);
+            this.tabPage13.Name = "tabPage13";
+            this.tabPage13.Size = new System.Drawing.Size(886, 390);
+            this.tabPage13.TabIndex = 12;
+            this.tabPage13.Text = "Код Хаффмена";
+            this.tabPage13.UseVisualStyleBackColor = true;
+            // 
+            // HaffmanCodeListBox
+            // 
+            this.HaffmanCodeListBox.FormattingEnabled = true;
+            this.HaffmanCodeListBox.Location = new System.Drawing.Point(0, 56);
+            this.HaffmanCodeListBox.Name = "HaffmanCodeListBox";
+            this.HaffmanCodeListBox.Size = new System.Drawing.Size(886, 329);
+            this.HaffmanCodeListBox.TabIndex = 20;
+            // 
+            // HaffmanCodeEncodeButton
+            // 
+            this.HaffmanCodeEncodeButton.Location = new System.Drawing.Point(763, 13);
+            this.HaffmanCodeEncodeButton.Name = "HaffmanCodeEncodeButton";
+            this.HaffmanCodeEncodeButton.Size = new System.Drawing.Size(99, 25);
+            this.HaffmanCodeEncodeButton.TabIndex = 19;
+            this.HaffmanCodeEncodeButton.Text = "Закодировать ";
+            this.HaffmanCodeEncodeButton.UseVisualStyleBackColor = true;
+            this.HaffmanCodeEncodeButton.Click += new System.EventHandler(this.HaffmanCodeEncodeButton_Click);
+            // 
+            // HaffmanCodePXiTextBox
+            // 
+            this.HaffmanCodePXiTextBox.Location = new System.Drawing.Point(46, 22);
+            this.HaffmanCodePXiTextBox.Name = "HaffmanCodePXiTextBox";
+            this.HaffmanCodePXiTextBox.Size = new System.Drawing.Size(665, 20);
+            this.HaffmanCodePXiTextBox.TabIndex = 18;
+            // 
+            // label25
+            // 
+            this.label25.AutoSize = true;
+            this.label25.Location = new System.Drawing.Point(9, 6);
+            this.label25.Name = "label25";
+            this.label25.Size = new System.Drawing.Size(346, 13);
+            this.label25.TabIndex = 17;
+            this.label25.Text = "Укажите все вероятности P(Xi) для каждого сообщения Xi через \';\'";
+            // 
+            // label26
+            // 
+            this.label26.AutoSize = true;
+            this.label26.Location = new System.Drawing.Point(9, 25);
+            this.label26.Name = "label26";
+            this.label26.Size = new System.Drawing.Size(32, 13);
+            this.label26.TabIndex = 16;
+            this.label26.Text = "P(Xi):";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1070,6 +1135,8 @@
             this.tabPage11.PerformLayout();
             this.tabPage12.ResumeLayout(false);
             this.tabPage12.PerformLayout();
+            this.tabPage13.ResumeLayout(false);
+            this.tabPage13.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1165,5 +1232,11 @@
         private System.Windows.Forms.TextBox ShannonFanoCodePXiTextBox;
         private System.Windows.Forms.Label label23;
         private System.Windows.Forms.Label label24;
+        private System.Windows.Forms.TabPage tabPage13;
+        private System.Windows.Forms.ListBox HaffmanCodeListBox;
+        private System.Windows.Forms.Button HaffmanCodeEncodeButton;
+        private System.Windows.Forms.TextBox HaffmanCodePXiTextBox;
+        private System.Windows.Forms.Label label25;
+        private System.Windows.Forms.Label label26;
     }
 }

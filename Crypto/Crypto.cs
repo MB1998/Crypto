@@ -287,7 +287,7 @@ namespace Crypto {
             return conditionalEntropy;
         }
 
-        public static List<string> EncodeProbabilities(List<double> probabilitiesOfMessages, List<string> encodedProbabilities) {
+        public static List<string> EncodeShannonFanoCode(List<double> probabilitiesOfMessages, List<string> encodedProbabilities) {
             if(encodedProbabilities == null) {
                 encodedProbabilities = new List<string>(probabilitiesOfMessages.Count);
                 encodedProbabilities.Add("0");
@@ -309,18 +309,45 @@ namespace Crypto {
                 }
             }
             if(firstSectionLength != 1) {
-                List<string> finalCodeForFirstSection = EncodeProbabilities(probabilitiesOfMessages.GetRange(0, firstSectionLength), encodedProbabilities.GetRange(0, firstSectionLength));
+                List<string> finalCodeForFirstSection = EncodeShannonFanoCode(probabilitiesOfMessages.GetRange(0, firstSectionLength), encodedProbabilities.GetRange(0, firstSectionLength));
                 for(int i = 0; i < firstSectionLength; i++) {
                     encodedProbabilities[i] = finalCodeForFirstSection[i];
                 }
             }
             if(probabilitiesOfMessages.Count - firstSectionLength != 1) {
-                List<string> finalCodeForSecondSection = EncodeProbabilities(probabilitiesOfMessages.GetRange(firstSectionLength, probabilitiesOfMessages.Count - firstSectionLength), encodedProbabilities.GetRange(firstSectionLength, encodedProbabilities.Count - firstSectionLength));
+                List<string> finalCodeForSecondSection = EncodeShannonFanoCode(probabilitiesOfMessages.GetRange(firstSectionLength, probabilitiesOfMessages.Count - firstSectionLength), encodedProbabilities.GetRange(firstSectionLength, encodedProbabilities.Count - firstSectionLength));
                 for(int i = firstSectionLength, j = 0; j < finalCodeForSecondSection.Count; i++, j++) {
                     encodedProbabilities[i] = finalCodeForSecondSection[j];
                 }
             }
             return encodedProbabilities;
+        }
+
+        public static List<List<double>> EncodeHaffman(List<double> probabilitiesOfMessages) {
+            List<List<double>> auxiliaryGroupsHaffman = new List<List<double>>();
+            List<double> initialprobabilitiesOfMessages = probabilitiesOfMessages.Select(x => x).ToList();
+            for(int i = 0; i < probabilitiesOfMessages.Count; i++) {
+                TreeNode<double> leave = new TreeNode<double>(probabilitiesOfMessages[i]);
+            }
+            probabilitiesOfMessages.Sort();
+            probabilitiesOfMessages.Reverse();
+            auxiliaryGroupsHaffman.Add(probabilitiesOfMessages.Select(x => Math.Round(x, 3)).ToList());
+            int initialListLength = probabilitiesOfMessages.Count;
+            for(int i = 0; i < initialListLength - 1; i++) {
+                TreeNode<double> newNode = new TreeNode<double>(probabilitiesOfMessages[probabilitiesOfMessages.Count - 2] + probabilitiesOfMessages[probabilitiesOfMessages.Count - 1]);
+                TreeNode<double>.getNodeByValue(probabilitiesOfMessages[probabilitiesOfMessages.Count - 2]).ParentNode = newNode;
+                TreeNode<double>.getNodeByValue(probabilitiesOfMessages[probabilitiesOfMessages.Count - 1]).ParentNode = newNode;
+                probabilitiesOfMessages[probabilitiesOfMessages.Count - 2] = probabilitiesOfMessages[probabilitiesOfMessages.Count - 2] + probabilitiesOfMessages[probabilitiesOfMessages.Count - 1];
+                probabilitiesOfMessages.Remove(probabilitiesOfMessages[probabilitiesOfMessages.Count - 1]);
+                probabilitiesOfMessages.Sort();
+                probabilitiesOfMessages.Reverse();
+                auxiliaryGroupsHaffman.Add(probabilitiesOfMessages.Select(x => Math.Round(x, 3)).ToList());
+            }
+            List<string> encodedProbabilitiesOfMessages = new List<string>();
+            foreach(double initialProbability in initialprobabilitiesOfMessages){
+                encodedProbabilitiesOfMessages.Add(TreeNode<double>.getEncodedValueForProbability(initialProbability));
+            }
+            return auxiliaryGroupsHaffman;
         }
 
         private static int SumOfList(List<char> numbers, int notation) {
@@ -421,6 +448,56 @@ namespace Crypto {
                 }
             }
             return message;
+        }
+
+        private class TreeNode<T> : IComparable<TreeNode<T>> {
+            public T Node;
+            public TreeNode<T> ParentNode { get { return ParentNode; } set {
+                    TreeNode<T> parentNodeToUpdate = getNodeByValue(value.Node);
+                    if(parentNodeToUpdate.Childs == null) {
+                        parentNodeToUpdate.Childs = new List<TreeNode<T>>();
+                    }
+                    parentNodeToUpdate.Childs.Add(this);
+                    ParentNode = value;
+                } }
+            public List<TreeNode<T>> Childs;
+            public static List<TreeNode<T>> allTreeNodes = new List<TreeNode<T>>(); 
+
+            public TreeNode() {
+                allTreeNodes.Add(this);
+            }
+            public TreeNode(T node) : this() {
+                Node = node;
+            }
+
+            public static TreeNode<T> getNodeByValue(T nodeValue) {
+                for(int i = 0; i < allTreeNodes.Count; i++) {
+                    if(Double.Parse(allTreeNodes[i].Node.ToString()) == Double.Parse(nodeValue.ToString())) {
+                        return allTreeNodes[i];
+                    }
+                }
+                return null;
+            }
+
+            public int CompareTo(TreeNode<T> that) {
+                if(Double.Parse(this.Node.ToString()) < Double.Parse(that.Node.ToString())) return -1;
+                if(Double.Parse(this.Node.ToString()) == Double.Parse(that.Node.ToString())) return 0;
+                return 1;
+            }
+
+            public static string getEncodedValueForProbability(T probabilityValue) {
+                TreeNode<T> probabilityTreeNode = getNodeByValue(probabilityValue);
+                string encodeDigits = String.Empty;
+                while(probabilityTreeNode.Node != null) {
+                    List<TreeNode<T>> childsForParent = probabilityTreeNode.ParentNode.Childs;
+                    if(!childsForParent.Contains(probabilityTreeNode) || childsForParent.Count != 2)
+                        return String.Empty;
+                    encodeDigits += probabilityTreeNode.CompareTo(childsForParent[childsForParent.IndexOf(probabilityTreeNode) % 1]) == 1 ? "1" : "0";
+                    probabilityTreeNode = probabilityTreeNode.ParentNode;
+                }
+                encodeDigits.Reverse();
+                return encodeDigits;
+            }
         }
     }
 }
