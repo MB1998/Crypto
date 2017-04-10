@@ -341,18 +341,10 @@ namespace Crypto {
             List<double> probabilitiesOfMessages = getProbabilitiesOfMessagesAmountOfInformationDouble(HaffmanCodePXiTextBox, HaffmanCodeListBox, ';');
             if(probabilitiesOfMessages == null)
                 return;
-            List<List<double>> auxiliaryGroupsHaffman = Crypto.EncodeHaffman(probabilitiesOfMessages);
-            DiplsayAuxiliaryGroupsHaffman(auxiliaryGroupsHaffman, HaffmanCodeListBox);
-        }
-
-        private void DiplsayAuxiliaryGroupsHaffman(List<List<double>> auxiliaryGroupsHaffman, ListBox listBox) {
-            listBox.Items.Add("Auxiliary Groups of Haffman for enterred possibilities: ");
-            for(int i = 0; i < auxiliaryGroupsHaffman[0].Count; i++) {
-                string listBoxItem = $"P(x{i + 1})\t";
-                for(int j = 0; j < auxiliaryGroupsHaffman.Count - i; j++) {
-                    listBoxItem += $"{auxiliaryGroupsHaffman[j][i]}\t";
-                }
-                listBox.Items.Add(listBoxItem);
+            List<string> encodedProbabilities = Crypto.EncodeHaffman(probabilitiesOfMessages.Select(x => x).ToList(), HaffmanCodeListBox);
+            HaffmanCodeListBox.Items.Add("Encoded probabilities of messages:");
+            for(int i = 0; i < encodedProbabilities.Count; i++) {
+                HaffmanCodeListBox.Items.Add($"P(X{i + 1}) = {probabilitiesOfMessages[i]} = {encodedProbabilities[i]}");
             }
         }
 
