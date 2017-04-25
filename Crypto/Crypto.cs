@@ -301,7 +301,7 @@ namespace Crypto {
             for(int i = 0; i < probabilitiesOfMessages.Count - 1; i++) {
                 double diffSumOfSections = Math.Abs(probabilitiesOfMessages.GetRange(0, i + 1).Sum() - probabilitiesOfMessages.GetRange(i + 1, probabilitiesOfMessages.Count - 1 - i).Sum());
                 double potensialdiffSumOfSections = Math.Abs(probabilitiesOfMessages.GetRange(0, i + 2).Sum() - probabilitiesOfMessages.GetRange(i + 2, probabilitiesOfMessages.Count - 2 - i).Sum());
-                if(diffSumOfSections > potensialdiffSumOfSections) {
+                if(diffSumOfSections >= potensialdiffSumOfSections) {
                     encodedProbabilities[i + 1] += '0';
                     firstSectionLength++;
                 } else {
