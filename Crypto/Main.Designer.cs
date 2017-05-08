@@ -106,12 +106,12 @@
             this.label20 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
             this.tabPage11 = new System.Windows.Forms.TabPage();
-            this.label11 = new System.Windows.Forms.Label();
-            this.ConditionalEntropyProbabilityMatrixRichBox = new System.Windows.Forms.RichTextBox();
-            this.label22 = new System.Windows.Forms.Label();
-            this.ConditionalEntropyMessagesProbabilitiesTextBox = new System.Windows.Forms.TextBox();
-            this.ConditionalEntropyFindButton = new System.Windows.Forms.Button();
             this.ConditionalEntropyListBox = new System.Windows.Forms.ListBox();
+            this.ConditionalEntropyFindButton = new System.Windows.Forms.Button();
+            this.ConditionalEntropyMessagesProbabilitiesTextBox = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.ConditionalEntropyProbabilityMatrixRichBox = new System.Windows.Forms.RichTextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.tabPage12 = new System.Windows.Forms.TabPage();
             this.ShannonFanoCodeListBox = new System.Windows.Forms.ListBox();
             this.ShannonFanoCodeEncodeButton = new System.Windows.Forms.Button();
@@ -124,6 +124,16 @@
             this.HaffmanCodePXiTextBox = new System.Windows.Forms.TextBox();
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
+            this.tabPage14 = new System.Windows.Forms.TabPage();
+            this.VarshamovaCodeListBox = new System.Windows.Forms.ListBox();
+            this.VarshamovaCodeEncodeButton = new System.Windows.Forms.Button();
+            this.VarshamovaCodeDTextBox = new System.Windows.Forms.TextBox();
+            this.label27 = new System.Windows.Forms.Label();
+            this.label28 = new System.Windows.Forms.Label();
+            this.VarshamovaCodeNTextBox = new System.Windows.Forms.TextBox();
+            this.label29 = new System.Windows.Forms.Label();
+            this.label30 = new System.Windows.Forms.Label();
+            this.VarshamovaCodeDecodeButton = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -138,6 +148,7 @@
             this.tabPage11.SuspendLayout();
             this.tabPage12.SuspendLayout();
             this.tabPage13.SuspendLayout();
+            this.tabPage14.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -155,11 +166,12 @@
             this.tabControl1.Controls.Add(this.tabPage11);
             this.tabControl1.Controls.Add(this.tabPage12);
             this.tabControl1.Controls.Add(this.tabPage13);
+            this.tabControl1.Controls.Add(this.tabPage14);
             this.tabControl1.Location = new System.Drawing.Point(-1, 1);
             this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(894, 434);
+            this.tabControl1.Size = new System.Drawing.Size(1136, 434);
             this.tabControl1.TabIndex = 0;
             // 
             // tabPage1
@@ -173,13 +185,13 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 40);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(886, 390);
+            this.tabPage1.Size = new System.Drawing.Size(1128, 390);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Код Грея";
             // 
             // GreyDecodeButton
             // 
-            this.GreyDecodeButton.Location = new System.Drawing.Point(787, 38);
+            this.GreyDecodeButton.Location = new System.Drawing.Point(1033, 34);
             this.GreyDecodeButton.Name = "GreyDecodeButton";
             this.GreyDecodeButton.Size = new System.Drawing.Size(89, 23);
             this.GreyDecodeButton.TabIndex = 4;
@@ -191,7 +203,7 @@
             // 
             this.textBoxCodeGray.Location = new System.Drawing.Point(62, 25);
             this.textBoxCodeGray.Name = "textBoxCodeGray";
-            this.textBoxCodeGray.Size = new System.Drawing.Size(719, 20);
+            this.textBoxCodeGray.Size = new System.Drawing.Size(965, 20);
             this.textBoxCodeGray.TabIndex = 3;
             // 
             // label1
@@ -205,7 +217,7 @@
             // 
             // GreyEncodeButton
             // 
-            this.GreyEncodeButton.Location = new System.Drawing.Point(787, 10);
+            this.GreyEncodeButton.Location = new System.Drawing.Point(1033, 6);
             this.GreyEncodeButton.Name = "GreyEncodeButton";
             this.GreyEncodeButton.Size = new System.Drawing.Size(89, 23);
             this.GreyEncodeButton.TabIndex = 1;
@@ -218,7 +230,7 @@
             this.listBoxCodeGray.FormattingEnabled = true;
             this.listBoxCodeGray.Location = new System.Drawing.Point(0, 74);
             this.listBoxCodeGray.Name = "listBoxCodeGray";
-            this.listBoxCodeGray.Size = new System.Drawing.Size(886, 316);
+            this.listBoxCodeGray.Size = new System.Drawing.Size(1125, 316);
             this.listBoxCodeGray.TabIndex = 0;
             // 
             // tabPage2
@@ -234,7 +246,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(886, 408);
+            this.tabPage2.Size = new System.Drawing.Size(1128, 408);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Двоично-Десятичная";
             // 
@@ -279,7 +291,7 @@
             // 
             this.textBoxDdcData.Location = new System.Drawing.Point(63, 13);
             this.textBoxDdcData.Name = "textBoxDdcData";
-            this.textBoxDdcData.Size = new System.Drawing.Size(717, 20);
+            this.textBoxDdcData.Size = new System.Drawing.Size(960, 20);
             this.textBoxDdcData.TabIndex = 14;
             // 
             // label3
@@ -293,7 +305,7 @@
             // 
             // BCDDecodeButton
             // 
-            this.BCDDecodeButton.Location = new System.Drawing.Point(787, 39);
+            this.BCDDecodeButton.Location = new System.Drawing.Point(1029, 38);
             this.BCDDecodeButton.Name = "BCDDecodeButton";
             this.BCDDecodeButton.Size = new System.Drawing.Size(89, 23);
             this.BCDDecodeButton.TabIndex = 12;
@@ -303,7 +315,7 @@
             // 
             // BCDEncodeButton
             // 
-            this.BCDEncodeButton.Location = new System.Drawing.Point(787, 11);
+            this.BCDEncodeButton.Location = new System.Drawing.Point(1029, 10);
             this.BCDEncodeButton.Name = "BCDEncodeButton";
             this.BCDEncodeButton.Size = new System.Drawing.Size(89, 23);
             this.BCDEncodeButton.TabIndex = 11;
@@ -316,7 +328,7 @@
             this.listBoxDdc.FormattingEnabled = true;
             this.listBoxDdc.Location = new System.Drawing.Point(-4, 78);
             this.listBoxDdc.Name = "listBoxDdc";
-            this.listBoxDdc.Size = new System.Drawing.Size(894, 316);
+            this.listBoxDdc.Size = new System.Drawing.Size(1132, 316);
             this.listBoxDdc.TabIndex = 10;
             // 
             // tabPage3
@@ -330,13 +342,13 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(886, 408);
+            this.tabPage3.Size = new System.Drawing.Size(1128, 408);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Код Бергера";
             // 
             // BerderDecodeButton
             // 
-            this.BerderDecodeButton.Location = new System.Drawing.Point(787, 38);
+            this.BerderDecodeButton.Location = new System.Drawing.Point(1033, 34);
             this.BerderDecodeButton.Name = "BerderDecodeButton";
             this.BerderDecodeButton.Size = new System.Drawing.Size(89, 23);
             this.BerderDecodeButton.TabIndex = 9;
@@ -348,7 +360,7 @@
             // 
             this.textBoxBerger.Location = new System.Drawing.Point(63, 26);
             this.textBoxBerger.Name = "textBoxBerger";
-            this.textBoxBerger.Size = new System.Drawing.Size(703, 20);
+            this.textBoxBerger.Size = new System.Drawing.Size(964, 20);
             this.textBoxBerger.TabIndex = 8;
             // 
             // label2
@@ -362,7 +374,7 @@
             // 
             // BerderEncodeButton
             // 
-            this.BerderEncodeButton.Location = new System.Drawing.Point(787, 10);
+            this.BerderEncodeButton.Location = new System.Drawing.Point(1033, 6);
             this.BerderEncodeButton.Name = "BerderEncodeButton";
             this.BerderEncodeButton.Size = new System.Drawing.Size(89, 23);
             this.BerderEncodeButton.TabIndex = 6;
@@ -375,7 +387,7 @@
             this.listBoxBerger.FormattingEnabled = true;
             this.listBoxBerger.Location = new System.Drawing.Point(0, 74);
             this.listBoxBerger.Name = "listBoxBerger";
-            this.listBoxBerger.Size = new System.Drawing.Size(886, 316);
+            this.listBoxBerger.Size = new System.Drawing.Size(1128, 316);
             this.listBoxBerger.TabIndex = 5;
             // 
             // tabPage4
@@ -388,7 +400,7 @@
             this.tabPage4.Location = new System.Drawing.Point(4, 22);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(886, 408);
+            this.tabPage4.Size = new System.Drawing.Size(1128, 408);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Код Еллайса";
             // 
@@ -405,12 +417,12 @@
             this.listBoxEllays.FormattingEnabled = true;
             this.listBoxEllays.Location = new System.Drawing.Point(0, 178);
             this.listBoxEllays.Name = "listBoxEllays";
-            this.listBoxEllays.Size = new System.Drawing.Size(886, 212);
+            this.listBoxEllays.Size = new System.Drawing.Size(1128, 212);
             this.listBoxEllays.TabIndex = 50;
             // 
             // EllaysDecodeButton
             // 
-            this.EllaysDecodeButton.Location = new System.Drawing.Point(787, 43);
+            this.EllaysDecodeButton.Location = new System.Drawing.Point(604, 73);
             this.EllaysDecodeButton.Name = "EllaysDecodeButton";
             this.EllaysDecodeButton.Size = new System.Drawing.Size(89, 45);
             this.EllaysDecodeButton.TabIndex = 49;
@@ -420,7 +432,7 @@
             // 
             // EllaysEncodeButton
             // 
-            this.EllaysEncodeButton.Location = new System.Drawing.Point(787, 15);
+            this.EllaysEncodeButton.Location = new System.Drawing.Point(604, 45);
             this.EllaysEncodeButton.Name = "EllaysEncodeButton";
             this.EllaysEncodeButton.Size = new System.Drawing.Size(89, 23);
             this.EllaysEncodeButton.TabIndex = 48;
@@ -445,14 +457,14 @@
             this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesListBox);
             this.tabPage5.Location = new System.Drawing.Point(4, 22);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(886, 408);
+            this.tabPage5.Size = new System.Drawing.Size(1128, 408);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Первичные недвоичные коды";
             this.tabPage5.UseVisualStyleBackColor = true;
             // 
             // PrimaryNonBinaryCodesCheckButton
             // 
-            this.PrimaryNonBinaryCodesCheckButton.Location = new System.Drawing.Point(786, 37);
+            this.PrimaryNonBinaryCodesCheckButton.Location = new System.Drawing.Point(1028, 37);
             this.PrimaryNonBinaryCodesCheckButton.Name = "PrimaryNonBinaryCodesCheckButton";
             this.PrimaryNonBinaryCodesCheckButton.Size = new System.Drawing.Size(89, 54);
             this.PrimaryNonBinaryCodesCheckButton.TabIndex = 22;
@@ -464,7 +476,7 @@
             // 
             this.PrimaryNonBinaryCodesCombinationToCheckTextBox.Location = new System.Drawing.Point(151, 115);
             this.PrimaryNonBinaryCodesCombinationToCheckTextBox.Name = "PrimaryNonBinaryCodesCombinationToCheckTextBox";
-            this.PrimaryNonBinaryCodesCombinationToCheckTextBox.Size = new System.Drawing.Size(630, 20);
+            this.PrimaryNonBinaryCodesCombinationToCheckTextBox.Size = new System.Drawing.Size(869, 20);
             this.PrimaryNonBinaryCodesCombinationToCheckTextBox.TabIndex = 21;
             // 
             // label9
@@ -480,7 +492,7 @@
             // 
             this.PrimaryNonBinaryCodesQTextBox.Location = new System.Drawing.Point(67, 8);
             this.PrimaryNonBinaryCodesQTextBox.Name = "PrimaryNonBinaryCodesQTextBox";
-            this.PrimaryNonBinaryCodesQTextBox.Size = new System.Drawing.Size(714, 20);
+            this.PrimaryNonBinaryCodesQTextBox.Size = new System.Drawing.Size(953, 20);
             this.PrimaryNonBinaryCodesQTextBox.TabIndex = 19;
             // 
             // PrimaryNonBinaryCodesTypeCombobox
@@ -495,7 +507,7 @@
             "сменно-качественный"});
             this.PrimaryNonBinaryCodesTypeCombobox.Location = new System.Drawing.Point(67, 88);
             this.PrimaryNonBinaryCodesTypeCombobox.Name = "PrimaryNonBinaryCodesTypeCombobox";
-            this.PrimaryNonBinaryCodesTypeCombobox.Size = new System.Drawing.Size(714, 21);
+            this.PrimaryNonBinaryCodesTypeCombobox.Size = new System.Drawing.Size(953, 21);
             this.PrimaryNonBinaryCodesTypeCombobox.Sorted = true;
             this.PrimaryNonBinaryCodesTypeCombobox.TabIndex = 18;
             // 
@@ -513,7 +525,7 @@
             // 
             this.PrimaryNonBinaryCodesAlphabetTextBox.Location = new System.Drawing.Point(67, 62);
             this.PrimaryNonBinaryCodesAlphabetTextBox.Name = "PrimaryNonBinaryCodesAlphabetTextBox";
-            this.PrimaryNonBinaryCodesAlphabetTextBox.Size = new System.Drawing.Size(714, 20);
+            this.PrimaryNonBinaryCodesAlphabetTextBox.Size = new System.Drawing.Size(953, 20);
             this.PrimaryNonBinaryCodesAlphabetTextBox.TabIndex = 13;
             // 
             // label7
@@ -529,7 +541,7 @@
             // 
             this.PrimaryNonBinaryCodesNTextBox.Location = new System.Drawing.Point(67, 36);
             this.PrimaryNonBinaryCodesNTextBox.Name = "PrimaryNonBinaryCodesNTextBox";
-            this.PrimaryNonBinaryCodesNTextBox.Size = new System.Drawing.Size(714, 20);
+            this.PrimaryNonBinaryCodesNTextBox.Size = new System.Drawing.Size(953, 20);
             this.PrimaryNonBinaryCodesNTextBox.TabIndex = 11;
             // 
             // label6
@@ -552,7 +564,7 @@
             // 
             // PrimaryNonBinaryCodesEnodeButton
             // 
-            this.PrimaryNonBinaryCodesEnodeButton.Location = new System.Drawing.Point(787, 8);
+            this.PrimaryNonBinaryCodesEnodeButton.Location = new System.Drawing.Point(1029, 8);
             this.PrimaryNonBinaryCodesEnodeButton.Name = "PrimaryNonBinaryCodesEnodeButton";
             this.PrimaryNonBinaryCodesEnodeButton.Size = new System.Drawing.Size(89, 23);
             this.PrimaryNonBinaryCodesEnodeButton.TabIndex = 6;
@@ -565,7 +577,7 @@
             this.PrimaryNonBinaryCodesListBox.FormattingEnabled = true;
             this.PrimaryNonBinaryCodesListBox.Location = new System.Drawing.Point(0, 139);
             this.PrimaryNonBinaryCodesListBox.Name = "PrimaryNonBinaryCodesListBox";
-            this.PrimaryNonBinaryCodesListBox.Size = new System.Drawing.Size(886, 251);
+            this.PrimaryNonBinaryCodesListBox.Size = new System.Drawing.Size(1128, 251);
             this.PrimaryNonBinaryCodesListBox.TabIndex = 5;
             // 
             // tabPage6
@@ -579,14 +591,14 @@
             this.tabPage6.Controls.Add(this.CodeWithModuleQTestListBox);
             this.tabPage6.Location = new System.Drawing.Point(4, 22);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(886, 408);
+            this.tabPage6.Size = new System.Drawing.Size(1128, 408);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Код с проверкой по модулю q";
             this.tabPage6.UseVisualStyleBackColor = true;
             // 
             // CodeWithModuleQTestCheckButton
             // 
-            this.CodeWithModuleQTestCheckButton.Location = new System.Drawing.Point(786, 39);
+            this.CodeWithModuleQTestCheckButton.Location = new System.Drawing.Point(1028, 44);
             this.CodeWithModuleQTestCheckButton.Name = "CodeWithModuleQTestCheckButton";
             this.CodeWithModuleQTestCheckButton.Size = new System.Drawing.Size(89, 54);
             this.CodeWithModuleQTestCheckButton.TabIndex = 35;
@@ -598,14 +610,14 @@
             // 
             this.CodeWithModuleQTestQTextBox.Location = new System.Drawing.Point(84, 22);
             this.CodeWithModuleQTestQTextBox.Name = "CodeWithModuleQTestQTextBox";
-            this.CodeWithModuleQTestQTextBox.Size = new System.Drawing.Size(696, 20);
+            this.CodeWithModuleQTestQTextBox.Size = new System.Drawing.Size(939, 20);
             this.CodeWithModuleQTestQTextBox.TabIndex = 32;
             // 
             // CodeWithModuleQTestCombinationTextBox
             // 
             this.CodeWithModuleQTestCombinationTextBox.Location = new System.Drawing.Point(84, 48);
             this.CodeWithModuleQTestCombinationTextBox.Name = "CodeWithModuleQTestCombinationTextBox";
-            this.CodeWithModuleQTestCombinationTextBox.Size = new System.Drawing.Size(696, 20);
+            this.CodeWithModuleQTestCombinationTextBox.Size = new System.Drawing.Size(939, 20);
             this.CodeWithModuleQTestCombinationTextBox.TabIndex = 27;
             // 
             // label13
@@ -628,7 +640,7 @@
             // 
             // CodeWithModuleQTestEncodeButton
             // 
-            this.CodeWithModuleQTestEncodeButton.Location = new System.Drawing.Point(787, 10);
+            this.CodeWithModuleQTestEncodeButton.Location = new System.Drawing.Point(1029, 15);
             this.CodeWithModuleQTestEncodeButton.Name = "CodeWithModuleQTestEncodeButton";
             this.CodeWithModuleQTestEncodeButton.Size = new System.Drawing.Size(89, 23);
             this.CodeWithModuleQTestEncodeButton.TabIndex = 24;
@@ -641,7 +653,7 @@
             this.CodeWithModuleQTestListBox.FormattingEnabled = true;
             this.CodeWithModuleQTestListBox.Location = new System.Drawing.Point(0, 100);
             this.CodeWithModuleQTestListBox.Name = "CodeWithModuleQTestListBox";
-            this.CodeWithModuleQTestListBox.Size = new System.Drawing.Size(886, 290);
+            this.CodeWithModuleQTestListBox.Size = new System.Drawing.Size(1128, 290);
             this.CodeWithModuleQTestListBox.TabIndex = 23;
             // 
             // tabPage7
@@ -653,14 +665,14 @@
             this.tabPage7.Controls.Add(this.CodeWithSimpleRepetitionListBox);
             this.tabPage7.Location = new System.Drawing.Point(4, 22);
             this.tabPage7.Name = "tabPage7";
-            this.tabPage7.Size = new System.Drawing.Size(886, 408);
+            this.tabPage7.Size = new System.Drawing.Size(1128, 408);
             this.tabPage7.TabIndex = 6;
             this.tabPage7.Text = "Код с простым повторением";
             this.tabPage7.UseVisualStyleBackColor = true;
             // 
             // CodeWithSimpleRepetitionDecodeButton
             // 
-            this.CodeWithSimpleRepetitionDecodeButton.Location = new System.Drawing.Point(769, 45);
+            this.CodeWithSimpleRepetitionDecodeButton.Location = new System.Drawing.Point(1021, 35);
             this.CodeWithSimpleRepetitionDecodeButton.Name = "CodeWithSimpleRepetitionDecodeButton";
             this.CodeWithSimpleRepetitionDecodeButton.Size = new System.Drawing.Size(106, 26);
             this.CodeWithSimpleRepetitionDecodeButton.TabIndex = 42;
@@ -672,7 +684,7 @@
             // 
             this.CodeWithSimpleRepetitionCombinationTextBox.Location = new System.Drawing.Point(82, 28);
             this.CodeWithSimpleRepetitionCombinationTextBox.Name = "CodeWithSimpleRepetitionCombinationTextBox";
-            this.CodeWithSimpleRepetitionCombinationTextBox.Size = new System.Drawing.Size(681, 20);
+            this.CodeWithSimpleRepetitionCombinationTextBox.Size = new System.Drawing.Size(933, 20);
             this.CodeWithSimpleRepetitionCombinationTextBox.TabIndex = 40;
             // 
             // label10
@@ -686,7 +698,7 @@
             // 
             // CodeWithSimpleRepetitionEncodeButton
             // 
-            this.CodeWithSimpleRepetitionEncodeButton.Location = new System.Drawing.Point(769, 13);
+            this.CodeWithSimpleRepetitionEncodeButton.Location = new System.Drawing.Point(1021, 3);
             this.CodeWithSimpleRepetitionEncodeButton.Name = "CodeWithSimpleRepetitionEncodeButton";
             this.CodeWithSimpleRepetitionEncodeButton.Size = new System.Drawing.Size(107, 26);
             this.CodeWithSimpleRepetitionEncodeButton.TabIndex = 37;
@@ -699,7 +711,7 @@
             this.CodeWithSimpleRepetitionListBox.FormattingEnabled = true;
             this.CodeWithSimpleRepetitionListBox.Location = new System.Drawing.Point(0, 74);
             this.CodeWithSimpleRepetitionListBox.Name = "CodeWithSimpleRepetitionListBox";
-            this.CodeWithSimpleRepetitionListBox.Size = new System.Drawing.Size(886, 316);
+            this.CodeWithSimpleRepetitionListBox.Size = new System.Drawing.Size(1128, 316);
             this.CodeWithSimpleRepetitionListBox.TabIndex = 36;
             // 
             // tabPage8
@@ -711,9 +723,9 @@
             this.tabPage8.Controls.Add(this.IterativeСodeListBox);
             this.tabPage8.Controls.Add(this.IterativeСodeFixButton);
             this.tabPage8.Controls.Add(this.IterativeСodeEncodeButton);
-            this.tabPage8.Location = new System.Drawing.Point(4, 40);
+            this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(886, 390);
+            this.tabPage8.Size = new System.Drawing.Size(1128, 408);
             this.tabPage8.TabIndex = 7;
             this.tabPage8.Text = "Итеративный код";
             this.tabPage8.UseVisualStyleBackColor = true;
@@ -731,7 +743,7 @@
             // 
             this.IterativeСodeQTextBox.Location = new System.Drawing.Point(65, 9);
             this.IterativeСodeQTextBox.Name = "IterativeСodeQTextBox";
-            this.IterativeСodeQTextBox.Size = new System.Drawing.Size(711, 20);
+            this.IterativeСodeQTextBox.Size = new System.Drawing.Size(953, 20);
             this.IterativeСodeQTextBox.TabIndex = 65;
             // 
             // label17
@@ -748,7 +760,7 @@
             this.IterativeСodeMessageTextBox.Location = new System.Drawing.Point(65, 36);
             this.IterativeСodeMessageTextBox.Multiline = true;
             this.IterativeСodeMessageTextBox.Name = "IterativeСodeMessageTextBox";
-            this.IterativeСodeMessageTextBox.Size = new System.Drawing.Size(711, 87);
+            this.IterativeСodeMessageTextBox.Size = new System.Drawing.Size(953, 87);
             this.IterativeСodeMessageTextBox.TabIndex = 60;
             // 
             // IterativeСodeListBox
@@ -756,12 +768,12 @@
             this.IterativeСodeListBox.FormattingEnabled = true;
             this.IterativeСodeListBox.Location = new System.Drawing.Point(0, 139);
             this.IterativeСodeListBox.Name = "IterativeСodeListBox";
-            this.IterativeСodeListBox.Size = new System.Drawing.Size(886, 251);
+            this.IterativeСodeListBox.Size = new System.Drawing.Size(1128, 251);
             this.IterativeСodeListBox.TabIndex = 54;
             // 
             // IterativeСodeFixButton
             // 
-            this.IterativeСodeFixButton.Location = new System.Drawing.Point(782, 38);
+            this.IterativeСodeFixButton.Location = new System.Drawing.Point(1024, 41);
             this.IterativeСodeFixButton.Name = "IterativeСodeFixButton";
             this.IterativeСodeFixButton.Size = new System.Drawing.Size(94, 37);
             this.IterativeСodeFixButton.TabIndex = 53;
@@ -771,7 +783,7 @@
             // 
             // IterativeСodeEncodeButton
             // 
-            this.IterativeСodeEncodeButton.Location = new System.Drawing.Point(782, 9);
+            this.IterativeСodeEncodeButton.Location = new System.Drawing.Point(1024, 12);
             this.IterativeСodeEncodeButton.Name = "IterativeСodeEncodeButton";
             this.IterativeСodeEncodeButton.Size = new System.Drawing.Size(94, 23);
             this.IterativeСodeEncodeButton.TabIndex = 52;
@@ -791,7 +803,7 @@
             this.tabPage9.Controls.Add(this.label16);
             this.tabPage9.Location = new System.Drawing.Point(4, 40);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(886, 390);
+            this.tabPage9.Size = new System.Drawing.Size(1128, 390);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "Количество информации";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -801,12 +813,12 @@
             this.AmountOfInformationListBox.FormattingEnabled = true;
             this.AmountOfInformationListBox.Location = new System.Drawing.Point(0, 100);
             this.AmountOfInformationListBox.Name = "AmountOfInformationListBox";
-            this.AmountOfInformationListBox.Size = new System.Drawing.Size(886, 290);
+            this.AmountOfInformationListBox.Size = new System.Drawing.Size(1128, 290);
             this.AmountOfInformationListBox.TabIndex = 8;
             // 
             // AmountOfInformationFindButton
             // 
-            this.AmountOfInformationFindButton.Location = new System.Drawing.Point(739, 8);
+            this.AmountOfInformationFindButton.Location = new System.Drawing.Point(981, 9);
             this.AmountOfInformationFindButton.Name = "AmountOfInformationFindButton";
             this.AmountOfInformationFindButton.Size = new System.Drawing.Size(137, 52);
             this.AmountOfInformationFindButton.TabIndex = 7;
@@ -818,7 +830,7 @@
             // 
             this.AmountOfInformationATextBox.Location = new System.Drawing.Point(46, 67);
             this.AmountOfInformationATextBox.Name = "AmountOfInformationATextBox";
-            this.AmountOfInformationATextBox.Size = new System.Drawing.Size(681, 20);
+            this.AmountOfInformationATextBox.Size = new System.Drawing.Size(928, 20);
             this.AmountOfInformationATextBox.TabIndex = 6;
             // 
             // label15
@@ -844,7 +856,7 @@
             // 
             this.AmountOfInformationPXiTextBox.Location = new System.Drawing.Point(46, 25);
             this.AmountOfInformationPXiTextBox.Name = "AmountOfInformationPXiTextBox";
-            this.AmountOfInformationPXiTextBox.Size = new System.Drawing.Size(681, 20);
+            this.AmountOfInformationPXiTextBox.Size = new System.Drawing.Size(928, 20);
             this.AmountOfInformationPXiTextBox.TabIndex = 3;
             // 
             // label18
@@ -874,7 +886,7 @@
             this.tabPage10.Controls.Add(this.label21);
             this.tabPage10.Location = new System.Drawing.Point(4, 40);
             this.tabPage10.Name = "tabPage10";
-            this.tabPage10.Size = new System.Drawing.Size(886, 390);
+            this.tabPage10.Size = new System.Drawing.Size(1128, 390);
             this.tabPage10.TabIndex = 9;
             this.tabPage10.Text = "Безусловная и максимальная энтропия";
             this.tabPage10.UseVisualStyleBackColor = true;
@@ -884,12 +896,12 @@
             this.UnconditionalAndMaximumEntropyListBox.FormattingEnabled = true;
             this.UnconditionalAndMaximumEntropyListBox.Location = new System.Drawing.Point(0, 74);
             this.UnconditionalAndMaximumEntropyListBox.Name = "UnconditionalAndMaximumEntropyListBox";
-            this.UnconditionalAndMaximumEntropyListBox.Size = new System.Drawing.Size(886, 316);
+            this.UnconditionalAndMaximumEntropyListBox.Size = new System.Drawing.Size(1128, 316);
             this.UnconditionalAndMaximumEntropyListBox.TabIndex = 10;
             // 
             // UnconditionalAndMaximumEntropyFindButton
             // 
-            this.UnconditionalAndMaximumEntropyFindButton.Location = new System.Drawing.Point(734, 11);
+            this.UnconditionalAndMaximumEntropyFindButton.Location = new System.Drawing.Point(976, 11);
             this.UnconditionalAndMaximumEntropyFindButton.Name = "UnconditionalAndMaximumEntropyFindButton";
             this.UnconditionalAndMaximumEntropyFindButton.Size = new System.Drawing.Size(142, 54);
             this.UnconditionalAndMaximumEntropyFindButton.TabIndex = 9;
@@ -901,7 +913,7 @@
             // 
             this.UnconditionalAndMaximumEntropyPXiTextBox.Location = new System.Drawing.Point(46, 27);
             this.UnconditionalAndMaximumEntropyPXiTextBox.Name = "UnconditionalAndMaximumEntropyPXiTextBox";
-            this.UnconditionalAndMaximumEntropyPXiTextBox.Size = new System.Drawing.Size(668, 20);
+            this.UnconditionalAndMaximumEntropyPXiTextBox.Size = new System.Drawing.Size(924, 20);
             this.UnconditionalAndMaximumEntropyPXiTextBox.TabIndex = 6;
             // 
             // label20
@@ -932,10 +944,52 @@
             this.tabPage11.Controls.Add(this.label11);
             this.tabPage11.Location = new System.Drawing.Point(4, 40);
             this.tabPage11.Name = "tabPage11";
-            this.tabPage11.Size = new System.Drawing.Size(886, 390);
+            this.tabPage11.Size = new System.Drawing.Size(1128, 390);
             this.tabPage11.TabIndex = 10;
             this.tabPage11.Text = "Условная энтропия";
             this.tabPage11.UseVisualStyleBackColor = true;
+            // 
+            // ConditionalEntropyListBox
+            // 
+            this.ConditionalEntropyListBox.FormattingEnabled = true;
+            this.ConditionalEntropyListBox.Location = new System.Drawing.Point(-3, 143);
+            this.ConditionalEntropyListBox.Name = "ConditionalEntropyListBox";
+            this.ConditionalEntropyListBox.Size = new System.Drawing.Size(1135, 251);
+            this.ConditionalEntropyListBox.TabIndex = 5;
+            // 
+            // ConditionalEntropyFindButton
+            // 
+            this.ConditionalEntropyFindButton.Location = new System.Drawing.Point(1026, 6);
+            this.ConditionalEntropyFindButton.Name = "ConditionalEntropyFindButton";
+            this.ConditionalEntropyFindButton.Size = new System.Drawing.Size(92, 49);
+            this.ConditionalEntropyFindButton.TabIndex = 4;
+            this.ConditionalEntropyFindButton.Text = "Find conditional entropy of the source";
+            this.ConditionalEntropyFindButton.UseVisualStyleBackColor = true;
+            this.ConditionalEntropyFindButton.Click += new System.EventHandler(this.ConditionalEntropyFindButton_Click);
+            // 
+            // ConditionalEntropyMessagesProbabilitiesTextBox
+            // 
+            this.ConditionalEntropyMessagesProbabilitiesTextBox.Location = new System.Drawing.Point(563, 35);
+            this.ConditionalEntropyMessagesProbabilitiesTextBox.Name = "ConditionalEntropyMessagesProbabilitiesTextBox";
+            this.ConditionalEntropyMessagesProbabilitiesTextBox.Size = new System.Drawing.Size(457, 20);
+            this.ConditionalEntropyMessagesProbabilitiesTextBox.TabIndex = 3;
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.Location = new System.Drawing.Point(560, 19);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(346, 13);
+            this.label22.TabIndex = 2;
+            this.label22.Text = "Укажите все вероятности P(Xi) для каждого сообщения Xi через \';\'";
+            // 
+            // ConditionalEntropyProbabilityMatrixRichBox
+            // 
+            this.ConditionalEntropyProbabilityMatrixRichBox.Location = new System.Drawing.Point(6, 35);
+            this.ConditionalEntropyProbabilityMatrixRichBox.Name = "ConditionalEntropyProbabilityMatrixRichBox";
+            this.ConditionalEntropyProbabilityMatrixRichBox.Size = new System.Drawing.Size(551, 102);
+            this.ConditionalEntropyProbabilityMatrixRichBox.TabIndex = 1;
+            this.ConditionalEntropyProbabilityMatrixRichBox.Text = "";
             // 
             // label11
             // 
@@ -947,48 +1001,6 @@
             this.label11.Text = "Матрица условных вероятностей (новая строка для каждого ряда, \r\nпробел - разделит" +
     "ель между символами одной строки)";
             // 
-            // ConditionalEntropyProbabilityMatrixRichBox
-            // 
-            this.ConditionalEntropyProbabilityMatrixRichBox.Location = new System.Drawing.Point(6, 35);
-            this.ConditionalEntropyProbabilityMatrixRichBox.Name = "ConditionalEntropyProbabilityMatrixRichBox";
-            this.ConditionalEntropyProbabilityMatrixRichBox.Size = new System.Drawing.Size(391, 102);
-            this.ConditionalEntropyProbabilityMatrixRichBox.TabIndex = 1;
-            this.ConditionalEntropyProbabilityMatrixRichBox.Text = "";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(410, 19);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(346, 13);
-            this.label22.TabIndex = 2;
-            this.label22.Text = "Укажите все вероятности P(Xi) для каждого сообщения Xi через \';\'";
-            // 
-            // ConditionalEntropyMessagesProbabilitiesTextBox
-            // 
-            this.ConditionalEntropyMessagesProbabilitiesTextBox.Location = new System.Drawing.Point(413, 35);
-            this.ConditionalEntropyMessagesProbabilitiesTextBox.Name = "ConditionalEntropyMessagesProbabilitiesTextBox";
-            this.ConditionalEntropyMessagesProbabilitiesTextBox.Size = new System.Drawing.Size(298, 20);
-            this.ConditionalEntropyMessagesProbabilitiesTextBox.TabIndex = 3;
-            // 
-            // ConditionalEntropyFindButton
-            // 
-            this.ConditionalEntropyFindButton.Location = new System.Drawing.Point(784, 7);
-            this.ConditionalEntropyFindButton.Name = "ConditionalEntropyFindButton";
-            this.ConditionalEntropyFindButton.Size = new System.Drawing.Size(92, 49);
-            this.ConditionalEntropyFindButton.TabIndex = 4;
-            this.ConditionalEntropyFindButton.Text = "Find conditional entropy of the source";
-            this.ConditionalEntropyFindButton.UseVisualStyleBackColor = true;
-            this.ConditionalEntropyFindButton.Click += new System.EventHandler(this.ConditionalEntropyFindButton_Click);
-            // 
-            // ConditionalEntropyListBox
-            // 
-            this.ConditionalEntropyListBox.FormattingEnabled = true;
-            this.ConditionalEntropyListBox.Location = new System.Drawing.Point(-3, 143);
-            this.ConditionalEntropyListBox.Name = "ConditionalEntropyListBox";
-            this.ConditionalEntropyListBox.Size = new System.Drawing.Size(886, 251);
-            this.ConditionalEntropyListBox.TabIndex = 5;
-            // 
             // tabPage12
             // 
             this.tabPage12.Controls.Add(this.ShannonFanoCodeListBox);
@@ -998,7 +1010,7 @@
             this.tabPage12.Controls.Add(this.label24);
             this.tabPage12.Location = new System.Drawing.Point(4, 40);
             this.tabPage12.Name = "tabPage12";
-            this.tabPage12.Size = new System.Drawing.Size(886, 390);
+            this.tabPage12.Size = new System.Drawing.Size(1128, 390);
             this.tabPage12.TabIndex = 11;
             this.tabPage12.Text = "Код Шеннона-Фано";
             this.tabPage12.UseVisualStyleBackColor = true;
@@ -1008,12 +1020,12 @@
             this.ShannonFanoCodeListBox.FormattingEnabled = true;
             this.ShannonFanoCodeListBox.Location = new System.Drawing.Point(0, 61);
             this.ShannonFanoCodeListBox.Name = "ShannonFanoCodeListBox";
-            this.ShannonFanoCodeListBox.Size = new System.Drawing.Size(886, 329);
+            this.ShannonFanoCodeListBox.Size = new System.Drawing.Size(1128, 329);
             this.ShannonFanoCodeListBox.TabIndex = 15;
             // 
             // ShannonFanoCodeEncodeButton
             // 
-            this.ShannonFanoCodeEncodeButton.Location = new System.Drawing.Point(763, 18);
+            this.ShannonFanoCodeEncodeButton.Location = new System.Drawing.Point(1019, 22);
             this.ShannonFanoCodeEncodeButton.Name = "ShannonFanoCodeEncodeButton";
             this.ShannonFanoCodeEncodeButton.Size = new System.Drawing.Size(99, 25);
             this.ShannonFanoCodeEncodeButton.TabIndex = 14;
@@ -1025,7 +1037,7 @@
             // 
             this.ShannonFanoCodePXiTextBox.Location = new System.Drawing.Point(46, 27);
             this.ShannonFanoCodePXiTextBox.Name = "ShannonFanoCodePXiTextBox";
-            this.ShannonFanoCodePXiTextBox.Size = new System.Drawing.Size(665, 20);
+            this.ShannonFanoCodePXiTextBox.Size = new System.Drawing.Size(967, 20);
             this.ShannonFanoCodePXiTextBox.TabIndex = 13;
             // 
             // label23
@@ -1055,7 +1067,7 @@
             this.tabPage13.Controls.Add(this.label26);
             this.tabPage13.Location = new System.Drawing.Point(4, 40);
             this.tabPage13.Name = "tabPage13";
-            this.tabPage13.Size = new System.Drawing.Size(886, 390);
+            this.tabPage13.Size = new System.Drawing.Size(1128, 390);
             this.tabPage13.TabIndex = 12;
             this.tabPage13.Text = "Код Хаффмена";
             this.tabPage13.UseVisualStyleBackColor = true;
@@ -1065,12 +1077,12 @@
             this.HaffmanCodeListBox.FormattingEnabled = true;
             this.HaffmanCodeListBox.Location = new System.Drawing.Point(0, 56);
             this.HaffmanCodeListBox.Name = "HaffmanCodeListBox";
-            this.HaffmanCodeListBox.Size = new System.Drawing.Size(886, 329);
+            this.HaffmanCodeListBox.Size = new System.Drawing.Size(1118, 329);
             this.HaffmanCodeListBox.TabIndex = 20;
             // 
             // HaffmanCodeEncodeButton
             // 
-            this.HaffmanCodeEncodeButton.Location = new System.Drawing.Point(763, 13);
+            this.HaffmanCodeEncodeButton.Location = new System.Drawing.Point(1019, 13);
             this.HaffmanCodeEncodeButton.Name = "HaffmanCodeEncodeButton";
             this.HaffmanCodeEncodeButton.Size = new System.Drawing.Size(99, 25);
             this.HaffmanCodeEncodeButton.TabIndex = 19;
@@ -1103,11 +1115,106 @@
             this.label26.TabIndex = 16;
             this.label26.Text = "P(Xi):";
             // 
+            // tabPage14
+            // 
+            this.tabPage14.Controls.Add(this.VarshamovaCodeDecodeButton);
+            this.tabPage14.Controls.Add(this.VarshamovaCodeListBox);
+            this.tabPage14.Controls.Add(this.VarshamovaCodeEncodeButton);
+            this.tabPage14.Controls.Add(this.VarshamovaCodeDTextBox);
+            this.tabPage14.Controls.Add(this.label27);
+            this.tabPage14.Controls.Add(this.label28);
+            this.tabPage14.Controls.Add(this.VarshamovaCodeNTextBox);
+            this.tabPage14.Controls.Add(this.label29);
+            this.tabPage14.Controls.Add(this.label30);
+            this.tabPage14.Location = new System.Drawing.Point(4, 40);
+            this.tabPage14.Name = "tabPage14";
+            this.tabPage14.Size = new System.Drawing.Size(1128, 390);
+            this.tabPage14.TabIndex = 13;
+            this.tabPage14.Text = "Код Варшамова";
+            this.tabPage14.UseVisualStyleBackColor = true;
+            // 
+            // VarshamovaCodeListBox
+            // 
+            this.VarshamovaCodeListBox.FormattingEnabled = true;
+            this.VarshamovaCodeListBox.Location = new System.Drawing.Point(0, 96);
+            this.VarshamovaCodeListBox.Name = "VarshamovaCodeListBox";
+            this.VarshamovaCodeListBox.Size = new System.Drawing.Size(1128, 290);
+            this.VarshamovaCodeListBox.TabIndex = 16;
+            // 
+            // VarshamovaCodeEncodeButton
+            // 
+            this.VarshamovaCodeEncodeButton.Location = new System.Drawing.Point(981, 19);
+            this.VarshamovaCodeEncodeButton.Name = "VarshamovaCodeEncodeButton";
+            this.VarshamovaCodeEncodeButton.Size = new System.Drawing.Size(137, 23);
+            this.VarshamovaCodeEncodeButton.TabIndex = 15;
+            this.VarshamovaCodeEncodeButton.Text = "Закодировать";
+            this.VarshamovaCodeEncodeButton.UseVisualStyleBackColor = true;
+            this.VarshamovaCodeEncodeButton.Click += new System.EventHandler(this.VarshamovaCodeEncodeButton_Click);
+            // 
+            // VarshamovaCodeDTextBox
+            // 
+            this.VarshamovaCodeDTextBox.Location = new System.Drawing.Point(46, 63);
+            this.VarshamovaCodeDTextBox.Name = "VarshamovaCodeDTextBox";
+            this.VarshamovaCodeDTextBox.Size = new System.Drawing.Size(928, 20);
+            this.VarshamovaCodeDTextBox.TabIndex = 14;
+            // 
+            // label27
+            // 
+            this.label27.AutoSize = true;
+            this.label27.Location = new System.Drawing.Point(9, 66);
+            this.label27.Name = "label27";
+            this.label27.Size = new System.Drawing.Size(16, 13);
+            this.label27.TabIndex = 13;
+            this.label27.Text = "d:";
+            // 
+            // label28
+            // 
+            this.label28.AutoSize = true;
+            this.label28.Location = new System.Drawing.Point(3, 44);
+            this.label28.Name = "label28";
+            this.label28.Size = new System.Drawing.Size(200, 13);
+            this.label28.TabIndex = 12;
+            this.label28.Text = "Минимальное кодовой расстояние d: ";
+            // 
+            // VarshamovaCodeNTextBox
+            // 
+            this.VarshamovaCodeNTextBox.Location = new System.Drawing.Point(46, 21);
+            this.VarshamovaCodeNTextBox.Name = "VarshamovaCodeNTextBox";
+            this.VarshamovaCodeNTextBox.Size = new System.Drawing.Size(928, 20);
+            this.VarshamovaCodeNTextBox.TabIndex = 11;
+            // 
+            // label29
+            // 
+            this.label29.AutoSize = true;
+            this.label29.Location = new System.Drawing.Point(9, 5);
+            this.label29.Name = "label29";
+            this.label29.Size = new System.Drawing.Size(162, 13);
+            this.label29.TabIndex = 10;
+            this.label29.Text = "Длина кодовой комбинации n:";
+            // 
+            // label30
+            // 
+            this.label30.AutoSize = true;
+            this.label30.Location = new System.Drawing.Point(9, 24);
+            this.label30.Name = "label30";
+            this.label30.Size = new System.Drawing.Size(16, 13);
+            this.label30.TabIndex = 9;
+            this.label30.Text = "n:";
+            // 
+            // VarshamovaCodeDecodeButton
+            // 
+            this.VarshamovaCodeDecodeButton.Location = new System.Drawing.Point(981, 60);
+            this.VarshamovaCodeDecodeButton.Name = "VarshamovaCodeDecodeButton";
+            this.VarshamovaCodeDecodeButton.Size = new System.Drawing.Size(137, 23);
+            this.VarshamovaCodeDecodeButton.TabIndex = 17;
+            this.VarshamovaCodeDecodeButton.Text = "Декодировать";
+            this.VarshamovaCodeDecodeButton.UseVisualStyleBackColor = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(891, 436);
+            this.ClientSize = new System.Drawing.Size(1133, 436);
             this.Controls.Add(this.tabControl1);
             this.Name = "Main";
             this.Text = "Code Tool";
@@ -1137,6 +1244,8 @@
             this.tabPage12.PerformLayout();
             this.tabPage13.ResumeLayout(false);
             this.tabPage13.PerformLayout();
+            this.tabPage14.ResumeLayout(false);
+            this.tabPage14.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -1238,5 +1347,15 @@
         private System.Windows.Forms.TextBox HaffmanCodePXiTextBox;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
+        private System.Windows.Forms.TabPage tabPage14;
+        private System.Windows.Forms.Button VarshamovaCodeDecodeButton;
+        private System.Windows.Forms.ListBox VarshamovaCodeListBox;
+        private System.Windows.Forms.Button VarshamovaCodeEncodeButton;
+        private System.Windows.Forms.TextBox VarshamovaCodeDTextBox;
+        private System.Windows.Forms.Label label27;
+        private System.Windows.Forms.Label label28;
+        private System.Windows.Forms.TextBox VarshamovaCodeNTextBox;
+        private System.Windows.Forms.Label label29;
+        private System.Windows.Forms.Label label30;
     }
 }

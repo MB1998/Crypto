@@ -348,6 +348,13 @@ namespace Crypto {
             }
         }
 
+        private void VarshamovaCodeEncodeButton_Click(object sender, EventArgs e) {
+            int codeLendth, minCodeDistance;
+            Int32.TryParse(VarshamovaCodeNTextBox.Text, out codeLendth);
+            Int32.TryParse(VarshamovaCodeDTextBox.Text, out minCodeDistance);
+            Crypto.EncodeVarshamovaCode(codeLendth, minCodeDistance, VarshamovaCodeListBox);
+        }
+
         private double[,] getConditionalProbabilitiesMatrix() {
             double[,] conditionalProbabilitiesMatrix = null;
             try {

@@ -360,6 +360,31 @@ namespace Crypto {
             return encodedProbabilities;
         }
 
+        public static void EncodeVarshamovaCode(int codeLength, int minCodeDistance, ListBox listBox) {
+            int amountOfColumns = codeLength;
+            int amountOfFixedBugs = getVarshamoveCodeAmountOfColumns(minCodeDistance);
+            int amountOfCheckDigits = getAmountOfCheckDigits(codeLength, minCodeDistance);
+            int amountOfRows = codeLength - amountOfCheckDigits;
+            listBox.Items.Add($"Amount of columns of addishional matrix: {amountOfColumns}.");
+            listBox.Items.Add($"Amount of bugs which could be fixed: {amountOfFixedBugs}.");
+            listBox.Items.Add($"Amount of rows of addishional matrix: {amountOfRows}.");
+            listBox.Items.Add($"Amount of check digits: {amountOfCheckDigits}.");
+
+
+        }
+
+        private static int getVarshamoveCodeAmountOfColumns(int minCodeDistance) {
+            return (int)Math.Floor((double)((minCodeDistance - 1) / 2));
+        }
+
+        private static int getAmountOfCheckDigits(int codeLength, int minCodeDistance) {
+            double valueToCompare = 1;
+            for(int i = 1; i <= minCodeDistance - 2; i++) {
+                valueToCompare += (Factorial(codeLength - 1) / (Factorial(i) * Factorial(codeLength - 1 - i)));
+            }
+             return (int)Math.Floor(Math.Log(valueToCompare, 2)) + 1;
+        }
+
         private static void DiplsayAuxiliaryGroupsHaffman(List<List<double>> auxiliaryGroupsHaffman, ListBox listBox) {
             listBox.Items.Add("Auxiliary Groups of Haffman for enterred possibilities: ");
             for (int i = 0; i < auxiliaryGroupsHaffman[0].Count; i++) {
