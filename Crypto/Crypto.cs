@@ -369,9 +369,37 @@ namespace Crypto {
             listBox.Items.Add($"Amount of bugs which could be fixed: {amountOfFixedBugs}.");
             listBox.Items.Add($"Amount of rows of addishional matrix: {amountOfRows}.");
             listBox.Items.Add($"Amount of check digits: {amountOfCheckDigits}.");
-
-
+            listBox.Items.Add("-------------------------------------------------------------------------");
+            listBox.Items.Add("Additional matrix: ");
+            foreach(String matrixRow in getAdditionalMatrixVarshamova()) {
+                listBox.Items.Add(matrixRow);
+            }
+            listBox.Items.Add("-------------------------------------------------------------------------");
         }
+
+        private static List<String> getAdditionalMatrixVarshamova() {
+            List<String> additionalMatrixVarshamova = new List<String>();
+            for(int i = 0; i < AdditionalMatrixVarshamova.GetLength(0); i++) {
+                string matrixRow = "";
+                for(int j = 0; j < AdditionalMatrixVarshamova.GetLength(1); j++) {
+                    matrixRow += AdditionalMatrixVarshamova[i, j] + "   ";
+                    if(j == 5)
+                        matrixRow += "|  ";
+                }
+                additionalMatrixVarshamova.Add(matrixRow);
+            }
+            return additionalMatrixVarshamova;
+        }
+
+        static byte[,] AdditionalMatrixVarshamova = new byte[,]
+        {
+            { 1, 0, 0, 0, 0, 0, 0, 0, 1, 1},
+        {0,1,0,0,0,0,0,1,0,1 },
+        {0,0,1,0,0,0,1,0,0,1 },
+        {0,0,0,1,0,0,0,1,1,0 },
+        {0,0,0,0,1,0,1,0,1,0 },
+        {0,0,0,0,0,1,1,1,0,0 }
+        };
 
         private static int getVarshamoveCodeAmountOfColumns(int minCodeDistance) {
             return (int)Math.Floor((double)((minCodeDistance - 1) / 2));
