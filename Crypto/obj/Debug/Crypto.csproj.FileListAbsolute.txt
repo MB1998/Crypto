@@ -1,0 +1,8 @@
+D:\Downloads\Crypto-master\Crypto-master\Crypto\bin\Debug\Crypto.exe.config
+D:\Downloads\Crypto-master\Crypto-master\Crypto\bin\Debug\Crypto.exe
+D:\Downloads\Crypto-master\Crypto-master\Crypto\bin\Debug\Crypto.pdb
+D:\Downloads\Crypto-master\Crypto-master\Crypto\obj\Debug\Crypto.csprojResolveAssemblyReference.cache
+D:\Downloads\Crypto-master\Crypto-master\Crypto\obj\Debug\Crypto.Main.resources
+D:\Downloads\Crypto-master\Crypto-master\Crypto\obj\Debug\Crypto.csproj.GenerateResource.Cache
+D:\Downloads\Crypto-master\Crypto-master\Crypto\obj\Debug\Crypto.exe
+D:\Downloads\Crypto-master\Crypto-master\Crypto\obj\Debug\Crypto.pdb

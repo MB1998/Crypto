@@ -496,5 +496,43 @@ namespace Crypto {
             }
             return message;
         }
+
+        private void encodeButton_Click(object sender, EventArgs e)
+        {
+            List<int> sequence = new List<int>();
+            foreach (char character in dataTextBox.Text)
+                sequence.Add((int)character - 48);
+            int[] result = new int[] { };
+            try
+            {
+                result = Hemming.Encoder(sequence.ToArray());
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Incorrect length");
+            }
+            resultTextBox.Text = "";
+            foreach (int digit in result)
+                resultTextBox.Text += digit;
+        }
+
+        private void decodeButton_Click(object sender, EventArgs e)
+        {
+            List<int> sequence = new List<int>();
+            foreach (char character in dataTextBox.Text)
+                sequence.Add((int)character - 48);
+            int[] result = new int[] { };
+            try
+            {
+                result = Hemming.Decoder(sequence.ToArray());
+            }
+            catch (ArgumentException ex)
+            {
+                MessageBox.Show(ex.Message, "Incorrect length");
+            }
+            resultTextBox.Text = "";
+            foreach (int digit in result)
+                resultTextBox.Text += digit;
+        }
     }
 }
