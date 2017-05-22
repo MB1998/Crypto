@@ -1,0 +1,8 @@
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\Applications2016_2017\Hemming\Hemming\bin\Debug\Hemming.exe
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\Applications2016_2017\Hemming\Hemming\bin\Debug\Hemming.pdb
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\Applications2016_2017\Hemming\Hemming\obj\Debug\Hemming.csprojResolveAssemblyReference.cache
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\Applications2016_2017\Hemming\Hemming\obj\Debug\Hemming.Form1.resources
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\Applications2016_2017\Hemming\Hemming\obj\Debug\Hemming.Properties.Resources.resources
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\Applications2016_2017\Hemming\Hemming\obj\Debug\Hemming.csproj.GenerateResource.Cache
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\Applications2016_2017\Hemming\Hemming\obj\Debug\Hemming.exe
+C:\Users\Admin\Documents\Visual Studio 2015\Projects\Applications2016_2017\Hemming\Hemming\obj\Debug\Hemming.pdb
