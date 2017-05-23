@@ -325,6 +325,12 @@ namespace Crypto {
 
         public static List<string> EncodeHaffman(List<double> probabilitiesOfMessages, ListBox listBoxToShow) {
             List<List<double>> auxiliaryGroupsHaffman = new List<List<double>>();
+            for(int i = 0; i < probabilitiesOfMessages.Count - 1; i++) {
+                if(probabilitiesOfMessages[i] == probabilitiesOfMessages[i + 1]) {
+                    probabilitiesOfMessages[i + 1] += 0.0001 * i;
+                    probabilitiesOfMessages[i] -= 0.0001 * i;
+                }
+            }
             List<double> initialProbabilitiesOfMessages = probabilitiesOfMessages.Select(x => x).ToList();
             probabilitiesOfMessages.Sort();
             probabilitiesOfMessages.Reverse();
@@ -340,11 +346,25 @@ namespace Crypto {
                 double sumOfSmallestProbabilities = smallestProbability + secondFromEndProbability;
                 probabilitiesOfMessages[probabilitiesOfMessages.Count - 2] = sumOfSmallestProbabilities;
                 probabilitiesOfMessages.Remove(smallestProbability);
-                for(int j = 0; j < initialProbabilitiesOfMessages.Count; j++) {
-                    if(initialProbabilitiesOfMessages[j] == smallestProbability)
-                        encodedProbabilities[j] += "0";
-                    else if(initialProbabilitiesOfMessages[j] == secondFromEndProbability)
-                        encodedProbabilities[j] += "1";
+                if (smallestProbability != secondFromEndProbability) {
+                    for (int j = 0; j < initialProbabilitiesOfMessages.Count; j++) {
+                        if (initialProbabilitiesOfMessages[j] == smallestProbability)
+                            encodedProbabilities[j] += "0";
+                        else if (initialProbabilitiesOfMessages[j] == secondFromEndProbability)
+                            encodedProbabilities[j] += "1";
+                    }
+                } else {
+                    int count = 0;
+                    for (int j = 0; j < initialProbabilitiesOfMessages.Count; j++) {
+                        if (initialProbabilitiesOfMessages[j] == smallestProbability)
+                            count++;
+                    }
+                    for (int j = 0; j < initialProbabilitiesOfMessages.Count; j++) {
+                        if (initialProbabilitiesOfMessages[j] == smallestProbability && i < count / 2)
+                            encodedProbabilities[j] += "0";
+                        else if (initialProbabilitiesOfMessages[j] == smallestProbability && i >= count / 2)
+                            encodedProbabilities[j] += "1";
+                    }
                 }
                 initialProbabilitiesOfMessages = initialProbabilitiesOfMessages.Select(x => x == smallestProbability || x == secondFromEndProbability ? sumOfSmallestProbabilities : x).ToList();
                 probabilitiesOfMessages.Sort();
@@ -360,7 +380,7 @@ namespace Crypto {
             return encodedProbabilities;
         }
 
-        public static void EncodeVarshamovaCode(int codeLength, int minCodeDistance, ListBox listBox) {
+        public static void EncodeVarshamovaCode(int codeLength, int minCodeDistance, String toEncode, ListBox listBox) {
             int amountOfColumns = codeLength;
             int amountOfFixedBugs = getVarshamoveCodeAmountOfColumns(minCodeDistance);
             int amountOfCheckDigits = getAmountOfCheckDigits(codeLength, minCodeDistance);
@@ -375,6 +395,25 @@ namespace Crypto {
                 listBox.Items.Add(matrixRow);
             }
             listBox.Items.Add("-------------------------------------------------------------------------");
+            String encodedCombination = VarshamovCode.Encode(toEncode);
+            listBox.Items.Add("Encoded combination: ");
+            listBox.Items.Add(encodedCombination);
+            listBox.Items.Add("-------------------------------------------------------------------------");
+            listBox.Items.Add("Checking matrix matrix: ");
+            foreach (String matrixRow in getHMatrixVarshamova()) {
+                listBox.Items.Add(matrixRow);
+            }
+            listBox.Items.Add("-------------------------------------------------------------------------");
+        }
+
+        public static void FixMistakesVarshamovaCode(String combinationToFix, ListBox listBox) {
+            listBox.Items.Add("Combination with mistakes: ");
+            listBox.Items.Add(combinationToFix);
+            listBox.Items.Add("-------------------------------------------------------------------------");
+            listBox.Items.Add("Fixed combination: ");
+            listBox.Items.Add(VarshamovCode.CorrectCode(combinationToFix));
+            listBox.Items.Add("-------------------------------------------------------------------------");
+
         }
 
         private static List<String> getAdditionalMatrixVarshamova() {
@@ -391,6 +430,20 @@ namespace Crypto {
             return additionalMatrixVarshamova;
         }
 
+        private static List<String> getHMatrixVarshamova() {
+            List<String> additionalMatrixVarshamova = new List<String>();
+            for (int i = 0; i < h.GetLength(0); i++) {
+                string matrixRow = "";
+                for (int j = 0; j < h.GetLength(1); j++) {
+                    matrixRow += h[i, j] + "   ";
+                    if (j == 5)
+                        matrixRow += "|  ";
+                }
+                additionalMatrixVarshamova.Add(matrixRow);
+            }
+            return additionalMatrixVarshamova;
+        }
+
         static byte[,] AdditionalMatrixVarshamova = new byte[,]
         {
             { 1, 0, 0, 0, 0, 0, 0, 0, 1, 1},
@@ -400,6 +453,14 @@ namespace Crypto {
         {0,0,0,0,1,0,1,0,1,0 },
         {0,0,0,0,0,1,1,1,0,0 }
         };
+
+        static byte[,] h = new byte[,]
+            {
+                {0,0,1,0,1,1,1,0,0,0 },
+            {0,1,0,1,0,1,0,1,0,0 },
+            {1,0,0,1,1,0,0,0,1,0 },
+            {1,1,1,0,0,0,0,0,0,1 }
+            };
 
         private static int getVarshamoveCodeAmountOfColumns(int minCodeDistance) {
             return (int)Math.Floor((double)((minCodeDistance - 1) / 2));

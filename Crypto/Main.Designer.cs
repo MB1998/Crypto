@@ -125,7 +125,7 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.tabPage14 = new System.Windows.Forms.TabPage();
-            this.VarshamovaCodeDecodeButton = new System.Windows.Forms.Button();
+            this.VarshamovaCodeFixMistakesButton = new System.Windows.Forms.Button();
             this.VarshamovaCodeListBox = new System.Windows.Forms.ListBox();
             this.VarshamovaCodeEncodeButton = new System.Windows.Forms.Button();
             this.VarshamovaCodeDTextBox = new System.Windows.Forms.TextBox();
@@ -135,12 +135,14 @@
             this.label29 = new System.Windows.Forms.Label();
             this.label30 = new System.Windows.Forms.Label();
             this.tabPage15 = new System.Windows.Forms.TabPage();
-            this.dataTextBox = new System.Windows.Forms.TextBox();
-            this.resultTextBox = new System.Windows.Forms.TextBox();
-            this.dataLabel = new System.Windows.Forms.Label();
-            this.resultLabel = new System.Windows.Forms.Label();
-            this.encodeButton = new System.Windows.Forms.Button();
             this.decodeButton = new System.Windows.Forms.Button();
+            this.encodeButton = new System.Windows.Forms.Button();
+            this.dataLabel = new System.Windows.Forms.Label();
+            this.dataTextBox = new System.Windows.Forms.TextBox();
+            this.VarshamovaCodeCombinationTextBox = new System.Windows.Forms.TextBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.resultTextBox = new System.Windows.Forms.TextBox();
+            this.resultLabel = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -252,10 +254,10 @@
             this.tabPage2.Controls.Add(this.BCDDecodeButton);
             this.tabPage2.Controls.Add(this.BCDEncodeButton);
             this.tabPage2.Controls.Add(this.listBoxDdc);
-            this.tabPage2.Location = new System.Drawing.Point(4, 22);
+            this.tabPage2.Location = new System.Drawing.Point(4, 40);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1128, 408);
+            this.tabPage2.Size = new System.Drawing.Size(1128, 390);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Двоично-Десятичная";
             // 
@@ -348,10 +350,10 @@
             this.tabPage3.Controls.Add(this.label2);
             this.tabPage3.Controls.Add(this.BerderEncodeButton);
             this.tabPage3.Controls.Add(this.listBoxBerger);
-            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Location = new System.Drawing.Point(4, 40);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(1128, 408);
+            this.tabPage3.Size = new System.Drawing.Size(1128, 390);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Код Бергера";
             // 
@@ -406,10 +408,10 @@
             this.tabPage4.Controls.Add(this.listBoxEllays);
             this.tabPage4.Controls.Add(this.EllaysDecodeButton);
             this.tabPage4.Controls.Add(this.EllaysEncodeButton);
-            this.tabPage4.Location = new System.Drawing.Point(4, 22);
+            this.tabPage4.Location = new System.Drawing.Point(4, 40);
             this.tabPage4.Name = "tabPage4";
             this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage4.Size = new System.Drawing.Size(1128, 408);
+            this.tabPage4.Size = new System.Drawing.Size(1128, 390);
             this.tabPage4.TabIndex = 3;
             this.tabPage4.Text = "Код Еллайса";
             // 
@@ -464,9 +466,9 @@
             this.tabPage5.Controls.Add(this.label5);
             this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesEnodeButton);
             this.tabPage5.Controls.Add(this.PrimaryNonBinaryCodesListBox);
-            this.tabPage5.Location = new System.Drawing.Point(4, 22);
+            this.tabPage5.Location = new System.Drawing.Point(4, 40);
             this.tabPage5.Name = "tabPage5";
-            this.tabPage5.Size = new System.Drawing.Size(1128, 408);
+            this.tabPage5.Size = new System.Drawing.Size(1128, 390);
             this.tabPage5.TabIndex = 4;
             this.tabPage5.Text = "Первичные недвоичные коды";
             this.tabPage5.UseVisualStyleBackColor = true;
@@ -598,9 +600,9 @@
             this.tabPage6.Controls.Add(this.label14);
             this.tabPage6.Controls.Add(this.CodeWithModuleQTestEncodeButton);
             this.tabPage6.Controls.Add(this.CodeWithModuleQTestListBox);
-            this.tabPage6.Location = new System.Drawing.Point(4, 22);
+            this.tabPage6.Location = new System.Drawing.Point(4, 40);
             this.tabPage6.Name = "tabPage6";
-            this.tabPage6.Size = new System.Drawing.Size(1128, 408);
+            this.tabPage6.Size = new System.Drawing.Size(1128, 390);
             this.tabPage6.TabIndex = 5;
             this.tabPage6.Text = "Код с проверкой по модулю q";
             this.tabPage6.UseVisualStyleBackColor = true;
@@ -810,9 +812,9 @@
             this.tabPage9.Controls.Add(this.AmountOfInformationPXiTextBox);
             this.tabPage9.Controls.Add(this.label18);
             this.tabPage9.Controls.Add(this.label16);
-            this.tabPage9.Location = new System.Drawing.Point(4, 22);
+            this.tabPage9.Location = new System.Drawing.Point(4, 40);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(1128, 408);
+            this.tabPage9.Size = new System.Drawing.Size(1128, 390);
             this.tabPage9.TabIndex = 8;
             this.tabPage9.Text = "Количество информации";
             this.tabPage9.UseVisualStyleBackColor = true;
@@ -1126,7 +1128,9 @@
             // 
             // tabPage14
             // 
-            this.tabPage14.Controls.Add(this.VarshamovaCodeDecodeButton);
+            this.tabPage14.Controls.Add(this.VarshamovaCodeCombinationTextBox);
+            this.tabPage14.Controls.Add(this.label31);
+            this.tabPage14.Controls.Add(this.VarshamovaCodeFixMistakesButton);
             this.tabPage14.Controls.Add(this.VarshamovaCodeListBox);
             this.tabPage14.Controls.Add(this.VarshamovaCodeEncodeButton);
             this.tabPage14.Controls.Add(this.VarshamovaCodeDTextBox);
@@ -1142,14 +1146,15 @@
             this.tabPage14.Text = "Код Варшамова";
             this.tabPage14.UseVisualStyleBackColor = true;
             // 
-            // VarshamovaCodeDecodeButton
+            // VarshamovaCodeFixMistakesButton
             // 
-            this.VarshamovaCodeDecodeButton.Location = new System.Drawing.Point(981, 60);
-            this.VarshamovaCodeDecodeButton.Name = "VarshamovaCodeDecodeButton";
-            this.VarshamovaCodeDecodeButton.Size = new System.Drawing.Size(137, 23);
-            this.VarshamovaCodeDecodeButton.TabIndex = 17;
-            this.VarshamovaCodeDecodeButton.Text = "Декодировать";
-            this.VarshamovaCodeDecodeButton.UseVisualStyleBackColor = true;
+            this.VarshamovaCodeFixMistakesButton.Location = new System.Drawing.Point(981, 60);
+            this.VarshamovaCodeFixMistakesButton.Name = "VarshamovaCodeFixMistakesButton";
+            this.VarshamovaCodeFixMistakesButton.Size = new System.Drawing.Size(137, 23);
+            this.VarshamovaCodeFixMistakesButton.TabIndex = 17;
+            this.VarshamovaCodeFixMistakesButton.Text = "Исправить ошибки";
+            this.VarshamovaCodeFixMistakesButton.UseVisualStyleBackColor = true;
+            this.VarshamovaCodeFixMistakesButton.Click += new System.EventHandler(this.VarshamovaCodeFixMistakesButton_Click);
             // 
             // VarshamovaCodeListBox
             // 
@@ -1173,7 +1178,7 @@
             // 
             this.VarshamovaCodeDTextBox.Location = new System.Drawing.Point(46, 63);
             this.VarshamovaCodeDTextBox.Name = "VarshamovaCodeDTextBox";
-            this.VarshamovaCodeDTextBox.Size = new System.Drawing.Size(928, 20);
+            this.VarshamovaCodeDTextBox.Size = new System.Drawing.Size(428, 20);
             this.VarshamovaCodeDTextBox.TabIndex = 14;
             // 
             // label27
@@ -1198,7 +1203,7 @@
             // 
             this.VarshamovaCodeNTextBox.Location = new System.Drawing.Point(46, 21);
             this.VarshamovaCodeNTextBox.Name = "VarshamovaCodeNTextBox";
-            this.VarshamovaCodeNTextBox.Size = new System.Drawing.Size(928, 20);
+            this.VarshamovaCodeNTextBox.Size = new System.Drawing.Size(428, 20);
             this.VarshamovaCodeNTextBox.TabIndex = 11;
             // 
             // label29
@@ -1234,41 +1239,19 @@
             this.tabPage15.Text = "Код Хемминга (систематический)";
             this.tabPage15.UseVisualStyleBackColor = true;
             // 
-            // dataTextBox
+            // decodeButton
             // 
-            this.dataTextBox.Location = new System.Drawing.Point(137, 30);
-            this.dataTextBox.Name = "dataTextBox";
-            this.dataTextBox.Size = new System.Drawing.Size(517, 20);
-            this.dataTextBox.TabIndex = 0;
-            // 
-            // resultTextBox
-            // 
-            this.resultTextBox.Location = new System.Drawing.Point(137, 72);
-            this.resultTextBox.Name = "resultTextBox";
-            this.resultTextBox.Size = new System.Drawing.Size(517, 20);
-            this.resultTextBox.TabIndex = 1;
-            // 
-            // dataLabel
-            // 
-            this.dataLabel.AutoSize = true;
-            this.dataLabel.Location = new System.Drawing.Point(39, 33);
-            this.dataLabel.Name = "dataLabel";
-            this.dataLabel.Size = new System.Drawing.Size(48, 13);
-            this.dataLabel.TabIndex = 2;
-            this.dataLabel.Text = "Данные";
-            // 
-            // resultLabel
-            // 
-            this.resultLabel.AutoSize = true;
-            this.resultLabel.Location = new System.Drawing.Point(42, 78);
-            this.resultLabel.Name = "resultLabel";
-            this.resultLabel.Size = new System.Drawing.Size(59, 13);
-            this.resultLabel.TabIndex = 3;
-            this.resultLabel.Text = "Результат";
+            this.decodeButton.Location = new System.Drawing.Point(1004, 37);
+            this.decodeButton.Name = "decodeButton";
+            this.decodeButton.Size = new System.Drawing.Size(114, 23);
+            this.decodeButton.TabIndex = 5;
+            this.decodeButton.Text = "Дешифровать";
+            this.decodeButton.UseVisualStyleBackColor = true;
+            this.decodeButton.Click += new System.EventHandler(this.decodeButton_Click);
             // 
             // encodeButton
             // 
-            this.encodeButton.Location = new System.Drawing.Point(727, 28);
+            this.encodeButton.Location = new System.Drawing.Point(1004, 7);
             this.encodeButton.Name = "encodeButton";
             this.encodeButton.Size = new System.Drawing.Size(114, 23);
             this.encodeButton.TabIndex = 4;
@@ -1276,15 +1259,53 @@
             this.encodeButton.UseVisualStyleBackColor = true;
             this.encodeButton.Click += new System.EventHandler(this.encodeButton_Click);
             // 
-            // decodeButton
+            // dataLabel
             // 
-            this.decodeButton.Location = new System.Drawing.Point(727, 68);
-            this.decodeButton.Name = "decodeButton";
-            this.decodeButton.Size = new System.Drawing.Size(114, 23);
-            this.decodeButton.TabIndex = 5;
-            this.decodeButton.Text = "Дешифровать";
-            this.decodeButton.UseVisualStyleBackColor = true;
-            this.decodeButton.Click += new System.EventHandler(this.decodeButton_Click);
+            this.dataLabel.AutoSize = true;
+            this.dataLabel.Location = new System.Drawing.Point(13, 17);
+            this.dataLabel.Name = "dataLabel";
+            this.dataLabel.Size = new System.Drawing.Size(48, 13);
+            this.dataLabel.TabIndex = 2;
+            this.dataLabel.Text = "Данные";
+            // 
+            // dataTextBox
+            // 
+            this.dataTextBox.Location = new System.Drawing.Point(111, 14);
+            this.dataTextBox.Name = "dataTextBox";
+            this.dataTextBox.Size = new System.Drawing.Size(852, 20);
+            this.dataTextBox.TabIndex = 0;
+            // 
+            // VarshamovaCodeCombinationTextBox
+            // 
+            this.VarshamovaCodeCombinationTextBox.Location = new System.Drawing.Point(483, 21);
+            this.VarshamovaCodeCombinationTextBox.Name = "VarshamovaCodeCombinationTextBox";
+            this.VarshamovaCodeCombinationTextBox.Size = new System.Drawing.Size(480, 20);
+            this.VarshamovaCodeCombinationTextBox.TabIndex = 20;
+            // 
+            // label31
+            // 
+            this.label31.AutoSize = true;
+            this.label31.Location = new System.Drawing.Point(480, 5);
+            this.label31.Name = "label31";
+            this.label31.Size = new System.Drawing.Size(70, 13);
+            this.label31.TabIndex = 19;
+            this.label31.Text = "Комбинация";
+            // 
+            // resultTextBox
+            // 
+            this.resultTextBox.Location = new System.Drawing.Point(111, 40);
+            this.resultTextBox.Name = "resultTextBox";
+            this.resultTextBox.Size = new System.Drawing.Size(852, 20);
+            this.resultTextBox.TabIndex = 1;
+            // 
+            // resultLabel
+            // 
+            this.resultLabel.AutoSize = true;
+            this.resultLabel.Location = new System.Drawing.Point(16, 46);
+            this.resultLabel.Name = "resultLabel";
+            this.resultLabel.Size = new System.Drawing.Size(59, 13);
+            this.resultLabel.TabIndex = 3;
+            this.resultLabel.Text = "Результат";
             // 
             // Main
             // 
@@ -1426,7 +1447,7 @@
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TabPage tabPage14;
-        private System.Windows.Forms.Button VarshamovaCodeDecodeButton;
+        private System.Windows.Forms.Button VarshamovaCodeFixMistakesButton;
         private System.Windows.Forms.ListBox VarshamovaCodeListBox;
         private System.Windows.Forms.Button VarshamovaCodeEncodeButton;
         private System.Windows.Forms.TextBox VarshamovaCodeDTextBox;
@@ -1438,9 +1459,11 @@
         private System.Windows.Forms.TabPage tabPage15;
         private System.Windows.Forms.Button decodeButton;
         private System.Windows.Forms.Button encodeButton;
-        private System.Windows.Forms.Label resultLabel;
         private System.Windows.Forms.Label dataLabel;
-        private System.Windows.Forms.TextBox resultTextBox;
         private System.Windows.Forms.TextBox dataTextBox;
+        private System.Windows.Forms.TextBox VarshamovaCodeCombinationTextBox;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.Label resultLabel;
+        private System.Windows.Forms.TextBox resultTextBox;
     }
 }

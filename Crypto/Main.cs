@@ -350,9 +350,15 @@ namespace Crypto {
 
         private void VarshamovaCodeEncodeButton_Click(object sender, EventArgs e) {
             int codeLendth, minCodeDistance;
+            string combinationToEncode = VarshamovaCodeCombinationTextBox.Text;
             Int32.TryParse(VarshamovaCodeNTextBox.Text, out codeLendth);
             Int32.TryParse(VarshamovaCodeDTextBox.Text, out minCodeDistance);
-            Crypto.EncodeVarshamovaCode(codeLendth, minCodeDistance, VarshamovaCodeListBox);
+            Crypto.EncodeVarshamovaCode(codeLendth, minCodeDistance, combinationToEncode, VarshamovaCodeListBox);
+        }
+
+        private void VarshamovaCodeFixMistakesButton_Click(object sender, EventArgs e) {
+            string combinationToEncode = VarshamovaCodeCombinationTextBox.Text;
+            Crypto.FixMistakesVarshamovaCode(combinationToEncode, VarshamovaCodeListBox);
         }
 
         private double[,] getConditionalProbabilitiesMatrix() {
