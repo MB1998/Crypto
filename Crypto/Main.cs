@@ -540,5 +540,17 @@ namespace Crypto {
             foreach (int digit in result)
                 resultTextBox.Text += digit;
         }
+
+        private void AbramsonaCodeEncodeButton_Click(object sender, EventArgs e) {
+            var polynomial = AbramsonaCodePolynomialTextBox.Text.Trim().Select(digit => digit == '1').ToList();
+            var dataToEncode = AbramsonaCodeMessageTextBox.Text.Trim().Select(digit => digit == '1').ToList();
+            Crypto.EncodeAbramsonaCode(dataToEncode, polynomial, AbramsonaCodeListBox);
+        }
+
+        private void AbramsonaCodeDecodeButton_Click(object sender, EventArgs e) {
+            var polynomial = AbramsonaCodePolynomialTextBox.Text.Trim().Select(digit => digit == '1').ToList();
+            var dataToDecode = AbramsonaCodeMessageTextBox.Text.Trim().Select(digit => digit == '1').ToList();
+            Crypto.DecodeAbramsonaCode(dataToDecode, polynomial, AbramsonaCodeListBox);
+        }
     }
 }

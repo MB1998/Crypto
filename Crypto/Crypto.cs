@@ -584,5 +584,127 @@ namespace Crypto {
             }
             return message;
         }
+
+        public static string EncodeAbramsonaCode(List<bool> dataToEncode, List<bool> polynomial, ListBox listBox) {
+            listBox.Items.Add("Message: " + ToString(dataToEncode));
+            listBox.Items.Add("Polynomial: " + ToString(polynomial));
+            List<bool> formingPolynomial = GetFormingPolynomial(polynomial);
+            listBox.Items.Add("Forming polinomial: " + ToString(formingPolynomial));
+            List<bool> remainderOfDivision = devide(dataToEncode, formingPolynomial, true);
+            dataToEncode.AddRange(remainderOfDivision);
+            listBox.Items.Add("Encoded message: " + ToString(dataToEncode));
+            listBox.Items.Add("-------------------------------------------------------------------------");
+            return ToString(dataToEncode);
+        }
+
+        private static List<bool> GetFormingPolynomial(List<bool> polynomial) {
+            List<bool> tempPolinomial = polynomial.Select(digit => digit).ToList();
+            tempPolinomial.Add(false);
+            return xor(polynomial, tempPolinomial);
+        }
+
+        private static List<bool> xor (List<bool> code1, List<bool> code2) {
+            List<bool> result = new List<bool>();
+            for(int i = 0; i < (code1.Count > code2.Count ? code1.Count : code2.Count); i++ ) {
+                bool firstDigit = (code1.Count <= i ? false : code1[code1.Count - 1 - i]);
+                bool secondDigit = (code2.Count <= i ? false : code2[code2.Count - 1 - i]);
+                result.Add(firstDigit ^ secondDigit);
+            }
+            result.Reverse();
+            return result;
+        }
+
+        private static List<bool> devide(List<bool> dividend, List<bool> divider, bool multiplyX5) {
+            dividend = deleteFirstZeros(dividend);
+            if(multiplyX5) {
+                List<bool> addintionalZerosToEnd = new List<bool>();
+                for(int i = 0; i < divider.Count - 1; i++) {
+                    addintionalZerosToEnd.Add(false);
+                }
+                dividend.AddRange(addintionalZerosToEnd);
+            }
+            List<bool> remainderOfDivision = new List<bool>();
+            int nextIndexOfDevident = divider.Count;
+            remainderOfDivision = dividend.GetRange(0, divider.Count);
+            while(true) {
+                remainderOfDivision = deleteFirstZeros(xor(remainderOfDivision, divider));
+                if(nextIndexOfDevident + (divider.Count - remainderOfDivision.Count) > dividend.Count) {
+                    remainderOfDivision.AddRange(dividend.GetRange(nextIndexOfDevident, dividend.Count - nextIndexOfDevident));
+                    return remainderOfDivision;
+                }
+                int amountOfSymbolsToAdd = divider.Count - remainderOfDivision.Count;
+                remainderOfDivision.AddRange(dividend.GetRange(nextIndexOfDevident, amountOfSymbolsToAdd));
+                nextIndexOfDevident += amountOfSymbolsToAdd;
+            }
+        }
+
+        private static List<bool> deleteFirstZeros(List<bool> message) {
+            List<bool> validatedMessage = message.Select(i => i).ToList();
+            for(int i = 0; i < message.Count; i++) {
+                if(!message[i]) {
+                    validatedMessage.Remove(false);
+                } else {
+                    break;
+                }
+            }
+            return validatedMessage;
+        }
+
+        public static string DecodeAbramsonaCode(List<bool> dataToDecode, List<bool> polynomial, ListBox listBox) {
+            listBox.Items.Add("Encoded: " + ToString(dataToDecode));
+            listBox.Items.Add("Polynomial: " + ToString(polynomial));
+            List<bool> formingPolynomial = GetFormingPolynomial(polynomial);
+            listBox.Items.Add("Forming polinomial: " + ToString(formingPolynomial));
+            int weightOfError = 0, amountOfShifts = 0;
+            List<bool> remainderOfDivision = devide(dataToDecode, formingPolynomial, false);
+            while((weightOfError = GetWeightOfError(remainderOfDivision)) != 0) {
+                listBox.Items.Add("Error has been found!");
+                listBox.Items.Add("Weight of error: " + weightOfError);
+                if(weightOfError == 1 || (weightOfError == 2 && deleteFirstZeros(remainderOfDivision)[0] && deleteFirstZeros(remainderOfDivision)[1])) {
+                    dataToDecode = xor(dataToDecode, remainderOfDivision);
+                    for(int i = 0; i < amountOfShifts; i++) {
+                        dataToDecode = ShiftCombinationToRight(dataToDecode);
+                    }
+                    break;
+                } else {
+                    dataToDecode = ShiftCombinationToLeft(dataToDecode);
+                    listBox.Items.Add("Shifted combination: " + ToString(dataToDecode));
+                    listBox.Items.Add("-------------------------------------------------------------------------");
+                    remainderOfDivision = devide(dataToDecode, formingPolynomial, false);
+                    amountOfShifts++;
+                }
+            }
+            for(int i = 0; i < 5; i++) {
+                dataToDecode.RemoveAt(dataToDecode.Count - 1);
+            }
+            listBox.Items.Add("-------------------------------------------------------------------------");
+            listBox.Items.Add("Decoded combination: " + ToString(dataToDecode));
+            listBox.Items.Add("-------------------------------------------------------------------------");
+            return ToString(dataToDecode);
+        }
+
+        private static int GetWeightOfError(List<bool> remainderOfDivision) {
+            int weightOfError = 0;
+            foreach(bool digit in remainderOfDivision) {
+                if(digit)
+                    weightOfError++;
+            }
+            return weightOfError;
+        }
+
+        private static List<bool> ShiftCombinationToLeft(List<bool> combination) {
+            combination.Add(combination[0]);
+            combination.Remove(combination[0]);
+            return combination;
+        }
+
+        private static List<bool> ShiftCombinationToRight(List<bool> combination) {
+            List<bool> shifterCombination = new List<bool>(combination.Count);
+            shifterCombination.Add(combination[combination.Count - 1]);
+            for(int i = 0; i < combination.Count - 1; i++) {
+                shifterCombination.Add(combination[i]);
+            }
+            return shifterCombination;
+        }
     }
 }
